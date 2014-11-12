@@ -6,6 +6,7 @@
 #include <rt/ray.h>
 #include <rt/intersection.h>
 #include <vector>
+#include <rt/bbox.h>
 
 namespace rt {
 
@@ -21,7 +22,7 @@ It may be as simple as a plane or triangle, but more complex objects can be prim
 */
 class Primitive {
 public:
-    //virtual BBox getBounds() const = 0;
+	virtual BBox getBounds() const = 0;
     virtual Intersection intersect(const Ray& ray, float previousBestDistance=FLT_MAX) const = 0;
     //virtual void setMaterial(Material* m) = 0;
     //virtual void setCoordMapper(CoordMapper* cm) = 0;

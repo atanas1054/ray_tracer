@@ -32,4 +32,21 @@ namespace rt
 	float Disc::getArea() const{
 		return 0;
 	}
+
+	 BBox Disc::getBounds() const
+	 {
+		 //get a vector from the plane, perpendicular to the normal
+		//if normal is (a,b,c) then a perpendicular vector is (c,c,-a-b)
+		Vector vec(normal.z,normal.z,-normal.x-normal.y);
+
+		//get unit vector
+		vec = vec/vec.length();
+
+		//get the extent of the disc
+		Point p(origin.x +radius*vec.x,origin.y +radius*vec.y,origin.z +radius*vec.z);
+		Point p_(origin.x -radius*vec.x,origin.y -radius*vec.y,origin.z -radius*vec.z);
+
+		return BBox(Point(min(p.x,p_.x),min(p.y,p_.y),min(p.z,p_.z)),Point(max(p.x,p_.x),max(p.y,p_.y),max(p.z,p_.z)));
+
+	 }
 }

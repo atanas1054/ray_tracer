@@ -5,12 +5,13 @@
 #include <rt/groups/group.h>
 #include <rt/primitive.h>
 #include <rt/ray.h>
+#include <rt/bbox.h>
 
 namespace rt {
 
 class SimpleGroup : public Group {
 public:
-    //virtual BBox getBounds() const;
+    virtual BBox getBounds() const;
     virtual Intersection intersect(const Ray& ray, float previousBestDistance) const;
     virtual void rebuildIndex();
     virtual void add(Primitive* p);

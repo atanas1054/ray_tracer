@@ -33,4 +33,14 @@ namespace rt
 	{
 		return 0;
 	}
+
+	BBox InfinitePlane::getBounds() const
+	{
+		//get a vector from the plane, perpendicular to the normal
+		//if normal is (a,b,c) then a perpendicular vector is (c,c,-a-b)
+		Vector vec(normal.z,normal.z,-normal.x-normal.y);
+
+		//infinite bbox
+		return BBox(Point(vec.x,vec.y,vec.z)*(-FLT_MAX),Point(vec.x,vec.y,vec.z)*(FLT_MAX));
+	}
 }

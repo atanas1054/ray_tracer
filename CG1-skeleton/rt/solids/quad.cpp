@@ -39,4 +39,9 @@ namespace rt
 	{ return Point(); }
     float Quad::getArea() const 
 	{return 0;}
+
+	BBox Quad::getBounds() const
+	{
+		return BBox(Point(min(v1.x,v3.x),min(v1.y,v3.y),min(v1.z,v3.z)),Point(max(v1.x,v3.x),max(v1.y,v3.y),max(v1.z,v3.z)));
+	}
 }

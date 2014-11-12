@@ -22,6 +22,9 @@
     <Filter Include="rt\integrators">
       <UniqueIdentifier>{6941c2fc-1c1c-4b6e-bd18-9bf89bc6dde8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rt\loaders">
+      <UniqueIdentifier>{e271c18a-8604-4b43-a3ed-2fcf021b4970}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\macros.h">
@@ -108,6 +111,18 @@
     <ClInclude Include="rt\integrators\integrator.h">
       <Filter>rt\integrators</Filter>
     </ClInclude>
+    <ClInclude Include="rt\bbox.h">
+      <Filter>rt</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\loaders\obj.h">
+      <Filter>rt\loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\groups\bvh.h">
+      <Filter>rt\groups</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\groups\kdtree.h">
+      <Filter>rt\groups</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -187,6 +202,15 @@
     </ClCompile>
     <ClCompile Include="rt\solids\quad.cpp">
       <Filter>rt\solids</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\bbox.cpp">
+      <Filter>rt</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\loaders\obj.cpp">
+      <Filter>rt\loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_indexing.cpp">
+      <Filter>main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -66,4 +66,9 @@ namespace rt
 	{
 		return 0;
 	}
+
+	 BBox AABox::getBounds() const
+	 {
+		 return BBox(Point(min(corner1.x,corner2.x),min(corner1.y,corner2.y),min(corner1.z,corner2.z)),Point(max(corner1.x,corner2.x),max(corner1.y,corner2.y),max(corner1.z,corner2.z)));
+	 }
 }

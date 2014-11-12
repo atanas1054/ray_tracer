@@ -50,4 +50,13 @@ namespace rt
 		return 0;
 	}
 
+	 BBox Sphere::getBounds() const
+	 {
+		float hypot = sqrt(radius*radius + radius*radius);
+		Vector vec(center.x+hypot,center.y+hypot,center.z+hypot);
+		Vector vec_(center.x-hypot,center.y-hypot,center.z-hypot);
+
+		return BBox(Point(min(vec.x,vec_.x),min(vec.y,vec_.y),min(vec.z,vec_.z)),Point(max(vec.x,vec_.x),max(vec.y,vec_.y),max(vec.z,vec_.z)));
+	 }
+
 }

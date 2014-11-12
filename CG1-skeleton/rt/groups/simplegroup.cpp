@@ -26,4 +26,16 @@ namespace rt {
 		primitives.push_back(p);
 	}
 
+	BBox SimpleGroup::getBounds() const
+	{
+		BBox bbox;
+		for(int i = 0;i < primitives.size(); i++)
+		{
+			bbox.extend((*primitives[i]).getBounds());
+		}
+
+		return bbox;
+
+	}
+
 }
