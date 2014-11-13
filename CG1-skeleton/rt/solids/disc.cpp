@@ -50,4 +50,9 @@ namespace rt
 		return BBox(Point(min(p.x,p_.x),min(p.y,p_.y),min(p.z,p_.z)),Point(max(p.x,p_.x),max(p.y,p_.y),max(p.z,p_.z)));
 
 	 }
+
+	 Point Disc::getCenter() const 
+	 {
+		return Point(origin);
+	 }
 }

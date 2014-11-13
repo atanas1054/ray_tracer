@@ -43,4 +43,9 @@ namespace rt
 		//infinite bbox
 		return BBox(Point(vec.x,vec.y,vec.z)*(-FLT_MAX),Point(vec.x,vec.y,vec.z)*(FLT_MAX));
 	}
+
+	Point InfinitePlane::getCenter() const 
+	{
+		return Point(origin);
+	}
 }

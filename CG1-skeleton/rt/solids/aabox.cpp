@@ -71,4 +71,13 @@ namespace rt
 	 {
 		 return BBox(Point(min(corner1.x,corner2.x),min(corner1.y,corner2.y),min(corner1.z,corner2.z)),Point(max(corner1.x,corner2.x),max(corner1.y,corner2.y),max(corner1.z,corner2.z)));
 	 }
+
+	 Point AABox::getCenter() const 
+	 {
+		return Point(
+			(corner1.x + corner2.x) / 2,
+			(corner1.y + corner2.y) / 2,
+			(corner1.z + corner2.z) / 2
+		);
+	 }
 }

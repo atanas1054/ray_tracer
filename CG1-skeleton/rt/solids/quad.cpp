@@ -52,4 +52,9 @@ namespace rt
 
 		return BBox(Point(minimum_x,minimum_y,minimum_z),Point(maximum_x,maximum_y,maximum_z));
 	}
+
+	Point Quad::getCenter() const 
+	{
+		return v1 + (span1 / 2) + (span2 / 2);
+	}
 }

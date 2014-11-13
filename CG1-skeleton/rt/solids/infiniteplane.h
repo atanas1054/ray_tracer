@@ -12,6 +12,7 @@ public:
     InfinitePlane() {}
     InfinitePlane(const Point& origin, const Vector& normal, CoordMapper* texMapper, Material* material);
 
+	virtual Point getCenter() const;
     virtual BBox getBounds() const;
     virtual Intersection intersect(const Ray& ray, float previousBestDistance=FLT_MAX) const;
 	virtual Point sample() const;

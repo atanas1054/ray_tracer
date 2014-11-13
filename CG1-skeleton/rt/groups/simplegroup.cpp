@@ -40,4 +40,23 @@ namespace rt {
 
 	}
 
+	Point SimpleGroup::getCenter() const {
+		Point p = Point(0, 0, 0);
+		Point q;
+		for(int i = 0;i < primitives.size(); i++)
+		{
+			q = (*primitives[i]).getCenter();
+			p.x += q.x;
+			p.y += q.y;
+			p.z += q.z;
+		}
+		return Point(
+			p.x / primitives.size(),
+			p.y / primitives.size(),
+			p.z / primitives.size()
+		);
+	}
+
+
+
 }

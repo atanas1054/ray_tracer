@@ -16,6 +16,7 @@ public:
     Sphere() {}
     Sphere(const Point& center, float radius, CoordMapper* texMapper, Material* material);
 
+	virtual Point getCenter() const;
     virtual BBox getBounds() const;
     virtual Intersection intersect(const Ray& ray, float previousBestDistance=FLT_MAX) const;
 	virtual Point sample() const;

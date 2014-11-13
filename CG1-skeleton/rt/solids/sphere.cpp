@@ -62,4 +62,9 @@ namespace rt
 		return BBox(Point(min(vec.x,vec_.x),min(vec.y,vec_.y),min(vec.z,vec_.z)),Point(max(vec.x,vec_.x),max(vec.y,vec_.y),max(vec.z,vec_.z)));
 	 }
 
+	 Point Sphere::getCenter() const
+	 {
+		return Point(center);
+	 }
+
 }

@@ -15,6 +15,7 @@ public:
     virtual Intersection intersect(const Ray& ray, float previousBestDistance) const;
     virtual void rebuildIndex();
     virtual void add(Primitive* p);
+	virtual Point getCenter() const;
     //virtual void setMaterial(Material* m);
     //virtual void setCoordMapper(CoordMapper* cm);
 	std::vector<Primitive*> primitives;
