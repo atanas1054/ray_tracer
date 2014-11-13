@@ -52,4 +52,9 @@ namespace rt
 	{
 		return BBox(Point(min(v1.x,min(v2.x,v3.x)),min(v1.y,min(v2.y,v3.y)),min(v1.z,min(v2.z,v3.z))),Point(max(v1.x,max(v2.x,v3.x)),max(v1.y,max(v2.y,v3.y)),max(v1.z,max(v2.z,v3.z))));
 	}
+
+	Point Triangle::getCenter() const
+	{
+		return Point((v1.x+v2.x+v3.x)/3,(v1.y+v2.y+v3.y)/3,(v1.z+v2.z+v3.z)/3);
+	}
 }

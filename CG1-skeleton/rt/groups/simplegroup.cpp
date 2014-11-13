@@ -1,7 +1,7 @@
 #include <rt/groups/simplegroup.h>
 #include <rt/intersection.h>
 #include <fstream>
-
+#include <iostream>
 namespace rt {
 
 	Intersection SimpleGroup::intersect(const Ray& ray, float previousBestDistance=FLT_MAX) const {
@@ -28,10 +28,12 @@ namespace rt {
 
 	BBox SimpleGroup::getBounds() const
 	{
-		BBox bbox;
+		BBox bbox = BBox::empty();
+
 		for(int i = 0;i < primitives.size(); i++)
 		{
 			bbox.extend((*primitives[i]).getBounds());
+			//bbox = (*primitives[i]).getBounds();
 		}
 
 		return bbox;

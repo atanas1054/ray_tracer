@@ -53,8 +53,11 @@ namespace rt
 	 BBox Sphere::getBounds() const
 	 {
 		float hypot = sqrt(radius*radius + radius*radius);
-		Vector vec(center.x+hypot,center.y+hypot,center.z+hypot);
-		Vector vec_(center.x-hypot,center.y-hypot,center.z-hypot);
+		Vector temp(1,1,1);
+		temp = temp / temp.length();
+		Vector vec(center.x+temp.x*hypot,center.y+temp.y*hypot,center.z+temp.z*hypot);
+		Vector vec_((center.x-temp.x*hypot),(center.y-temp.y*hypot),(center.z-temp.z*hypot));
+
 
 		return BBox(Point(min(vec.x,vec_.x),min(vec.y,vec_.y),min(vec.z,vec_.z)),Point(max(vec.x,vec_.x),max(vec.y,vec_.y),max(vec.z,vec_.z)));
 	 }

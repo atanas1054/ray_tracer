@@ -9,14 +9,27 @@ namespace rt {
 
 class BVH : public Group {
 public:
+
+	struct Node {
+	  BBox bbox;
+	  Node* leftChild;
+	  Node* rightChild;
+	  std::vector<Primitive*> objectList;
+	};
+
+	Node* root;
+
     BVH();
     virtual BBox getBounds() const;
     virtual Intersection intersect(const Ray& ray, float previousBestDistance=FLT_MAX) const;
     virtual void rebuildIndex();
 	virtual ~BVH();
     virtual void add(Primitive* p);
-    virtual void setMaterial(Material* m);
-    virtual void setCoordMapper(CoordMapper* cm);
+	void BuildBVH(Node* node, std::vector<Primitive*> listOfObjects);
+    //virtual void setMaterial(Material* m);
+    //virtual void setCoordMapper(CoordMapper* cm);
+
+	std::vector<Primitive*> primitives;
 };
 
 }

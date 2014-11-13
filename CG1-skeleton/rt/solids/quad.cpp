@@ -42,6 +42,14 @@ namespace rt
 
 	BBox Quad::getBounds() const
 	{
-		return BBox(Point(min(v1.x,v3.x),min(v1.y,v3.y),min(v1.z,v3.z)),Point(max(v1.x,v3.x),max(v1.y,v3.y),max(v1.z,v3.z)));
+		float minimum_x = min(v1.x, min(v2.x, min(v3.x, v4.x)));
+		float minimum_y = min(v1.y, min(v2.y, min(v3.y, v4.y)));
+		float minimum_z = min(v1.z, min(v2.z, min(v3.z, v4.z)));
+
+		float maximum_x = max(v1.x, max(v2.x, max(v3.x, v4.x)));
+		float maximum_y = max(v1.y, max(v2.y, max(v3.y, v4.y)));
+		float maximum_z = max(v1.z, max(v2.z, max(v3.z, v4.z)));
+
+		return BBox(Point(minimum_x,minimum_y,minimum_z),Point(maximum_x,maximum_y,maximum_z));
 	}
 }

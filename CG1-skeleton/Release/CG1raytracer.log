@@ -1,26 +1,10 @@
-﻿Build started 11/12/2014 9:12:15 PM.
+﻿Build started 11/13/2014 4:32:42 PM.
      1>Project "E:\Books\SaarlandLectures\ComputerGraphics\Git\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         e:\VisualStudio2010\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main\a_indexing.cpp main\a_solids.cpp rt\groups\simplegroup.cpp rt\integrators\casting.cpp rt\integrators\castingdist.cpp rt\intersection.cpp rt\loaders\obj.cpp rt\solids\aabox.cpp rt\solids\disc.cpp rt\solids\infiniteplane.cpp rt\solids\quad.cpp rt\solids\solid.cpp rt\solids\sphere.cpp rt\solids\triangle.cpp rt\world.cpp
-         a_indexing.cpp
+         e:\VisualStudio2010\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main\a_solids.cpp
          a_solids.cpp
-         simplegroup.cpp
-     1>rt\groups\simplegroup.cpp(12): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\simplegroup.cpp(32): warning C4018: '<' : signed/unsigned mismatch
-         casting.cpp
-         castingdist.cpp
-         intersection.cpp
-         obj.cpp
-         aabox.cpp
-         disc.cpp
-         infiniteplane.cpp
-         quad.cpp
-         solid.cpp
-         sphere.cpp
-         triangle.cpp
-         world.cpp
        Link:
          e:\VisualStudio2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Books\SaarlandLectures\ComputerGraphics\Git\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Books\SaarlandLectures\ComputerGraphics\Git\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Books\SaarlandLectures\ComputerGraphics\Git\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
          Release\image.obj
@@ -36,6 +20,7 @@
          Release\bbox.obj
          Release\orthographic.obj
          Release\perspective.obj
+         Release\bvh.obj
          Release\simplegroup.obj
          Release\casting.obj
          Release\castingdist.obj
@@ -63,4 +48,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.65
+Time Elapsed 00:00:03.62

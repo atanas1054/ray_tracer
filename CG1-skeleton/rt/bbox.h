@@ -12,7 +12,7 @@ class Ray;
 class BBox {
 public:
     Point min1, max1;
-
+	bool isEmpty;
     BBox() {}
     BBox(const Point& min, const Point& max) : min1(min), max1(max) {}
     static BBox empty();

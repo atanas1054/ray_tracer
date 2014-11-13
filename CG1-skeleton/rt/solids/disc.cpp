@@ -42,9 +42,10 @@ namespace rt
 		//get unit vector
 		vec = vec/vec.length();
 
+		float hypot = sqrt(radius*radius + radius*radius);
 		//get the extent of the disc
-		Point p(origin.x +radius*vec.x,origin.y +radius*vec.y,origin.z +radius*vec.z);
-		Point p_(origin.x -radius*vec.x,origin.y -radius*vec.y,origin.z -radius*vec.z);
+		Point p(origin.x +hypot*vec.x,origin.y +hypot*vec.y,origin.z +hypot*vec.z);
+		Point p_(origin.x -hypot*vec.x,origin.y -hypot*vec.y,origin.z -hypot*vec.z);
 
 		return BBox(Point(min(p.x,p_.x),min(p.y,p_.y),min(p.z,p_.z)),Point(max(p.x,p_.x),max(p.y,p_.y),max(p.z,p_.z)));
 

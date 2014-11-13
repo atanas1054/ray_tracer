@@ -8,9 +8,10 @@
 #include <rt/groups/simplegroup.h>
 #include <rt/groups/kdtree.h>
 #include <rt/solids/sphere.h>
+#include <rt/solids/aabox.h>
 #include <rt/cameras/perspective.h>
 #include <rt/integrators/casting.h>
-
+#include <iostream>
 using namespace rt;
 
 void a_indexing() {
@@ -20,9 +21,9 @@ void a_indexing() {
     scene->add(new Sphere(Point(2.5f,  .5f,  -1), 0.5  , nullptr, nullptr));
     scene->add(new Sphere(Point(2.5f,  -1.f,  -1), 0.5, nullptr, nullptr));
     scene->add(new Sphere(Point(4.5f,  .5f,  -1), 0.5 , nullptr, nullptr));
-
+	
     loadOBJ(scene, "models/", "cow.obj");
-  
+
 	scene->rebuildIndex();
     World world;
     world.scene = scene;

@@ -6,7 +6,9 @@ namespace rt{
 
 	BBox BBox::empty()
 	{
-		return BBox();
+		BBox bbox = BBox(Point(0,0,0),Point(0,0,0));
+		bbox.isEmpty = true;
+		return bbox;
 	}
 
 	BBox BBox::full()
@@ -28,8 +30,18 @@ namespace rt{
 
 	void BBox::extend(const BBox& bbox)
 	{
+		if(isEmpty)
+		{
+		min1=bbox.min1;
+		max1=bbox.max1;
+		isEmpty = false;
+		}
+		else
+		{
 		extend(bbox.min1);
 		extend(bbox.max1);
+		
+		}
 	}
 
 	std::pair<float,float> BBox::intersect(const Ray& ray) const
