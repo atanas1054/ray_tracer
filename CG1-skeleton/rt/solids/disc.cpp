@@ -30,7 +30,7 @@ namespace rt
 		return Point();
 	}
 	float Disc::getArea() const{
-		return 0;
+		return 2 * pi * radius * radius;
 	}
 
 	 BBox Disc::getBounds() const

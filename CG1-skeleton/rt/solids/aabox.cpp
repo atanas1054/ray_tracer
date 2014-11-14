@@ -64,7 +64,10 @@ namespace rt
 	}
 	float AABox::getArea() const 
 	{
-		return 0;
+		int x = std::abs(corner1.x - corner2.x);
+		int y = std::abs(corner1.y - corner2.y);
+		int z = std::abs(corner1.z - corner2.z);
+		return 2* (x*y + x*z + y*z);
 	}
 
 	 BBox AABox::getBounds() const

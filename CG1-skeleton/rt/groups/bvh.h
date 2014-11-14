@@ -28,6 +28,8 @@ public:
 	};
     virtual void add(Primitive* p);
 	void BuildBVH(Node* &node, std::vector<Primitive*> listOfObjects);
+	void BuildBVH2(Node* &node, std::vector<Primitive*> listOfObjects);
+	void BuildBVHwithSAH(Node* &node, std::vector<Primitive*> listOfObjects);
     //virtual void setMaterial(Material* m);
     //virtual void setCoordMapper(CoordMapper* cm);
 
@@ -37,6 +39,8 @@ private:
 	void SplitObjByAxisValue(std::vector<Primitive*> &listObj, int axisCode, float splitVal, std::vector<Primitive*> &leftObj, std::vector<Primitive*> &rightObj);
 	void SplitObjByAxisSorting(std::vector<Primitive*> &listObj, int axisCode, std::vector<Primitive*> &leftObj, std::vector<Primitive*> &rightObj);
 	Intersection IntersectNode(const Node& n, const Ray& ray, float bestDist) const;
+	//range min and max is [0,1]
+	float findSAHSplitValue(std::vector<Primitive*> &listOfObjects, BBox &bbox, int axis, float rangeMin , float rangeMax);
 };
 
 }

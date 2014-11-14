@@ -44,8 +44,9 @@ namespace rt
 	Point Triangle::sample() const {
 		return Point();
 	}
+
 	float Triangle::getArea() const {
-		return 0;
+		return cross(v1 - v3, v1 - v2).length();
 	}
 
 	BBox Triangle::getBounds() const

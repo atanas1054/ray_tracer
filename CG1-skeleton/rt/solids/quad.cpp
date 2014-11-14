@@ -38,7 +38,9 @@ namespace rt
 	Point Quad::sample() const
 	{ return Point(); }
     float Quad::getArea() const 
-	{return 0;}
+	{
+		return cross(span1, span2).length() * 2;
+	}
 
 	BBox Quad::getBounds() const
 	{
