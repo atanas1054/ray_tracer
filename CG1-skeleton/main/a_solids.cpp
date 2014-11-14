@@ -43,7 +43,7 @@ void a_solids() {
     
 	World world1;
 	SimpleGroup* scene1 = new SimpleGroup();
-	scene1->add(new AABox(scene->getBounds().min1,scene->getBounds().max1,nullptr,nullptr));
+	scene1->add(new AABox(scene->getBounds().min,scene->getBounds().max,nullptr,nullptr));
 	world1.scene = scene1;
 
 	

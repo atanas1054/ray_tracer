@@ -1,8 +1,12 @@
 #include <rt/groups/bvh.h>
 #include <iostream>
+#include <algorithm>
+#define AXIS_X 0
+#define AXIS_Y 1
+#define AXIS_Z 2
+
+
 namespace rt {
-
-
 
 	void BVH::add(Primitive* p)
 	{
@@ -11,7 +15,44 @@ namespace rt {
 
 	Intersection BVH::intersect(const Ray& ray, float previousBestDistance) const
 	{
-		return Intersection();
+		return IntersectNode(*root, ray, previousBestDistance);
+	}
+
+	Intersection BVH::IntersectNode(const Node& node, const Ray& ray, float bestDist) const
+	{
+		std::pair<float, float> boxIntersect = node.bbox.intersect(ray);
+		if(boxIntersect.first < boxIntersect.second && boxIntersect.first < bestDist && boxIntersect.first > 0)
+		{
+			Intersection nodeInt = Intersection::failure();
+			if(node.objectList.empty())
+			{
+				Intersection leftInt = IntersectNode(*node.leftChild, ray, bestDist);
+				Intersection rightInt = IntersectNode(*node.rightChild, ray, bestDist);
+				if(leftInt && rightInt)
+				{
+					nodeInt = leftInt.distance < rightInt.distance ? leftInt : rightInt;
+				}else if(leftInt){
+					nodeInt = leftInt;
+				}else if(rightInt){
+					nodeInt = rightInt;
+				}
+				if(nodeInt.distance < bestDist)
+					return nodeInt;
+			}else{
+				Intersection itr;
+				for(int i = 0; i < node.objectList.size();i++)
+				{
+					itr = (*node.objectList[i]).intersect(ray, bestDist);
+					if(itr && itr.distance < bestDist)
+					{
+						if(!nodeInt || itr.distance < nodeInt.distance)
+						nodeInt = itr;
+					}
+				}
+				return nodeInt;
+			}
+		}
+		return Intersection::failure();
 	}
 
 	BBox BVH::getBounds() const
@@ -25,14 +66,14 @@ namespace rt {
 		BuildBVH(root,primitives);
 	}
 
-	void BVH::BuildBVH(Node* node, std::vector<Primitive*> listOfObjects)
+	void BVH::BuildBVH(Node* &node, std::vector<Primitive*> listOfObjects)
 	{
+		node = new Node;
 		BBox bbox = BBox::empty();
 		for(int i = 0;i < listOfObjects.size(); i++)
 		{
 			bbox.extend((*listOfObjects[i]).getBounds());
 		}
-
 		
 		node->bbox = bbox;
 
@@ -48,67 +89,111 @@ namespace rt {
 		 float splittingValue;
 		 int splittingAxis;
 		 //x is the longest axis
-		 if((bbox.max1.x-bbox.min1.x)>=(bbox.max1.y-bbox.min1.y) && (bbox.max1.x-bbox.min1.x)>=(bbox.max1.z-bbox.min1.z))
+		 if((bbox.max.x-bbox.min.x)>=(bbox.max.y-bbox.min.y) && (bbox.max.x-bbox.min.x)>=(bbox.max.z-bbox.min.z))
 		 {
-			 splittingValue = (bbox.max1.x-bbox.min1.x)/2;
-			 splittingAxis=0;
+			 splittingValue = (bbox.max.x+bbox.min.x)/2;
+			 splittingAxis=AXIS_X;
 		 }
 		 //y is the longest axis
-		 else if((bbox.max1.y-bbox.min1.y)>=(bbox.max1.x-bbox.min1.x) && (bbox.max1.y-bbox.min1.y)>=(bbox.max1.z-bbox.min1.z))
+		 else if((bbox.max.y-bbox.min.y)>=(bbox.max.x-bbox.min.x) && (bbox.max.y-bbox.min.y)>=(bbox.max.z-bbox.min.z))
 		 {
-			 splittingValue = (bbox.max1.y-bbox.min1.y)/2;
-			 splittingAxis=1;
+			 splittingValue = (bbox.max.y+bbox.min.y)/2;
+			 splittingAxis=AXIS_Y;
 		 }
 
 		 //z is the longest axis
 		 else
 		 {
-			 splittingValue = (bbox.max1.z-bbox.min1.z)/2;
-			 splittingAxis=2;
+			 splittingValue = (bbox.max.z+bbox.min.z)/2;
+			 splittingAxis=AXIS_Z;
 		 }
 		
-		  //sort objects (left or right) depending on their position relative to the splitting axis	
-		 for (int i=0;i<listOfObjects.size();i++)
+		 //sort objects (left or right) depending on their position relative to the splitting axis	
+		 SplitObjByAxisValue(listOfObjects, splittingAxis, splittingValue, leftObjects, rightObjects);
+		 
+		 //in case splitting in the middle axis doesn't work
+		 if(leftObjects.size() == 0 || rightObjects.size() == 0)
 		 {
-			 switch(splittingAxis)
+			 SplitObjByAxisSorting(listOfObjects, splittingAxis, leftObjects, rightObjects);
+		 }
+		 
+		 //std::cout << leftObjects.size() << " " << rightObjects.size() << "\n";
+
+		 BuildBVH(node->leftChild, leftObjects);
+		 BuildBVH(node->rightChild, rightObjects);
+	}
+
+	void BVH::SplitObjByAxisSorting(std::vector<Primitive*>& listObj, int axisCode, std::vector<Primitive*> &leftObj, std::vector<Primitive*> &rightObj)
+	{
+		leftObj.clear();
+		rightObj.clear();
+
+		switch(axisCode)
+		{
+			case AXIS_X:
+				std::sort (listObj.begin(), listObj.end(), [](Primitive* a, Primitive* b) { return (*a).getCenter().x < (*b).getCenter().x; });
+				break;
+			case AXIS_Y:
+				std::sort (listObj.begin(), listObj.end(), [](Primitive* a, Primitive* b) { return (*a).getCenter().x < (*b).getCenter().x; });
+				break;
+			default:
+				std::sort (listObj.begin(), listObj.end(), [](Primitive* a, Primitive* b) { return (*a).getCenter().x < (*b).getCenter().x; });
+				break;
+		}
+
+		for (int i = 0 ; i < listObj.size();i++)
+		{
+			if(i < listObj.size() / 2){
+				leftObj.push_back(listObj[i]);
+			} else {
+				rightObj.push_back(listObj[i]);
+			}
+		}
+	}
+
+	void BVH::SplitObjByAxisValue(std::vector<Primitive*> &listObj, int axisCode, float splitVal, std::vector<Primitive*> &leftObj, std::vector<Primitive*> &rightObj)
+	{
+		leftObj.clear();
+		rightObj.clear();
+		for (int i=0;i<listObj.size();i++)
+		 {
+			 switch(axisCode)
 			 {
 			 case 0:
-				 if ((*listOfObjects[i]).getCenter().x < splittingValue)
+				 if ((*listObj[i]).getCenter().x < splitVal)
 					 {
-						leftObjects.push_back(listOfObjects[i]);
+						leftObj.push_back(listObj[i]);
 					 }
 				 else
 					{
-					    rightObjects.push_back(listOfObjects[i]);
+					    rightObj.push_back(listObj[i]);
 					}
 			 break;
 			 case 1:
-				 if ((*listOfObjects[i]).getCenter().y < splittingValue)
+				 if ((*listObj[i]).getCenter().y < splitVal)
 					 {
-						leftObjects.push_back(listOfObjects[i]);
+						leftObj.push_back(listObj[i]);
 					 }
 				 else
 					{
-					    rightObjects.push_back(listOfObjects[i]);
+					    rightObj.push_back(listObj[i]);
 					}
 			 break;
 			 case 2:
-				 if ((*listOfObjects[i]).getCenter().z < splittingValue)
+				 if ((*listObj[i]).getCenter().z < splitVal)
 					 {
-						leftObjects.push_back(listOfObjects[i]);
+						leftObj.push_back(listObj[i]);
 					 }
 				 else
 					{
-					    rightObjects.push_back(listOfObjects[i]);
+					    rightObj.push_back(listObj[i]);
 					}
 			 break;
 			 }
 			 
 		 }
-		
-		 BuildBVH(node->leftChild, leftObjects);
-		 BuildBVH(node->rightChild, rightObjects);
 	}
+
 
 	 Point BVH::getCenter() const
 	 {
