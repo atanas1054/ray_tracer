@@ -15,6 +15,14 @@ namespace rt {
 		primitives.push_back(p);
 	}
 
+	void BVH::setMaterial(Material* m)
+	{
+		for(int i = 0;i < primitives.size(); i++)
+		{
+			(*primitives[i]).setMaterial(m);
+		}
+	}
+
 	Intersection BVH::intersect(const Ray& ray, float previousBestDistance) const
 	{
 		return IntersectNode(*root, ray, previousBestDistance);
@@ -67,7 +75,7 @@ namespace rt {
 
 	void BVH::rebuildIndex()
 	{
-		BuildBVH(root,primitives);
+		BuildBVHwithSAH(root,primitives);
 	}
 
 	void BVH::BuildBVH(Node* &node, std::vector<Primitive*> listOfObjects)

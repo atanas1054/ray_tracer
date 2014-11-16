@@ -25,6 +25,12 @@
     <Filter Include="rt\loaders">
       <UniqueIdentifier>{e271c18a-8604-4b43-a3ed-2fcf021b4970}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rt\lights">
+      <UniqueIdentifier>{06238c8d-d007-40f6-a053-6389b721f9c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rt\materials">
+      <UniqueIdentifier>{051711bd-0b69-44bd-bf70-aa7c72cd18d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\macros.h">
@@ -123,6 +129,27 @@
     <ClInclude Include="rt\groups\kdtree.h">
       <Filter>rt\groups</Filter>
     </ClInclude>
+    <ClInclude Include="rt\integrators\raytrace.h">
+      <Filter>rt\integrators</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\lights\directional.h">
+      <Filter>rt\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\lights\light.h">
+      <Filter>rt\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\lights\pointlight.h">
+      <Filter>rt\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\lights\spotlight.h">
+      <Filter>rt\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\materials\dummy.h">
+      <Filter>rt\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\materials\material.h">
+      <Filter>rt\materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -214,6 +241,24 @@
     </ClCompile>
     <ClCompile Include="rt\groups\bvh.cpp">
       <Filter>rt\groups</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_lighting.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="dummy.cpp">
+      <Filter>rt\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\integrators\raytrace.cpp">
+      <Filter>rt\integrators</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\lights\directional.cpp">
+      <Filter>rt\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\lights\spotlight.cpp">
+      <Filter>rt\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\lights\pointlight.cpp">
+      <Filter>rt\lights</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -30,7 +30,7 @@ public:
 	void BuildBVH(Node* &node, std::vector<Primitive*> listOfObjects);
 	void BuildBVH2(Node* &node, std::vector<Primitive*> listOfObjects);
 	void BuildBVHwithSAH(Node* &node, std::vector<Primitive*> listOfObjects);
-    //virtual void setMaterial(Material* m);
+    virtual void setMaterial(Material* m);
     //virtual void setCoordMapper(CoordMapper* cm);
 
 	std::vector<Primitive*> primitives;

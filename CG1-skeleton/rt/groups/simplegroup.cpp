@@ -58,5 +58,11 @@ namespace rt {
 	}
 
 
-
+	void SimpleGroup::setMaterial(Material* m)
+	{
+		for(int i = 0;i < primitives.size(); i++)
+		{
+			(*primitives[i]).setMaterial(m);
+		}
+	}
 }
