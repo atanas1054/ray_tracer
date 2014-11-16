@@ -124,7 +124,6 @@
     <ClCompile Include="core\point.cpp" />
     <ClCompile Include="core\scalar.cpp" />
     <ClCompile Include="core\vector.cpp" />
-    <ClCompile Include="dummy.cpp" />
     <ClCompile Include="main\a_indexing.cpp" />
     <ClCompile Include="main\a_julia.cpp" />
     <ClCompile Include="main\a_cameras.cpp" />
@@ -144,6 +143,7 @@
     <ClCompile Include="rt\lights\pointlight.cpp" />
     <ClCompile Include="rt\lights\spotlight.cpp" />
     <ClCompile Include="rt\loaders\obj.cpp" />
+    <ClCompile Include="rt\materials\dummy.cpp" />
     <ClCompile Include="rt\ray.cpp" />
     <ClCompile Include="rt\renderer.cpp" />
     <ClCompile Include="rt\solids\aabox.cpp" />
