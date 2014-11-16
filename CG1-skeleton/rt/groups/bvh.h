@@ -40,7 +40,9 @@ private:
 	void SplitObjByAxisSorting(std::vector<Primitive*> &listObj, int axisCode, std::vector<Primitive*> &leftObj, std::vector<Primitive*> &rightObj);
 	Intersection IntersectNode(const Node& n, const Ray& ray, float bestDist) const;
 	//range min and max is [0,1]
-	float findSAHSplitValue(std::vector<Primitive*> &listOfObjects, BBox &bbox, int axis, float rangeMin , float rangeMax);
+	std::pair <float,float> findSAHSplitValue(std::vector<Primitive*> &listOfObjects, BBox &bbox, int axis, float rangeMin , float rangeMax);
+	float calcCost(std::vector<Primitive*> &listOfObjects, BBox &bbox,float splitValue,int axis);
+	float calcBBoxArea(BBox &bbox);
 };
 
 }

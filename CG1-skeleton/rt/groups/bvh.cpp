@@ -204,109 +204,6 @@ namespace rt {
 		 return Point();
 	 }
 
-	 void BVH::BuildBVH2(Node* &node, std::vector<Primitive*> listOfObjects)
-	{
-		node = new Node;
-		BBox bbox = BBox::empty();
-
-		 std::vector<Primitive*> leftObjects;
-		 std::vector<Primitive*> rightObjects;
-		 std::multimap<float,Primitive*> orderedObjects;
-		
-		for(int i = 0;i < listOfObjects.size(); i++)
-		{
-			bbox.extend((*listOfObjects[i]).getBounds());
-		}
-
-		node->bbox = bbox;
-
-		if(listOfObjects.size()<=3)
-		{
-			node->objectList = listOfObjects;
-			return;
-		}
-
-		
-		 float splittingValue;
-		 int splittingAxis;
-		 //x is the longest axis
-		 if((bbox.max.x-bbox.min.x)>=(bbox.max.y-bbox.min.y) && (bbox.max.x-bbox.min.x)>=(bbox.max.z-bbox.min.z))
-		 {
-			 //splittingValue = bbox.min.x+(bbox.max.x-bbox.min.x)/2;
-			 splittingAxis=0;
-		 }
-		 //y is the longest axis
-		 else if((bbox.max.y-bbox.min.y)>=(bbox.max.x-bbox.min.x) && (bbox.max.y-bbox.min.y)>=(bbox.max.z-bbox.min.z))
-		 {
-			 //splittingValue = bbox.min.y+(bbox.max.y-bbox.min.y)/2;
-			 splittingAxis=1;
-		 }
-
-		 //z is the longest axis
-		 else
-		 {
-			 //splittingValue = bbox.min.z+(bbox.max.z-bbox.min.z)/2;
-			 splittingAxis=2;
-		 }
-		 
-		 
-		  //sort objects (left or right) depending on their position relative to the splitting axis	
-		 for (int i=0;i<listOfObjects.size();i++)
-		 {
-			 
-			 switch(splittingAxis)
-			 {
-			 case 0:
-				
-						//tempObjects.push_back((*listOfObjects[i]).getCenter().x);
-						orderedObjects.insert ( std::pair<float,Primitive*>((*listOfObjects[i]).getCenter().x,(listOfObjects[i])));
-						
-				
-			 break;
-			 case 1:
-				 		//tempObjects.push_back((*listOfObjects[i]).getCenter().y );
-						orderedObjects.insert ( std::pair<float,Primitive*>((*listOfObjects[i]).getCenter().y,(listOfObjects[i])));
-						
-			 break;
-			 case 2:
-						//tempObjects.push_back((*listOfObjects[i]).getCenter().z);
-						orderedObjects.insert ( std::pair<float,Primitive*>((*listOfObjects[i]).getCenter().z,(listOfObjects[i])));
-						
-			 break;
-			 }
-			
-		 }
-			//sort tempObjects;
-			//take the median
-		std::vector<float> splittingValues;
-	
-		for(std::multimap<float, Primitive*>::const_iterator it = orderedObjects.begin(); it != orderedObjects.end(); it++)
-			{
-				splittingValues.push_back(it->first);
-			}
-
-		float median;
-		if ((splittingValues.size() % 2) == 0) 
-        median = (splittingValues[splittingValues.size()/2] + splittingValues[(splittingValues.size()/2) - 1])/2.0;	 
-		else 
-        median = splittingValues[splittingValues.size()/2]; 
-
-		for(std::multimap<float, Primitive*>::const_iterator it = orderedObjects.begin(); it != orderedObjects.end(); it++)
-			{
-				if(it->first<median)
-					leftObjects.push_back(it->second);
-				else
-					rightObjects.push_back(it->second);
-			}
-
-
-		/* std::cout<<leftObjects.size()<<" "<<rightObjects.size();
-		 std::cout<<std::endl;*/
-		 BuildBVH2(node->leftChild, leftObjects);
-		 BuildBVH2(node->rightChild, rightObjects);
-	}
-
-
 	void BVH::BuildBVHwithSAH(Node* &node, std::vector<Primitive*> listOfObjects)
 	{
 		node = new Node;
@@ -327,29 +224,46 @@ namespace rt {
 		 std::vector<Primitive*> leftObjects;
 		 std::vector<Primitive*> rightObjects;
 		 
-		 int splittingAxis;
+		 //int splittingAxis;
 		 //x is the longest axis
-		 if((bbox.max.x-bbox.min.x)>=(bbox.max.y-bbox.min.y) && (bbox.max.x-bbox.min.x)>=(bbox.max.z-bbox.min.z))
+		 //if((bbox.max.x-bbox.min.x)>=(bbox.max.y-bbox.min.y) && (bbox.max.x-bbox.min.x)>=(bbox.max.z-bbox.min.z))
+		 //{
+			// splittingAxis=AXIS_X;
+		 //}
+		 ////y is the longest axis
+		 //else if((bbox.max.y-bbox.min.y)>=(bbox.max.x-bbox.min.x) && (bbox.max.y-bbox.min.y)>=(bbox.max.z-bbox.min.z))
+		 //{
+			// splittingAxis=AXIS_Y;
+		 //}		 
+
+		 ////z is the longest axis
+		 //else
+		 //{
+			// splittingAxis=AXIS_Z;
+		 //}
+
+		  std::pair <float,float> splitAndCostX = findSAHSplitValue(listOfObjects, bbox,AXIS_X, 0, 1);
+		  std::pair <float,float> splitAndCostY = findSAHSplitValue(listOfObjects, bbox,AXIS_Y, 0, 1);
+		  std::pair <float,float> splitAndCostZ = findSAHSplitValue(listOfObjects, bbox,AXIS_Z, 0, 1);
+
+		  
+		 int splittingAxis;
+		 float splittingValue;
+		 if (splitAndCostX.second<=splitAndCostY.second && splitAndCostX.second<=splitAndCostZ.second)
 		 {
-			 splittingAxis=AXIS_X;
+			 splittingAxis = AXIS_X;
+			 splittingValue = splitAndCostX.first;
 		 }
-		 //y is the longest axis
-		 else if((bbox.max.y-bbox.min.y)>=(bbox.max.x-bbox.min.x) && (bbox.max.y-bbox.min.y)>=(bbox.max.z-bbox.min.z))
+		 else if(splitAndCostY.second<=splitAndCostX.second && splitAndCostY.second<=splitAndCostZ.second)
 		 {
-			 splittingAxis=AXIS_Y;
+			 splittingAxis = AXIS_Y;
+			 splittingValue = splitAndCostY.first;
+		 }
+		 else{
+			 splittingAxis = AXIS_Z;
+			 splittingValue = splitAndCostZ.first;
 		 }
 
-		 float splittingValue = findSAHSplitValue(listOfObjects, splittingAxis, 0, 1);
-		 
-
-		 //z is the longest axis
-		 else
-		 {
-			 splittingAxis=AXIS_Z;
-		 }
-
-
-		
 		 //sort objects (left or right) depending on their position relative to the splitting axis	
 		 SplitObjByAxisValue(listOfObjects, splittingAxis, splittingValue, leftObjects, rightObjects);
 		 
@@ -359,20 +273,21 @@ namespace rt {
 			 SplitObjByAxisSorting(listOfObjects, splittingAxis, leftObjects, rightObjects);
 		 }
 		 
-		 //std::cout << leftObjects.size() << " " << rightObjects.size() << "\n";
+		// std::cout << leftObjects.size() << " " << rightObjects.size() << "\n";
 
-		 BuildBVH(node->leftChild, leftObjects);
-		 BuildBVH(node->rightChild, rightObjects);
+		 BuildBVHwithSAH(node->leftChild, leftObjects);
+		 BuildBVHwithSAH(node->rightChild, rightObjects);
 	}
 
-	float BVH::findSAHSplitValue(std::vector<Primitive*> &listOfObjects, BBox &bbox, int axis, float rangeMin , float rangeMax)
+	std::pair <float,float> BVH::findSAHSplitValue(std::vector<Primitive*> &listOfObjects, BBox &bbox, int axis, float rangeMin , float rangeMax)
 	{
-		int n = 5;
+		int n = 2;
 		int minIndex = -1;
 		float minSplit = 0;
 		float minCost = FLT_MAX;
-		int* cost = new int[n];
+		float* cost = new float[n];
 		float splitVal;
+		
 		for(int i = 0; i < n;i++)
 		{
 			splitVal = ((rangeMax - rangeMin) * i / n + rangeMin);
@@ -388,16 +303,124 @@ namespace rt {
 					splitVal = (bbox.max.z - bbox.min.z) * splitVal  + bbox.min.z;
 					break;
 			}
-			cost[i] = calcCost(listOfObjects, splitVal);
+			cost[i] = calcCost(listOfObjects,bbox,splitVal,axis);
 			if(minCost > cost[i] ){
 				minIndex = i;
 				minCost = cost[i];
 				minSplit = splitVal;
 			}
 		}
-		return splitVal;
+		return std::make_pair(minSplit,minCost);
 	}
 
+	float BVH::calcCost(std::vector<Primitive*> &listOfObjects, BBox &bbox,float splitValue,int axis)
+	{
+		//cost = areaOfbbox(LEFT)/bboxArea*countOfprimitives(LEFT) + areaOfbbox(RIGHT)/bboxArea*countOfprimitives(RIGHT)
+		float cost;
+		float bboxArea;
+		float areaLeft=0,areaRight=0,countLeft=0,countRight=0;
+		BBox right,left;
+		bboxArea = calcBBoxArea(bbox);
 
+		switch(axis)
+			{
+				case AXIS_X:
+					left = BBox::empty();
+					/*left.max.x = splitValue;
+					areaLeft =  calcBBoxArea(left)-(left.max.y-left.min.y)*(left.max.z-left.min.z);
+*/
+					right = BBox::empty();
+					/*right.min.x = splitValue;
+					areaRight = calcBBoxArea(right)-(right.max.y-right.min.y)*(right.max.z-right.min.z);
+*/
+					for(int i=0;i<listOfObjects.size();i++)
+					{
+						if((*listOfObjects[i]).getCenter().x < splitValue)
+						{
+							countLeft++;
+							left.extend((*listOfObjects[i]).getBounds());
+						}
+						else
+						{
+							countRight++;
+							right.extend((*listOfObjects[i]).getBounds());
+						}
+					}
+					areaLeft = calcBBoxArea(left);
+					areaRight = calcBBoxArea(right);
+					cost = (areaLeft/bboxArea)*countLeft +  (areaRight/bboxArea)*countRight;
+					
+					break;
+				case AXIS_Y:
+					
+					left = BBox::empty();
+					/*left.max.y = splitValue;
+					areaLeft =  calcBBoxArea(left)-(left.max.x-left.min.x)*(left.max.z-left.min.z);
+*/
+					right = BBox::empty();
+					/*right.min.y = splitValue;
+					areaRight = calcBBoxArea(right)-(right.max.x-right.min.x)*(right.max.z-right.min.z);
+*/
+					for(int i=0;i<listOfObjects.size();i++)
+					{
+						if((*listOfObjects[i]).getCenter().y < splitValue)
+						{
+							countLeft++;
+							left.extend((*listOfObjects[i]).getBounds());
+						}
+						else
+						{
+							countRight++;
+							right.extend((*listOfObjects[i]).getBounds());
+						}
+					}
+					areaLeft = calcBBoxArea(left);
+					areaRight = calcBBoxArea(right);
+					cost = (areaLeft/bboxArea)*countLeft +  (areaRight/bboxArea)*countRight;
+					break;
+				default:
+					left = BBox::empty();
+					/*left.max.z = splitValue;
+					areaLeft =  calcBBoxArea(left)-(left.max.x-left.min.x)*(left.max.y-left.min.y);
+*/
+					right = BBox::empty();
+					/*right.min.z = splitValue;
+					areaRight = calcBBoxArea(right)-(right.max.x-right.min.x)*(right.max.y-right.min.y);
+*/					
+					for(int i=0;i<listOfObjects.size();i++)
+					{
+						if((*listOfObjects[i]).getCenter().z < splitValue)
+						{
+							left.extend((*listOfObjects[i]).getBounds());
+							countLeft++;
+						}
+						else
+						{
+							right.extend((*listOfObjects[i]).getBounds());
+							countRight++;
+						}
+					}
+					areaLeft = calcBBoxArea(left);
+					areaRight = calcBBoxArea(right);
+					cost = (areaLeft/bboxArea)*countLeft +  (areaRight/bboxArea)*countRight;
+					break;
+			}
+		
+		/*std::cout<<countLeft<<" "<<countRight<<" cost= "<<cost;
+		std::cout<<std::endl;*/
+		
+		return cost;
+	}
+
+	float BVH::calcBBoxArea(BBox &bbox)
+	{
+		float bbox_x,bbox_y,bbox_z,bboxArea;
+		bbox_x = (bbox.max.x - bbox.min.x);
+		bbox_y = (bbox.max.y - bbox.min.y);
+		bbox_z = (bbox.max.z - bbox.min.z);
+		bboxArea = 2* ( bbox_x*bbox_y +  bbox_x*bbox_z + bbox_y*bbox_z);
+
+		return bboxArea;
+	}
 
 }
