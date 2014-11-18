@@ -42,6 +42,7 @@ void a_indexing() {
 	RayCastingIntegrator integrator(&world);
     //RayCastingDistIntegrator integrator(&world, RGBColor(1.0f,0.2f,0.0f), 4.0f, RGBColor(0.2f,1.0f,0.0f), 12.0f);
 
+	clock_t start1 = clock();
     Renderer engine1(&cam1, &integrator);
     engine1.render(img);
     img.writePNG("a3-1.png");
@@ -50,7 +51,7 @@ void a_indexing() {
     engine2.render(img);
     img.writePNG("a3-2.png");
 	
-	std::cout << ((double) (clock() - start) / CLOCKS_PER_SEC) << "\n";
+	std::cout << ((double) (clock() - start1) / CLOCKS_PER_SEC) << "\n";
 	int kkk;
 	std::cin >> kkk;
 

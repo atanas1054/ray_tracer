@@ -55,15 +55,16 @@ namespace rt {
 
 	void Renderer::render(Image& img) {
 		Ray ray;
+		#pragma omp parallel for private(ray) schedule (dynamic,1)
 		for(int i = 0; i < img.width();i++){
 			for(int j = 0; j < img.height();j++){
 				ray = (*(Renderer::camera)).getPrimaryRay(
 					2 * (i + 0.5) / img.width() - 1,
 					2 * (j + 0.5) / img.height() - 1
 				);
-				if(j == 452 && i == 573){
-					i = i;
-				}
+				//if(j == 452 && i == 573){
+					//i = i;
+				//}
 				img(i, j) = (*(Renderer::integrator)).getRadiance(ray);
 			}
 		}
