@@ -65,10 +65,10 @@ RGBColor operator/(const RGBColor& a, float scalar) {
 	float tempR = a.r / scalar;
 	float tempG = a.g / scalar;
 	float tempB = a.b / scalar;
-	return RGBColor(
-		tempR > 1 ? 1 : tempR,
+	return RGBColor(tempR,tempG,tempB
+		/*tempR > 1 ? 1 : tempR,
 		tempG > 1 ? 1 : tempG,
-		tempB > 1 ? 1 : tempB
+		tempB > 1 ? 1 : tempB*/
 	);
 }
 

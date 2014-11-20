@@ -9,6 +9,7 @@
 #include <rt/cameras/perspective.h>
 #include <rt/solids/quad.h>
 #include <rt/groups/simplegroup.h>
+#include <rt/groups/bvh.h>
 #include <rt/materials/dummy.h>
 
 #include <rt/lights/pointlight.h>
@@ -52,6 +53,7 @@ void renderCornellboxA(float scale, const char* filename) {
     //tall box
     makeBox(scene, Point(265.f, 000.1f, 296.f)*scale, Vector(158.f, 000.f, -049.f)*scale, Vector(049.f, 000.f, 160.f)*scale, Vector(000.f, 330.f, 000.f)*scale, nullptr, mat);
 
+	
     //point light
     world.light.push_back(new PointLight(Point(288*scale,529.99f*scale,279.5f*scale),RGBColor::rep(40000.0f*scale*scale)));
     world.light.push_back(new PointLight(Point(490*scale,329.99f*scale,279.5f*scale),RGBColor(60000.0f*scale*scale,0,0)));
@@ -90,8 +92,8 @@ void renderCornellboxB(float scale, const char* filename) {
     world.light.push_back(new PointLight(Point(288*scale,529.99f*scale,279.5f*scale),RGBColor::rep(20000.0f*scale*scale)));
 
     //spot light
-    world.light.push_back(new SpotLight(Point(70.f, 400.f, 230.f)*scale, Vector(0.0f, -1.0f, 0.0f),  pi/4, 8.0f, RGBColor(0,60000.0f*scale*scale,0)));
-    world.light.push_back(new SpotLight(Point(520.f, 300.f, 230.f)*scale, Vector(-1.0f, -1.0f, 0.0f),  pi/3, 3.0f, RGBColor(60000.0f*scale*scale,0,0)));
+    //world.light.push_back(new SpotLight(Point(70.f, 400.f, 230.f)*scale, Vector(0.0f, -1.0f, 0.0f),  pi/4, 8.0f, RGBColor(0,60000.0f*scale*scale,0)));
+    //world.light.push_back(new SpotLight(Point(520.f, 300.f, 230.f)*scale, Vector(-1.0f, -1.0f, 0.0f),  pi/3, 3.0f, RGBColor(60000.0f*scale*scale,0,0)));
 
     //directional light
     DirectionalLight dirl(Vector(0.2f,-0.5f,0.5f).normalize(), RGBColor(0.25f,0.25f,0.5f));
@@ -107,7 +109,7 @@ void renderCornellboxB(float scale, const char* filename) {
 
 void a_lighting() {
     renderCornellboxA(0.001f, "a4-1.png");
-    //renderCornellboxA(0.01f, "a4-2.png");
-    //renderCornellboxB(0.001f, "a4-3.png");
-    //renderCornellboxB(0.01f, "a4-4.png");
+    renderCornellboxA(0.01f, "a4-2.png");
+    renderCornellboxB(0.001f, "a4-3.png");
+    renderCornellboxB(0.01f, "a4-4.png");
 }

@@ -8,7 +8,7 @@ namespace rt{
 	LightHit PointLight::getLightHit(const Point& p) const
 	{
 		LightHit lh = LightHit();
-		lh.direction = p - position;
+		lh.direction = position-p;
 		lh.distance = lh.direction.length();
 		lh.direction = lh.direction.normalize();
 		return lh;

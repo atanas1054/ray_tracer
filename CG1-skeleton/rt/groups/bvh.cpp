@@ -75,7 +75,7 @@ namespace rt {
 
 	void BVH::rebuildIndex()
 	{
-		BuildBVHwithSAH(root,primitives);
+		BuildBVH(root,primitives);
 	}
 
 	void BVH::BuildBVH(Node* &node, std::vector<Primitive*> listOfObjects)
