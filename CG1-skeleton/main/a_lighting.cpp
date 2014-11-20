@@ -107,7 +107,7 @@ void renderCornellboxB(float scale, const char* filename) {
 
 void a_lighting() {
     renderCornellboxA(0.001f, "a4-1.png");
-    renderCornellboxA(0.01f, "a4-2.png");
-    renderCornellboxB(0.001f, "a4-3.png");
-    renderCornellboxB(0.01f, "a4-4.png");
+    //renderCornellboxA(0.01f, "a4-2.png");
+    //renderCornellboxB(0.001f, "a4-3.png");
+    //renderCornellboxB(0.01f, "a4-4.png");
 }

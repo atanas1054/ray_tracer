@@ -140,6 +140,7 @@
     <ClCompile Include="rt\integrators\raytrace.cpp" />
     <ClCompile Include="rt\intersection.cpp" />
     <ClCompile Include="rt\lights\directional.cpp" />
+    <ClCompile Include="rt\lights\light.cpp" />
     <ClCompile Include="rt\lights\pointlight.cpp" />
     <ClCompile Include="rt\lights\spotlight.cpp" />
     <ClCompile Include="rt\loaders\obj.cpp" />

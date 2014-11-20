@@ -9,8 +9,8 @@ namespace rt{
 
     RGBColor DummyMaterial::getReflectance(const Point& texPoint, const Vector& normal, const Vector& outDir, const Vector& inDir) const
 	{
-
-		return RGBColor();
+		float fr = 1;
+		return fr * RGBColor::rep(dot(normal, inDir) / normal.length() / inDir.length());
 	}
 
     RGBColor DummyMaterial::getEmission(const Point& texPoint, const Vector& normal, const Vector& outDir) const

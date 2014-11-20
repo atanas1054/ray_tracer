@@ -2,18 +2,20 @@
 
 namespace rt{
 
-	PointLight::PointLight(const Point& position, const RGBColor& intensity)
-	{
-
-	}
+	PointLight::PointLight(const Point& position, const RGBColor& intensity):
+		position(position), intensity(intensity) { }
 
 	LightHit PointLight::getLightHit(const Point& p) const
 	{
-		return LightHit();
+		LightHit lh = LightHit();
+		lh.direction = p - position;
+		lh.distance = lh.direction.length();
+		lh.direction = lh.direction.normalize();
+		return lh;
 	}
 
     RGBColor PointLight::getIntensity(const LightHit& irr) const
 	{
-		return RGBColor();
+		return intensity / (irr.distance * irr.distance);
 	}
 }

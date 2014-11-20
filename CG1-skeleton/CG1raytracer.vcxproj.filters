@@ -260,5 +260,8 @@
     <ClCompile Include="rt\materials\dummy.cpp">
       <Filter>rt\materials</Filter>
     </ClCompile>
+    <ClCompile Include="rt\lights\light.cpp">
+      <Filter>rt\lights</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
