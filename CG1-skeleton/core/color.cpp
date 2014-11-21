@@ -46,9 +46,12 @@ RGBColor operator*(float scalar, const RGBColor& b) {
 	float tempG = scalar * b.g;
 	float tempB = scalar * b.b;
 	return RGBColor(
-		tempR > 1 ? 1 : tempR,
-		tempG > 1 ? 1 : tempG,
-		tempB > 1 ? 1 : tempB
+		tempR,
+		tempG,
+		tempB
+		//tempR > 1 ? 1 : tempR,
+		//tempG > 1 ? 1 : tempG,
+		//tempB > 1 ? 1 : tempB
 	);
 }
 RGBColor operator*(const RGBColor& a, float scalar) {
@@ -56,9 +59,12 @@ RGBColor operator*(const RGBColor& a, float scalar) {
 	float tempG = scalar * a.g;
 	float tempB = scalar * a.b;
 	return RGBColor(
-		tempR > 1 ? 1 : tempR,
-		tempG > 1 ? 1 : tempG,
-		tempB > 1 ? 1 : tempB
+		tempR,
+		tempG,
+		tempB
+		//tempR > 1 ? 1 : tempR,
+		//tempG > 1 ? 1 : tempG,
+		//tempB > 1 ? 1 : tempB
 	);
 }
 RGBColor operator/(const RGBColor& a, float scalar) {

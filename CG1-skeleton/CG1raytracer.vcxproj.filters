@@ -150,6 +150,9 @@
     <ClInclude Include="rt\materials\material.h">
       <Filter>rt\materials</Filter>
     </ClInclude>
+    <ClInclude Include="rt\lights\projectivelight.h">
+      <Filter>rt\lights</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -261,6 +264,9 @@
       <Filter>rt\materials</Filter>
     </ClCompile>
     <ClCompile Include="rt\lights\light.cpp">
+      <Filter>rt\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\lights\projectivelight.cpp">
       <Filter>rt\lights</Filter>
     </ClCompile>
   </ItemGroup>
