@@ -31,6 +31,9 @@
     <Filter Include="rt\materials">
       <UniqueIdentifier>{051711bd-0b69-44bd-bf70-aa7c72cd18d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rt\textures">
+      <UniqueIdentifier>{1716e0bb-39b4-4cc5-8ca6-298af4a337f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\macros.h">
@@ -153,6 +156,27 @@
     <ClInclude Include="rt\lights\projectivelight.h">
       <Filter>rt\lights</Filter>
     </ClInclude>
+    <ClInclude Include="rt\materials\combine.h">
+      <Filter>rt\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\materials\lambertian.h">
+      <Filter>rt\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\materials\mirror.h">
+      <Filter>rt\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\materials\phong.h">
+      <Filter>rt\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\textures\constant.h">
+      <Filter>rt\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\textures\texture.h">
+      <Filter>rt\textures</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\integrators\recraytrace.h">
+      <Filter>rt\integrators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -268,6 +292,27 @@
     </ClCompile>
     <ClCompile Include="rt\lights\projectivelight.cpp">
       <Filter>rt\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_materials.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\materials\combine.cpp">
+      <Filter>rt\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\materials\lambertian.cpp">
+      <Filter>rt\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\materials\mirror.cpp">
+      <Filter>rt\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\materials\phong.cpp">
+      <Filter>rt\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\textures\constant.cpp">
+      <Filter>rt\textures</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\integrators\recraytrace.cpp">
+      <Filter>rt\integrators</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
