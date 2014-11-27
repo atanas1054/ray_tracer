@@ -13,6 +13,7 @@ class RecursiveRayTracingIntegrator : public Integrator {
 public:
     RecursiveRayTracingIntegrator(World* world) : Integrator(world) {}
     virtual RGBColor getRadiance(const Ray& ray) const;
+	virtual RGBColor getRadianceRec(const Ray& ray, int counter = 0) const;
 };
 
 }

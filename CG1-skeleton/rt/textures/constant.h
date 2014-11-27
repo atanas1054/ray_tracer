@@ -10,6 +10,7 @@ namespace rt {
 
 class ConstantTexture : public Texture {
 public:
+	RGBColor color;
     ConstantTexture();
     ConstantTexture(const RGBColor& color);
     virtual RGBColor getColor(const Point& coord);

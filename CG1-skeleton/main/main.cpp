@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
     //a_cameras();
 	//a_solids();
 	//a_indexing();
-	a_lighting();
-	//a_materials();
+	//a_lighting();
+	a_materials();
     return 0;
 }

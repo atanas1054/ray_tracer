@@ -17,9 +17,8 @@ namespace rt
 		isIntersect = true;
 	}
 
-	//not implemented
     Point Intersection::hitPoint() const{
-		return Point();
+		return ray.getPoint(distance - 0.00000001);
 	}
 
 	Vector Intersection::normal() const {
