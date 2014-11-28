@@ -12,10 +12,13 @@ namespace rt{
 	//inDir the direction from light source to hit point
 	RGBColor PhongMaterial::getReflectance(const Point& texPoint, const Vector& normal, const Vector& outDir, const Vector& inDir) const
 	{
+		
 		RGBColor color = tex->getColor(texPoint);
-		Vector Ri = -(inDir - 2 * dot(inDir, normal) * normal).normalize();
+		Vector Ri = (2 * dot(-inDir, normal)  * normal - (-inDir)).normalize();
 		float cos = dot(Ri, outDir) / outDir.length() / Ri.length();
-		return color * std::powf(cos, exp);// * (exp + 2) / 2 / pi;
+		if(cos > 0 )
+			return color * std::powf(cos, exp) * (exp + 2) / 2 / pi; /// dot(inDir, normal);// * (exp + 2) / 2 / pi;
+		return RGBColor::rep(0);
 	}
 
     RGBColor PhongMaterial::getEmission(const Point& texPoint, const Vector& normal, const Vector& outDir) const

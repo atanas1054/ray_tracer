@@ -1,12 +1,67 @@
-﻿Build started 11/27/2014 19:18:42.
+﻿Build started 11/28/2014 10:41:11.
      1>Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\CG1raytracer.unsuccessfulbuild".
        ClCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main\a_materials.cpp rt\materials\combine.cpp
+         combine.cpp
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\materials\combine.cpp(17): warning C4018: '<' : signed/unsigned mismatch
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\materials\combine.cpp(40): warning C4018: '<' : signed/unsigned mismatch
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\materials\combine.cpp(50): warning C4018: '<' : signed/unsigned mismatch
+         a_materials.cpp
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\main\a_materials.cpp(85): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\main\a_materials.cpp(85): warning C4305: 'argument' : truncation from 'double' to 'float'
+         Generating Code...
        Link:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.lib" /MACHINE:X86 Debug\color.obj
+         Debug\image.obj
+         Debug\julia.obj
+         Debug\point.obj
+         Debug\scalar.obj
+         Debug\vector.obj
+         Debug\a_indexing.obj
+         Debug\a_julia.obj
+         Debug\a_cameras.obj
+         Debug\a_lighting.obj
+         Debug\a_materials.obj
+         Debug\a_solids.obj
+         Debug\main.obj
+         Debug\bbox.obj
+         Debug\orthographic.obj
+         Debug\perspective.obj
+         Debug\bvh.obj
+         Debug\simplegroup.obj
+         Debug\casting.obj
+         Debug\castingdist.obj
+         Debug\raytrace.obj
+         Debug\recraytrace.obj
+         Debug\intersection.obj
+         Debug\directional.obj
+         Debug\light.obj
+         Debug\pointlight.obj
+         Debug\projectivelight.obj
+         Debug\spotlight.obj
+         Debug\obj.obj
+         Debug\combine.obj
+         Debug\dummy.obj
+         Debug\lambertian.obj
+         Debug\mirror.obj
+         Debug\phong.obj
+         Debug\ray.obj
+         Debug\renderer.obj
+         Debug\aabox.obj
+         Debug\disc.obj
+         Debug\infiniteplane.obj
+         Debug\quad.obj
+         Debug\solid.obj
+         Debug\sphere.obj
+         Debug\triangle.obj
+         Debug\constant.obj
+         Debug\world.obj
+         LINK : E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe not found or not built by the last incremental link; performing full link
          CG1raytracer.vcxproj -> E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe;#1" /manifest Debug\CG1raytracer.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Debug\CG1raytracer.unsuccessfulbuild".
          Touching "Debug\CG1raytracer.lastbuildstate".
@@ -14,4 +69,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.23
+Time Elapsed 00:00:03.95

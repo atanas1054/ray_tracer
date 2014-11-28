@@ -42,6 +42,7 @@ namespace rt{
 							RGBColor reflectInt = intersect.solid->material->getReflectance(intersect.local(), intersect.normal(), -ray.d, -lh.direction);
 							RGBColor reflectColor = sourceColor * reflectInt;
 							color = color + reflectColor;
+							//color = color + reflectInt;
 						}
 					}
 				}

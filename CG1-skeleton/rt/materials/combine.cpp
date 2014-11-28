@@ -9,29 +9,27 @@ namespace rt{
 
     void CombineMaterial::add(Material* material, float weight)
 	{
-		std::pair <Material*,float> materialPair;
-		materialPair.first = material;
-		materialPair.second = weight;
+		std::pair <Material*,float> materialPair = std::make_pair(material, weight);
 		materials.push_back(materialPair);
 
 		bool sampling_secondary = false;
-
+		int usesample = 0;
+		int nosample = 0;
 		for(int i=0;i<materials.size();i++)
 		{
 			if (materials.at(i).first->useSampling() == Material::SAMPLING_ALL)
 			{
-				sampling = SAMPLING_ALL;
-				return;
+				usesample++;
 			}
-			else if(materials.at(i).first->useSampling() == Material::SAMPLING_SECONDARY)
+			else if(materials.at(i).first->useSampling() == Material::SAMPLING_NOT_NEEDED)
 			{
-				sampling_secondary=true;
-			}
-
-				
+				nosample++;
+			}	
 		}
-		if(sampling_secondary)
+		if(usesample > 0 && nosample > 0)
 			sampling = SAMPLING_SECONDARY;
+		else if(usesample > 0)
+			sampling = SAMPLING_ALL;
 		else
 			sampling = SAMPLING_NOT_NEEDED;
 	}
@@ -58,7 +56,7 @@ namespace rt{
 
     Material::SampleReflectance CombineMaterial::getSampleReflectance(const Point& texPoint, const Vector& normal, const Vector& outDir) const
 	{
-		Vector Rv = -(outDir - 2 * dot(outDir, normal) * normal).normalize();
+		Vector Rv = (2 * dot(outDir, normal) * normal - outDir).normalize();
 		return SampleReflectance(Rv, getReflectance(texPoint, normal, outDir, -Rv)); 
 	}
 

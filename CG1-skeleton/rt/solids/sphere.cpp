@@ -29,9 +29,8 @@ namespace rt
 				if(x2 < 0) dist = x1;
 				if(dist < previousBestDistance) {
 					Point point = ray.getPoint(dist);
-					//Vector normal = (center - point).normalize();
+					//Vector normal = (point - center).normalize();
 					Vector normal = (center - point).normalize();
-					//Vector normal = dist
 					return Intersection(dist, ray, this, normal, point);
 				}
 			}
