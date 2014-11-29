@@ -28,7 +28,7 @@ namespace rt
 				nearColor.b + scale * lenB
 			);
 			newColor = newColor.clamp();
-			float cos = dot(ray.d, intersect.normal()) / (ray.d.length() * intersect.normal().length());
+			float cos = dot(-ray.d, intersect.normal()) / (ray.d.length() * intersect.normal().length());
 			newColor = newColor * cos;
 			return newColor;
 		}

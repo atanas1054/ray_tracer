@@ -18,9 +18,9 @@ namespace rt
 			if((p - origin).length() < radius && distance < previousBestDistance){
 				float dir = dot(ray.o - origin, normal);
 				if(dir < 0) {
-					return Intersection(distance, ray, this, normal, p);
-				} else if(dir > 0){
 					return Intersection(distance, ray, this, -normal, p);
+				} else if(dir > 0){
+					return Intersection(distance, ray, this, normal, p);
 				}
 			}
 		}

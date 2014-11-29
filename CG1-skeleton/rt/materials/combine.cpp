@@ -57,7 +57,7 @@ namespace rt{
     Material::SampleReflectance CombineMaterial::getSampleReflectance(const Point& texPoint, const Vector& normal, const Vector& outDir) const
 	{
 		Vector Rv = (2 * dot(outDir, normal) * normal - outDir).normalize();
-		return SampleReflectance(Rv, getReflectance(texPoint, normal, outDir, -Rv)); 
+		return SampleReflectance(Rv, getReflectance(texPoint, normal, outDir, Rv)); 
 	}
 
     Material::Sampling CombineMaterial::useSampling() const

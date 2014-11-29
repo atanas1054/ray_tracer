@@ -33,9 +33,9 @@ namespace rt
 			if(distance > 0 && distance < previousBestDistance){
 				Vector normal = cross(v2 - v1, v3 - v1).normalize();
 				if(dot(ray.o - v1, normal) < 0){
-					return Intersection(distance, ray, this, normal, Point(x, y, z));
-				} else {
 					return Intersection(distance, ray, this, -normal, Point(x, y, z));
+				} else {
+					return Intersection(distance, ray, this, normal, Point(x, y, z));
 				}
 			}
 		}

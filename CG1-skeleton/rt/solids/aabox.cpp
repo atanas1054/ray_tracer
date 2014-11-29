@@ -41,17 +41,17 @@ namespace rt
 			if(sidenmax == sidex)
 			{
 				normal = Vector(1, 0, 0);
-				if(dot(p - ray.o, normal) < 0) normal = -normal;
+				if(dot(ray.o - p, normal) < 0) normal = -normal;
 			} 
 			else if(sidenmax == sidey)
 			{
 				normal = Vector(0, 1, 0);
-				if(dot(p - ray.o, normal) < 0) normal = -normal;
+				if(dot(ray.o - p, normal) < 0) normal = -normal;
 			}
 			else
 			{
 				normal = Vector(0, 0, 1);
-				if(dot(p - ray.o, normal) < 0) normal = -normal;
+				if(dot(ray.o - p, normal) < 0) normal = -normal;
 			}
 			return Intersection(nmax, ray, this, normal, p);
 		}

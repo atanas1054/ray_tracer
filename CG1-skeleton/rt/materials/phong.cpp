@@ -9,15 +9,15 @@ namespace rt{
 	PhongMaterial::PhongMaterial(Texture* specular, float exponent): tex(specular), exp(exponent) { }
 
 	//outDir the direction from hit point to viewer
-	//inDir the direction from light source to hit point
+	//inDir the direction from hit point to light source
 	RGBColor PhongMaterial::getReflectance(const Point& texPoint, const Vector& normal, const Vector& outDir, const Vector& inDir) const
 	{
 		
 		RGBColor color = tex->getColor(texPoint);
-		Vector Ri = (2 * dot(-inDir, normal)  * normal - (-inDir)).normalize();
+		Vector Ri = (2 * dot(inDir, normal)  * normal - (inDir)).normalize();
 		float cos = dot(Ri, outDir) / outDir.length() / Ri.length();
 		if(cos > 0 )
-			return color * std::powf(cos, exp) * (exp + 2) / 2 / pi; /// dot(inDir, normal);// * (exp + 2) / 2 / pi;
+			return color * std::powf(cos, exp) * (exp + 2) / (2 * pi) * dot(inDir, normal);
 		return RGBColor::rep(0);
 	}
 
@@ -29,8 +29,8 @@ namespace rt{
 	//outDir the direction from hit point to viewer
     Material::SampleReflectance PhongMaterial::getSampleReflectance(const Point& texPoint, const Vector& normal, const Vector& outDir) const
 	{
-		Vector Rv = -(outDir - 2 * dot(outDir, normal) * normal).normalize();
-		return SampleReflectance(Rv, PhongMaterial::getReflectance(texPoint, normal, outDir, -Rv)); 
+		Vector Rv = (2 * dot(outDir, normal) * normal - outDir).normalize();
+		return SampleReflectance(Rv, PhongMaterial::getReflectance(texPoint, normal, outDir, Rv)); 
 	}
 
     Material::Sampling PhongMaterial::useSampling() const

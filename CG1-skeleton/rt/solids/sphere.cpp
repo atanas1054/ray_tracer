@@ -14,9 +14,11 @@ namespace rt
 	{
 		Vector temp = ray.o - Sphere::center;
 		//check whether there is an intersection
+		/*
 		float s = cross(temp, ray.d).length() / ray.d.length();
 		if(s < radius)
 		{
+
 			float c = dot(temp, temp) - radius * radius;
 			float b = 2 * dot(temp, ray.d);
 			float a = dot(ray.d, ray.d);
@@ -29,14 +31,35 @@ namespace rt
 				if(x2 < 0) dist = x1;
 				if(dist < previousBestDistance) {
 					Point point = ray.getPoint(dist);
-					//Vector normal = (point - center).normalize();
-					Vector normal = (center - point).normalize();
+					float len = (point - center).length();
+					Vector normal = (point - center).normalize();
 					return Intersection(dist, ray, this, normal, point);
 				}
 			}
 
+		}*/
+		
+		Vector co = ray.o - center;
+		float coLength = co.length();
+		float temp2 = dot(ray.d, co);
+		float det = temp2 * temp2  - coLength * coLength + radius * radius;
+		if(det > 0)
+		{
+			float d1 = -temp2 + sqrt(det);
+			float d2 = -temp2 - sqrt(det);
+			Point hitPoint = ray.getPoint(d1);
+			Vector normal = (hitPoint - center).normalize();
+			Point local = Point(hitPoint.x - center.x, hitPoint.y - center.y, hitPoint.z - center.z);
+			if( d1 > 0 && d1 < d2 && d1 < previousBestDistance){
+				return Intersection(d1, ray, this, normal, local);
+			}
+			if(d2 > 0 && d2 < previousBestDistance){
+				hitPoint = ray.getPoint(d2);
+				normal = (hitPoint - center).normalize();
+				local = Point(hitPoint.x - center.x, hitPoint.y - center.y, hitPoint.z - center.z);
+				return Intersection(d2, ray, this, normal, local);
+			}
 		}
-
 		return Intersection::failure();
 	}
 

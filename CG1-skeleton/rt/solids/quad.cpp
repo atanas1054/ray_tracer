@@ -27,9 +27,9 @@ namespace rt
 			if(distance > 0 && distance < previousBestDistance){
 				float dir = dot(ray.o - v1, normal);
 				if(dir < 0) {
-					return Intersection(distance, ray, this, normal, ray.getPoint(distance));
-				} else if(dir > 0){
 					return Intersection(distance, ray, this, -normal, ray.getPoint(distance));
+				} else if(dir > 0){
+					return Intersection(distance, ray, this, normal, ray.getPoint(distance));
 				}
 			}
 		}
