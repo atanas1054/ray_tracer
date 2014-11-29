@@ -1,13 +1,15 @@
-﻿Build started 11/29/2014 11:07:57.
+﻿Build started 11/29/2014 11:14:49.
      1>Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt rt\materials\combine.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt rt\materials\combine.cpp rt\materials\lambertian.cpp
          combine.cpp
      1>rt\materials\combine.cpp(18): warning C4018: '<' : signed/unsigned mismatch
      1>rt\materials\combine.cpp(40): warning C4018: '<' : signed/unsigned mismatch
      1>rt\materials\combine.cpp(50): warning C4018: '<' : signed/unsigned mismatch
+         lambertian.cpp
+     1>rt\materials\lambertian.cpp(28): warning C4482: nonstandard extension used: enum 'rt::Material::Sampling' used in qualified name
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
          Release\image.obj
@@ -66,4 +68,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.94
+Time Elapsed 00:00:05.17

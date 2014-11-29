@@ -20,7 +20,7 @@ namespace rt{
 
     Material::SampleReflectance LambertianMaterial::getSampleReflectance(const Point& texPoint, const Vector& normal, const Vector& outDir) const
 	{
-		return SampleReflectance();
+		return SampleReflectance(normal, RGBColor::rep(0));
 	}
 
     Material::Sampling LambertianMaterial::useSampling() const
