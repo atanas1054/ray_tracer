@@ -1,8 +1,16 @@
 #include <core/vector.h>
 #include <core/point.h>
 #include <cmath>
+#include <core/float4.h>
 
 namespace rt{
+
+Vector::Vector(const Float4& f4)
+{
+	x = f4.x;
+	y = f4.y;
+	z = f4.z;
+}
 
 Vector Vector::operator+(const Vector& b) const {
 	return Vector(x + b.x, y + b.y, z + b.z);
@@ -26,7 +34,7 @@ bool Vector::operator==(const Vector& b) const{
 	return x == b.x && y == b.y && z == b.z;
 }
 bool Vector::operator!=(const Vector& b) const {
-	return x != b.x && y != b.y && z != b.z;
+	return x != b.x || y != b.y || z != b.z;
 }
 
 Vector operator*(float scalar, const Vector& b) {

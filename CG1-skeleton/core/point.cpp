@@ -1,11 +1,14 @@
 #include <core/point.h>
 #include <core/vector.h>
+#include <core/float4.h>
 
 namespace rt{
 
 Point::Point(const Float4& f4)
 {
-
+	x = f4.x;
+	y = f4.y;
+	z = f4.z;
 }
 
 Vector Point::operator-(const Point& b) const {
