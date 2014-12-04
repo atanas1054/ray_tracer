@@ -18,6 +18,26 @@ namespace {
         return ( 1.0f - ( (n * (n * n * 15731 + 789221) + 1376312589) & 0x7fffffff) / 1073741824.0f);
     }
 
+	float interpolatedNoise(float x, float y, float z)
+	{
+		int x0 = (int) floor(x);
+		int x1 = x0 + 1;
+		int y0 = (int) floor(y);
+		int y1 = y0 + 1;
+		int z0 = (int) floor(z);
+		int z1 = z0 + 1;
+		float* n = new float[8];
+		n[0] = noise(x0, y0, z0);
+		n[1] = noise(x1, y0, z0);
+		n[2] = noise(x0, y1, z0);
+		n[3] = noise(x1, y1, z0);
+		n[4] = noise(x0, y0, z1);
+		n[5] = noise(x1, y0, z1);
+		n[6] = noise(x0, y1, z1);
+		n[7] = noise(x1, y1, z1);
+		return lerp3d(n[0], n[1], n[2], n[3], n[4], n[5], n[6], n[7], x - x0, y - y0, z - z0);
+	}
+
 }
 
 		PerlinTexture::PerlinTexture(const RGBColor& white, const RGBColor& black) : white(white), black(black)
@@ -34,25 +54,14 @@ namespace {
 
         RGBColor PerlinTexture::getColor(const Point& coord)
 		{
-			float* val = new float[8];
-			Point* xyz = new Point[8];
-			xyz[0] = Point(floor(coord.x), floor(coord.y), floor(coord.z));
-			xyz[1] = xyz[1] + Vector(1,0,0);
-			xyz[2] = xyz[1] + Vector(0,1,0);
-			xyz[3] = xyz[1] + Vector(1,1,0);
-			xyz[4] = xyz[1] + Vector(0,0,1);
-			xyz[5] = xyz[1] + Vector(1,0,1);
-			xyz[6] = xyz[1] + Vector(0,1,1);
-			xyz[7] = xyz[1] + Vector(1,1,1);
-
+			float val = 0;
+			float f,a;
 			for(int i = 0; i < amplitudes.size(); i++) {
-				float f = frequencies.at(i);
-				val += noise((coord.x * f), (coord.y * f), (coord.z * f)) * amplitudes.at(i);
+				f = frequencies.at(i);
+				a = amplitudes.at(i);
+				val += interpolatedNoise(coord.x * f, coord.y * f, coord.z * f) * a;
 			}
-
-			return lerp3d(
-				lerp(white, black, 
-			);
+			return lerp(black, white, (val / amplitudeSum + 1)/ 2);
 		}
 
         RGBColor PerlinTexture::getColorDX(const Point& coord)

@@ -5,9 +5,6 @@ namespace rt {
 
     template <typename T>
     T lerp(const T& px0, const T& px1, float xPoint) {
-		//TODO
-        //NOT_IMPLEMENTED;
-		//return px0 + xPoint * (px1 - px0);
 		return px0 * (1 - xPoint) + px1 * xPoint;
     }
 
