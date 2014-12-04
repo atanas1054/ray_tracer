@@ -3,6 +3,11 @@
 
 namespace rt{
 
+Point::Point(const Float4& f4)
+{
+
+}
+
 Vector Point::operator-(const Point& b) const {
 	return Vector(x - b.x, y - b.y, z - b.z);
 }

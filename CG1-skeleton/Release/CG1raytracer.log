@@ -1,18 +1,15 @@
-﻿Build started 11/29/2014 11:14:49.
-     1>Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
+﻿Build started 12/4/2014 11:34:17 AM.
+     1>Project "E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Release\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Release\CG1raytracer.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt rt\materials\combine.cpp rt\materials\lambertian.cpp
-         combine.cpp
-     1>rt\materials\combine.cpp(18): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\materials\combine.cpp(40): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\materials\combine.cpp(50): warning C4018: '<' : signed/unsigned mismatch
-         lambertian.cpp
-     1>rt\materials\lambertian.cpp(28): warning C4482: nonstandard extension used: enum 'rt::Material::Sampling' used in qualified name
+         e:\VisualStudio2010\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt rt\coordmappers\tmapper.cpp
+         tmapper.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
+         e:\VisualStudio2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
+         Release\float4.obj
          Release\image.obj
+         Release\interpolate.obj
          Release\julia.obj
          Release\point.obj
          Release\scalar.obj
@@ -21,12 +18,18 @@
          Release\a_julia.obj
          Release\a_cameras.obj
          Release\a_lighting.obj
+         Release\a_mappers.obj
          Release\a_materials.obj
          Release\a_solids.obj
+         Release\a_textures.obj
          Release\main.obj
          Release\bbox.obj
          Release\orthographic.obj
          Release\perspective.obj
+         Release\cylindrical.obj
+         Release\plane.obj
+         Release\spherical.obj
+         Release\tmapper.obj
          Release\bvh.obj
          Release\simplegroup.obj
          Release\casting.obj
@@ -42,6 +45,7 @@
          Release\obj.obj
          Release\combine.obj
          Release\dummy.obj
+         Release\flatmaterial.obj
          Release\lambertian.obj
          Release\mirror.obj
          Release\phong.obj
@@ -54,18 +58,21 @@
          Release\solid.obj
          Release\sphere.obj
          Release\triangle.obj
+         Release\checkerboard.obj
          Release\constant.obj
+         Release\imagetex.obj
+         Release\perlin.obj
          Release\world.obj
          Generating code
          Finished generating code
-         CG1raytracer.vcxproj -> E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe
+         CG1raytracer.vcxproj -> E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe;#1" /manifest Release\CG1raytracer.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.exe;#1" /manifest Release\CG1raytracer.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Release\CG1raytracer.unsuccessfulbuild".
          Touching "Release\CG1raytracer.lastbuildstate".
-     1>Done Building Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" (build target(s)).
+     1>Done Building Project "E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\CG1raytracer.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:05.17
+Time Elapsed 00:00:03.47
