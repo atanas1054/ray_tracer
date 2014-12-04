@@ -13,13 +13,14 @@ namespace rt
 	{
 		float temp = dot(ray.d , normal);
 		float distance = dot((origin - ray.o), normal) / temp;
-		
+		Point hit = ray.getPoint(distance);
+		Point local = Point(hit.x - origin.x, hit.y - origin.y, hit.z - origin.z);
 		if(distance > 0 && distance < previousBestDistance){
 			float dir = dot(ray.o - origin, normal);
 			if(dir < 0) {
-				return Intersection(distance, ray, this, -normal, ray.getPoint(distance));
+				return Intersection(distance, ray, this, -normal, local);
 			} else if(dir > 0){
-				return Intersection(distance, ray, this, normal, ray.getPoint(distance));
+				return Intersection(distance, ray, this, normal, local);
 			}
 		}
 		return Intersection::failure();

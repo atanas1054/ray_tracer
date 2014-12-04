@@ -4,7 +4,7 @@
 #include <rt/lights/light.h>
 #include <rt/solids/solid.h>
 #include <rt/materials/material.h>
-
+#include <rt/coordmappers/coordmapper.h>
 
 namespace rt{
 
@@ -13,7 +13,9 @@ namespace rt{
 		Intersection intersect  = world->scene->intersect(ray);
 		if(intersect)
 		{
-			RGBColor color = intersect.solid->material->getEmission(intersect.local(), intersect.normal(), -ray.d);
+			RGBColor color = intersect.solid->material->getEmission(
+				intersect.solid->texMapper->getCoords(intersect),
+				intersect.normal(), -ray.d);
 			Point p = ray.getPoint(intersect.distance-0.00001);
 			
 			for(int i = 0; i < world->light.size();i++)

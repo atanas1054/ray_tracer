@@ -28,12 +28,37 @@ namespace rt{
 
     float& Float4::operator[](int idx)
 	{
-
+		if(idx == 0){
+			return x;
+		}
+		if(idx == 1){
+			return y;
+		}
+		if(idx == 2){
+			return z;
+		}
+		if(idx == 3){
+			return w;
+		}
 	}
 
     float Float4::operator[](int idx) const
 	{
-
+		if(idx > 3){
+			return 0;
+		}
+		if(idx == 0){
+			return x;
+		}
+		if(idx == 1){
+			return y;
+		}
+		if(idx == 2){
+			return z;
+		}
+		if(idx == 3){
+			return w;
+		}
 	}
 
     Float4 Float4::operator+(const Float4& b) const

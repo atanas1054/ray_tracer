@@ -4,7 +4,7 @@
 #include <rt/lights/light.h>
 #include <rt/solids/solid.h>
 #include <rt/materials/material.h>
-
+#include <rt/intersection.h>
 
 namespace rt{
 
@@ -22,7 +22,9 @@ namespace rt{
 		Intersection intersect  = world->scene->intersect(ray);
 		if(intersect)
 		{
-			RGBColor color = intersect.solid->material->getEmission(intersect.local(), intersect.normal(), -ray.d);
+			RGBColor color = intersect.solid->material->getEmission(
+				intersect.local(),
+				intersect.normal(), -ray.d);
 			Point p = intersect.hitPoint();
 			if(intersect.solid->material->useSampling() == Material::Sampling::SAMPLING_NOT_NEEDED)
 			{			

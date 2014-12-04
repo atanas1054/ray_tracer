@@ -64,13 +64,13 @@ namespace {
 
         PerlinTexture* perlinTex = new PerlinTexture(RGBColor(1.0f,1.0f,0.9f), RGBColor(0.5f,0.5f,1.0f));
         perlinTex->addOctave(0.5f, 5.0f);
-        perlinTex->addOctave(0.25f, 10.0f);
-        perlinTex->addOctave(0.125f, 20.0f);
-        perlinTex->addOctave(0.125f, 40.0f);
+        //perlinTex->addOctave(0.25f, 10.0f);
+        //perlinTex->addOctave(0.125f, 20.0f);
+        //perlinTex->addOctave(0.125f, 40.0f);
         FlatMaterial* perlin = new FlatMaterial(perlinTex);
 
-        scene->add(new InfinitePlane(Point(0.0f,0.0f,-0.018f), Vector(0.01f, 0.0f, 1.0f), nullptr, checkerboard));
-        scene->add(new InfinitePlane(Point(0.0f,0.0f,-0.02f), Vector(-0.01f, 0.0f, 1.0f), nullptr, perlin));
+		scene->add(new InfinitePlane(Point(0.0f,0.0f,-0.018f), Vector(0.01f, 0.0f, 1.0f), nullptr, checkerboard));
+		scene->add(new InfinitePlane(Point(0.0f,0.0f,-0.02f), Vector(-0.01f, 0.0f, 1.0f), nullptr, perlin));
 
         return scene;
     }

@@ -196,6 +196,7 @@
     <ClCompile Include="rt\textures\imagetex.cpp" />
     <ClCompile Include="rt\textures\perlin.cpp" />
     <ClCompile Include="rt\world.cpp" />
+    <ClCompile Include="world.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,6 +10,7 @@ namespace rt {
 
     class CheckerboardTexture : public Texture {
     public:
+		RGBColor white, black;
         CheckerboardTexture(const RGBColor& white, const RGBColor& black);
         virtual RGBColor getColor(const Point& coord);
         virtual RGBColor getColorDX(const Point& coord);

@@ -392,5 +392,8 @@
     <ClCompile Include="rt\textures\checkerboard.cpp">
       <Filter>rt\textures</Filter>
     </ClCompile>
+    <ClCompile Include="world.cpp">
+      <Filter>rt\coordmappers</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	//a_indexing();
 	//a_lighting();
 	//a_mappers();
-	//a_textures();
-	a_materials();
+	a_textures();
+	//a_materials();
     return 0;
 }
