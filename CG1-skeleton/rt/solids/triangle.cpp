@@ -29,13 +29,17 @@ namespace rt
 			float z = t12 / sum;
 			
 			Point p = x * v1 + (y * v2 - Point(0,0,0)) + (z * v3 - Point(0,0,0));
+
 			float distance = (p - ray.o).length();
-			if(distance > 0 && distance < previousBestDistance){
-				Vector normal = cross(v2 - v1, v3 - v1).normalize();
-				if(dot(ray.o - v1, normal) < 0){
-					return Intersection(distance, ray, this, -normal, Point(x, y, z));
-				} else {
-					return Intersection(distance, ray, this, normal, Point(x, y, z));
+
+			if(dot(ray.d, p - ray.o) > 0) {
+				if(distance > 0 && distance < previousBestDistance){
+					Vector normal = cross(v2 - v1, v3 - v1).normalize();
+					if(dot(ray.o - v1, normal) < 0){
+						return Intersection(distance, ray, this, -normal, Point(x, y, z));
+					} else {
+						return Intersection(distance, ray, this, normal, Point(x, y, z));
+					}
 				}
 			}
 		}

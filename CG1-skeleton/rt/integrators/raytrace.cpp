@@ -31,7 +31,9 @@ namespace rt{
 					if(!shadowIntrsct)
 					{
 						RGBColor sourceColor = world->light[i]->getIntensity(lh);
-						RGBColor reflectInt = intersect.solid->material->getReflectance(intersect.local(), intersect.normal(), -ray.d, lh.direction);
+						RGBColor reflectInt = intersect.solid->material->getReflectance(
+							intersect.solid->texMapper->getCoords(intersect),
+							intersect.normal(), -ray.d, lh.direction);
 						RGBColor reflectColor = sourceColor * reflectInt;
 						color = color + reflectColor;
 					}

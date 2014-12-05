@@ -159,6 +159,7 @@ void trymapper(const char* filename, CoordMapper* spheremapper1, CoordMapper* sp
 
 void a_mappers() {
     trynomapper("map-1.png");
+	/*
     trymapper("map-2.png",nullptr,nullptr);
     trymapper("map-3.png",
         new PlaneCoordMapper(Vector(0.25f,0.0f,0.25f),Vector(-0.25f,0.0f,0.25f)),
@@ -173,4 +174,5 @@ void a_mappers() {
         new SphericalCoordMapper(Point(.4f,.45f,.3f),Vector(0.0f,hsq2,hsq2),Vector(0.5f,0.0f,0.0f)),
         new SphericalCoordMapper(Point(.3f,.1f,.3f),Vector(0.0f,hsq2,-hsq2),Vector(0.5f,0.0f,0.0f))
         );
+		*/
 }
