@@ -131,12 +131,12 @@ void trymapper(const char* filename, CoordMapper* spheremapper1, CoordMapper* sp
     scene.add(new Triangle(Point(550.f,000.f,560.f)*scale, Point(550.f,000.f,000.f)*scale, Point(000.f,000.f,560.f)*scale, topright, &clamp)); 
 
     //ceiling
-    //scene.add(new Triangle(Point(000.f,550.f,000.f)*scale, Point(550.f,550.f,000.f)*scale, Point(000.f,550.f,560.f)*scale, bottomleft, &mirror)); 
-    //scene.add(new Triangle(Point(550.f,550.f,560.f)*scale, Point(550.f,550.f,000.f)*scale, Point(000.f,550.f,560.f)*scale, topright, &mirror)); 
+    scene.add(new Triangle(Point(000.f,550.f,000.f)*scale, Point(550.f,550.f,000.f)*scale, Point(000.f,550.f,560.f)*scale, bottomleft, &mirror)); 
+    scene.add(new Triangle(Point(550.f,550.f,560.f)*scale, Point(550.f,550.f,000.f)*scale, Point(000.f,550.f,560.f)*scale, topright, &mirror)); 
 
     //back wall
-    //scene.add(new Triangle(Point(000.f,000.f,560.f)*scale, Point(550.f,000.f,560.f)*scale, Point(000.f,550.f,560.f)*scale, bottomleft, &white)); 
-    //scene.add(new Triangle(Point(550.f,550.f,560.f)*scale, Point(550.f,000.f,560.f)*scale, Point(000.f,550.f,560.f)*scale, topright, &white)); 
+    scene.add(new Triangle(Point(000.f,000.f,560.f)*scale, Point(550.f,000.f,560.f)*scale, Point(000.f,550.f,560.f)*scale, bottomleft, &white)); 
+    scene.add(new Triangle(Point(550.f,550.f,560.f)*scale, Point(550.f,000.f,560.f)*scale, Point(000.f,550.f,560.f)*scale, topright, &white)); 
 
     //right wall
     scene.add(new Triangle(Point(000.f,000.f,000.f)*scale, Point(000.f,000.f,560.f)*scale, Point(000.f,550.f,000.f)*scale, bottomleft, &green));
@@ -147,8 +147,8 @@ void trymapper(const char* filename, CoordMapper* spheremapper1, CoordMapper* sp
     scene.add(new Triangle(Point(550.f,550.f,560.f)*scale, Point(550.f,000.f,560.f)*scale, Point(550.f,550.f,000.f)*scale, topright, &red)); 
 
     //sphere
-    //scene.add(new Sphere(Point(400.f,450.f,300.f)*scale, 150.f*scale, spheremapper1, &white));
-    //scene.add(new Sphere(Point(200.f,100.f,300.f)*scale, 150.f*scale, spheremapper2, &white));
+    scene.add(new Sphere(Point(400.f,450.f,300.f)*scale, 150.f*scale, spheremapper1, &white));
+    scene.add(new Sphere(Point(200.f,100.f,300.f)*scale, 150.f*scale, spheremapper2, &white));
 
     RayTracingIntegrator integrator(&world);
 
