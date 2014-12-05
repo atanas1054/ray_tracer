@@ -1,86 +1,17 @@
-﻿Build started 12/4/2014 21:44:43.
-     1>Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
+﻿Build started 12/5/2014 2:42:14 PM.
+     1>Project "E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\CG1raytracer.unsuccessfulbuild".
+         Creating "Debug\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main\a_textures.cpp rt\textures\perlin.cpp
-         perlin.cpp
-     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\perlin.cpp(61): warning C4018: '<' : signed/unsigned mismatch
-     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\perlin.cpp(70): warning C4018: '<' : signed/unsigned mismatch
-     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\perlin.cpp(73): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\perlin.cpp(73): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\perlin.cpp(73): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         a_textures.cpp
-         Generating Code...
+         All outputs are up-to-date.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.lib" /MACHINE:X86 Debug\color.obj
-         Debug\float4.obj
-         Debug\image.obj
-         Debug\interpolate.obj
-         Debug\julia.obj
-         Debug\point.obj
-         Debug\scalar.obj
-         Debug\vector.obj
-         Debug\a_indexing.obj
-         Debug\a_julia.obj
-         Debug\a_cameras.obj
-         Debug\a_lighting.obj
-         Debug\a_mappers.obj
-         Debug\a_materials.obj
-         Debug\a_solids.obj
-         Debug\a_textures.obj
-         Debug\main.obj
-         Debug\bbox.obj
-         Debug\orthographic.obj
-         Debug\perspective.obj
-         Debug\cylindrical.obj
-         Debug\plane.obj
-         Debug\spherical.obj
-         Debug\tmapper.obj
-         Debug\world.obj
-         Debug\bvh.obj
-         Debug\simplegroup.obj
-         Debug\casting.obj
-         Debug\castingdist.obj
-         Debug\raytrace.obj
-         Debug\recraytrace.obj
-         Debug\intersection.obj
-         Debug\directional.obj
-         Debug\light.obj
-         Debug\pointlight.obj
-         Debug\projectivelight.obj
-         Debug\spotlight.obj
-         Debug\obj.obj
-         Debug\combine.obj
-         Debug\dummy.obj
-         Debug\flatmaterial.obj
-         Debug\lambertian.obj
-         Debug\mirror.obj
-         Debug\phong.obj
-         Debug\ray.obj
-         Debug\renderer.obj
-         Debug\aabox.obj
-         Debug\disc.obj
-         Debug\infiniteplane.obj
-         Debug\quad.obj
-         Debug\solid.obj
-         Debug\sphere.obj
-         Debug\triangle.obj
-         Debug\checkerboard.obj
-         Debug\constant.obj
-         Debug\imagetex.obj
-         Debug\perlin.obj
-         Debug\world.obj
-         LINK : E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe not found or not built by the last incremental link; performing full link
-     1>Debug\world.obj : warning LNK4042: object specified more than once; extras ignored
-         CG1raytracer.vcxproj -> E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe;#1" /manifest Debug\CG1raytracer.exe.intermediate.manifest
+         All outputs are up-to-date.
+         CG1raytracer.vcxproj -> E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Debug\CG1raytracer.exe
        FinalizeBuildStatus:
          Deleting file "Debug\CG1raytracer.unsuccessfulbuild".
          Touching "Debug\CG1raytracer.lastbuildstate".
-     1>Done Building Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" (build target(s)).
+     1>Done Building Project "E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\CG1raytracer.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.22
+Time Elapsed 00:00:00.08
