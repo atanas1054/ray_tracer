@@ -20,8 +20,12 @@ namespace rt{
 			n = -n;
 		}
 		//intersect ray (local, n) to plane (center, n)
-
-
-		return Point();
+		float temp = dot(n , n);
+		float distance = dot((center - local), n) / temp;
+		Point hp = local + ((n * distance) / n.length());
+		//calculate uv
+		float u = dot(hp - center, e1) / e1.length();
+		float v = dot(hp - center, e2) / e2.length();
+		return Point(u, v, 0);
 	}
 }

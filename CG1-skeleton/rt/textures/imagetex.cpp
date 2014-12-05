@@ -19,7 +19,6 @@ namespace rt{
 
     ImageTexture::ImageTexture(const std::string& filename, BorderHandlingType bh, InterpolationType i): bh(bh), i(i)
 	{
-		//image = Image();
 		image.readPNG(filename);
 	}
 
