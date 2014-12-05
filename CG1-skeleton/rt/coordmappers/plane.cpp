@@ -13,12 +13,13 @@ namespace rt{
 	{
 		//assumes local hit = hit - center;
 		Vector n = normal;
-		Point center = hit.solid->getCenter();
-		Vector local = hit.local() - Point::rep(0);
-		if(dot(n, local) < 0)
+		Point center = Point::rep(0);
+		Point local = hit.local();
+		if(dot(n, local - center) < 0)
 		{
 			n = -n;
 		}
+		//intersect ray (local, n) to plane (center, n)
 
 
 		return Point();
