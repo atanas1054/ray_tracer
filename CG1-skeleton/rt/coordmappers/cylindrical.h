@@ -10,6 +10,9 @@ class Intersection;
 
 class CylindricalCoordMapper : public CoordMapper {
 public:
+	Point origin;
+	Vector lAxis, pAxis, lxp;
+	float pMagnitude;
     CylindricalCoordMapper(const Point& origin, const Vector& longitudinalAxis, const Vector& polarAxis);
     virtual Point getCoords(const Intersection& hit) const;
 };

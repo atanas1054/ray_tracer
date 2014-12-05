@@ -15,7 +15,7 @@ namespace rt{
 		Vector n = normal;
 		Point center = Point::rep(0);
 		Point local = hit.local();
-		if(dot(n, local - center) < 0)
+		if(dot(n, local - center) > 0)
 		{
 			n = -n;
 		}
@@ -24,8 +24,8 @@ namespace rt{
 		float distance = dot((center - local), n) / temp;
 		Point hp = local + ((n * distance) / n.length());
 		//calculate uv
-		float u = dot(hp - center, e1) / e1.length();
-		float v = dot(hp - center, e2) / e2.length();
+		float u = (hp - center).length() * dot((hp - center).normalize(), e1.normalize()) / e1.length();
+		float v = (hp - center).length() * dot((hp - center).normalize(), e2.normalize()) / e2.length();
 		return Point(u, v, 0);
 	}
 }
