@@ -41,6 +41,7 @@ namespace rt{
 			if(px1 == image.width()) px1 = image.width() - 1;
 			if(py1 == image.height()) py1 = image.height() - 1;
 		}
+
 		return lerp2d(image(px0, py0), image(px1, py0), image(px0, py1), image(px1, py1), x1 - px0, y1 - py0);
 	}
 

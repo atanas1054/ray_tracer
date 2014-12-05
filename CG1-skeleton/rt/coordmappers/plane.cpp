@@ -11,21 +11,31 @@ namespace rt{
 
     Point PlaneCoordMapper::getCoords(const Intersection& hit) const
 	{
+		/*
 		//assumes local hit = hit - center;
-		Vector n = normal;
+		Vector dir = normal;
 		Point center = Point::rep(0);
-		Point local = hit.local();
-		if(dot(n, local - center) > 0)
+		Point local = hit.hitPoint();
+		if(dot(dir, local - center) > 0)
 		{
-			n = -n;
+			dir = -dir;
 		}
 		//intersect ray (local, n) to plane (center, n)
-		float temp = dot(n , n);
-		float distance = dot((center - local), n) / temp;
-		Point hp = local + ((n * distance) / n.length());
+		float temp = dot(dir , -dir);
+		float distance = dot((center - local), -dir) / temp;
+		Point hp = local + ((dir * distance) / dir.length());
 		//calculate uv
+
 		float u = (hp - center).length() * dot((hp - center).normalize(), e1.normalize()) / e1.length();
 		float v = (hp - center).length() * dot((hp - center).normalize(), e2.normalize()) / e2.length();
+		*/
+		
+		//Vector localV = hit.local() - Point::rep(0);
+		Vector localV = hit.hitPoint() - Point::rep(0);
+		float dist = localV.length();
+		float u = dist * (dot(e1, localV) / dist / e1.length()) / e1.length();
+		float v = dist * (dot(e2, localV) / dist / e2.length()) / e2.length();
+		
 		return Point(u, v, 0);
 	}
 }

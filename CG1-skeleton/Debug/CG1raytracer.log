@@ -1,10 +1,25 @@
-﻿Build started 12/5/2014 21:01:06.
+﻿Build started 12/5/2014 22:33:54.
      1>Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt rt\coordmappers\cylindrical.cpp
-         cylindrical.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt rt\coordmappers\plane.cpp rt\textures\imagetex.cpp
+         imagetex.cpp
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(28): warning C4101: 'b_' : unreferenced local variable
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(28): warning C4101: 'r_' : unreferenced local variable
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(28): warning C4101: 'g_' : unreferenced local variable
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(68): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(68): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(84): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(84): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(100): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(100): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(108): warning C4101: 'b_' : unreferenced local variable
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(108): warning C4101: 'r_' : unreferenced local variable
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(108): warning C4101: 'g_' : unreferenced local variable
+         plane.cpp
+         Generating Code...
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(166): warning C4715: 'rt::ImageTexture::getColor' : not all control paths return a value
      1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Debug\CG1raytracer.lib" /MACHINE:X86 Debug\color.obj
@@ -77,4 +92,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.77
+Time Elapsed 00:00:03.03
