@@ -9,7 +9,8 @@ namespace rt{
 
 	ImageTexture::ImageTexture()
 	{
-
+		bh = REPEAT;
+		i = BILINEAR;
 	}
 
     ImageTexture::ImageTexture(const Image& image, BorderHandlingType bh, InterpolationType i): image(image), bh(bh), i(i)
@@ -26,29 +27,21 @@ namespace rt{
 	{
 		float r_,g_,b_;
 		Point q1,q2,q3,q4;
-						
-		q1 = Point((int)x1,(int)y1,0);
-		q2 = Point((int)x1+1,(int)y1,0);
-		q3 = Point((int)x1,(int)y1+1,0);
-		q4 = Point((int)x1+1,(int)y1+1,0);
-
+		
+		int px0, px1, py0, py1;
+		px0 = (int) floor(x1);
+		py0 = (int) floor(y1);
+		px1 = px0 + 1;
+		py1 = py0 + 1;
 		if(bh == ImageTexture::REPEAT)
 		{
-			q2.x = (int) q2.x % image.width();
-			q4.x = (int) q4.x % image.width();
-			q3.y = (int) q3.y % image.height();
-			q4.y = (int) q4.y % image.height();
+			px1 = px1 % (int)image.width();
+			py1 = py1 % (int)image.height();
 		} else {
-			if((int) q2.x == image.width()) q2.x = image.width() - 1;
-			if((int) q4.x == image.width()) q4.x = image.width() - 1;
-			if((int) q3.y == image.height()) q3.y = image.height() - 1;
-			if((int) q4.y == image.height()) q4.y = image.height() - 1;
+			if(px1 == image.width()) px1 = image.width() - 1;
+			if(py1 == image.height()) py1 = image.height() - 1;
 		}
-
-		r_ = (lerp2d(image(q1.x,q1.y).r,image(q2.x,q2.y).r,image(q3.x,q3.y).r,image(q4.x,q4.y).r,x1-q1.x,y1-q1.y));
-		g_ = (lerp2d(image(q1.x,q1.y).g,image(q2.x,q2.y).g,image(q3.x,q3.y).g,image(q4.x,q4.y).g,x1-q1.x,y1-q1.y));
-		b_ = (lerp2d(image(q1.x,q1.y).b,image(q2.x,q2.y).b,image(q3.x,q3.y).b,image(q4.x,q4.y).b,x1-q1.x,y1-q1.y));
-		return RGBColor(r_,g_,b_);
+		return lerp2d(image(px0, py0), image(px1, py0), image(px0, py1), image(px1, py1), x1 - px0, y1 - py0);
 	}
 
     RGBColor ImageTexture::getColor(const Point& coord)
@@ -129,7 +122,7 @@ namespace rt{
 						y1 = coord.y - floor(coord.y);
 					x1 = x1*(image.width()-1);
 					y1 = y1*(image.height()-1);
-					
+
 					return BilinearInterpolation(x1,y1,image, bh);
 
 					case MIRROR:
