@@ -8,11 +8,12 @@ namespace rt{
 	CylindricalCoordMapper::CylindricalCoordMapper(const Point& origin, const Vector& longitudinalAxis, const Vector& polarAxis)
 		: origin(origin)
 	{
-		Vector c1 = cross(polarAxis, longitudinalAxis);
-		pAxis = (lAxis, c1).normalize();
+		Vector c1 = cross(longitudinalAxis, polarAxis);
+		pAxis = cross(c1, longitudinalAxis).normalize();
+		//pAxis = polarAxis.normalize();
 		pMagnitude = polarAxis.length();
-		lxp = cross(lAxis, pAxis).normalize();
 		lAxis = longitudinalAxis.normalize();
+		lxp = cross(pAxis, lAxis).normalize();
 		lMagnitude = longitudinalAxis.length();
 	}
 
@@ -35,12 +36,13 @@ namespace rt{
 			cos = 1;
 		}
 		if(dot(lxp, local - p) > 0){
-			theta = -acos(cos);
-		}else{
 			theta = acos(cos);
+		}else{
+			theta = -acos(cos);
 		}
 		float u = theta / 2 / pi / pMagnitude;
 		float v = pDist / lMagnitude;
+
 		return Point(u, v, 0);
 	}
 }
