@@ -7,6 +7,8 @@ void a_lighting();
 void a_materials();
 void a_mappers();
 void a_textures();
+void a_instancing();
+
 int main(int argc, char* argv[])
 {
     //a_julia();
@@ -17,5 +19,6 @@ int main(int argc, char* argv[])
 	a_mappers();
 	//a_textures();
 	//a_materials();
+	//a_instancing();
     return 0;
 }

@@ -37,6 +37,9 @@
     <Filter Include="rt\coordmappers">
       <UniqueIdentifier>{0177e534-df0f-4ee6-b81e-f1a665322e90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rt\primmod">
+      <UniqueIdentifier>{815bd2f1-e002-4de9-b385-5a20d0cc9a9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\macros.h">
@@ -219,6 +222,12 @@
     <ClInclude Include="core\interpolate-impl.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="core\matrix.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\primmod\instance.h">
+      <Filter>rt\primmod</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -394,6 +403,15 @@
     </ClCompile>
     <ClCompile Include="rt\coordmappers\world.cpp">
       <Filter>rt\coordmappers</Filter>
+    </ClCompile>
+    <ClCompile Include="core\matrix.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_instancing.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\primmod\instance.cpp">
+      <Filter>rt\primmod</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

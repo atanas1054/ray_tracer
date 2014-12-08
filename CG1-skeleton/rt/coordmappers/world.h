@@ -12,7 +12,8 @@ class WorldMapper : public CoordMapper {
 public:
 	Float4 scale;
     WorldMapper();
-    explicit WorldMapper(const Float4& scale);
+	//explicit keyword removed
+    WorldMapper(const Float4& scale);
     virtual Point getCoords(const Intersection& hit) const;
 };
 

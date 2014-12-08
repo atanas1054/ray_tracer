@@ -65,4 +65,13 @@ namespace rt {
 			(*primitives[i]).setMaterial(m);
 		}
 	}
+
+	
+	void SimpleGroup::setCoordMapper(CoordMapper* cm)
+	{
+		for(int i = 0;i < primitives.size(); i++)
+		{
+			(*primitives[i]).setCoordMapper(cm);
+		}
+	}
 }

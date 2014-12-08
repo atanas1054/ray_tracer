@@ -23,6 +23,14 @@ namespace rt {
 		}
 	}
 
+	void BVH::setCoordMapper(CoordMapper* cm)
+	{
+		for(int i = 0;i < primitives.size(); i++)
+		{
+			(*primitives[i]).setCoordMapper(cm);
+		}
+	}
+
 	Intersection BVH::intersect(const Ray& ray, float previousBestDistance) const
 	{
 		return IntersectNode(*root, ray, previousBestDistance);

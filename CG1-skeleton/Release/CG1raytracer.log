@@ -1,33 +1,23 @@
-﻿Build started 12/5/2014 22:52:26.
-     1>Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
+﻿Build started 12/8/2014 3:43:45 PM.
+     1>Project "E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Release\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Release\CG1raytracer.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt rt\coordmappers\plane.cpp rt\textures\imagetex.cpp
-         plane.cpp
-         imagetex.cpp
-     1>rt\textures\imagetex.cpp(28): warning C4101: 'b_' : unreferenced local variable
-     1>rt\textures\imagetex.cpp(28): warning C4101: 'r_' : unreferenced local variable
-     1>rt\textures\imagetex.cpp(28): warning C4101: 'g_' : unreferenced local variable
-     1>rt\textures\imagetex.cpp(68): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
-     1>rt\textures\imagetex.cpp(68): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
-     1>rt\textures\imagetex.cpp(84): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
-     1>rt\textures\imagetex.cpp(84): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
-     1>rt\textures\imagetex.cpp(100): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
-     1>rt\textures\imagetex.cpp(100): warning C4244: 'argument' : conversion from 'double' to 'rt::uint', possible loss of data
-     1>rt\textures\imagetex.cpp(108): warning C4101: 'b_' : unreferenced local variable
-     1>rt\textures\imagetex.cpp(108): warning C4101: 'r_' : unreferenced local variable
-     1>rt\textures\imagetex.cpp(108): warning C4101: 'g_' : unreferenced local variable
+         e:\VisualStudio2010\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt core\matrix.cpp
+         matrix.cpp
+     1>core\matrix.cpp(100): warning C4172: returning address of local variable or temporary
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
+         e:\VisualStudio2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
          Release\float4.obj
          Release\image.obj
          Release\interpolate.obj
          Release\julia.obj
+         Release\matrix.obj
          Release\point.obj
          Release\scalar.obj
          Release\vector.obj
          Release\a_indexing.obj
+         Release\a_instancing.obj
          Release\a_julia.obj
          Release\a_cameras.obj
          Release\a_lighting.obj
@@ -63,6 +53,7 @@
          Release\lambertian.obj
          Release\mirror.obj
          Release\phong.obj
+         Release\instance.obj
          Release\ray.obj
          Release\renderer.obj
          Release\aabox.obj
@@ -78,17 +69,10 @@
          Release\perlin.obj
          Release\world.obj
      1>Release\world.obj : warning LNK4042: object specified more than once; extras ignored
-         Generating code
-     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(166): warning C4715: 'rt::ImageTexture::getColor' : not all control paths return a value
-         Finished generating code
-         CG1raytracer.vcxproj -> E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe;#1" /manifest Release\CG1raytracer.exe.intermediate.manifest
-       FinalizeBuildStatus:
-         Deleting file "Release\CG1raytracer.unsuccessfulbuild".
-         Touching "Release\CG1raytracer.lastbuildstate".
-     1>Done Building Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" (build target(s)).
+     1>matrix.obj : error LNK2001: unresolved external symbol "class rt::Matrix __cdecl rt::operator*(class rt::Matrix const &,float)" (??Drt@@YA?AVMatrix@0@ABV10@M@Z)
+     1>E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.exe : fatal error LNK1120: 1 unresolved externals
+     1>Done Building Project "E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\CG1raytracer.vcxproj" (build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:05.80
+Time Elapsed 00:00:00.92
