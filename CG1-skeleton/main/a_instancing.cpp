@@ -78,26 +78,26 @@ void a_instancing() {
         scene->add(itree);
     }
 
-    {
+    /*{
     Instance* broken = new Instance(tree);
     broken->rotate(Vector(0.3f, 0.0f, 0.7f),-1.0f);
     broken->translate(Vector(5.0f, -0.5f, 0.0f));
     scene->add(broken);
     }
-
-    {
+*/
+  /*  {
     Instance* broken = new Instance(tree);
     broken->rotate(Vector(0.7f, 0.0f, -0.3f),-1.0f);
     broken->translate(Vector(5.0f, -0.5f, 0.0f));
     scene->add(broken);
-    }
+    }*/
 
-    {
+    /*{
     Instance* flat = new Instance(tree);
     flat->scale(Vector(0.3f, 1.5f, 1.5f));
     flat->translate(Vector(-11.0f, 0.0f, 0.0f));
     scene->add(flat);
-    }
+    }*/
 
     scene->add(new InfinitePlane(Point(0,0,0), Vector(0, 1, 0), nullptr, nullptr));
     scene->rebuildIndex();

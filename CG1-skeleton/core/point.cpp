@@ -20,7 +20,7 @@ bool Point::operator==(const Point& b) const {
 }
 
 bool Point::operator!=(const Point& b) const {
-	return x != b.x && y != b.y && z != b.z;
+	return x != b.x || y != b.y || z != b.z;
 }
 
 Point operator*(float scalar, const Point& b) {

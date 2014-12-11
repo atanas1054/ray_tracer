@@ -2,12 +2,14 @@
 #define CG1RAYTRACER_PRIMMOD_INSTANCE_HEADER
 
 #include <rt/primitive.h>
+#include <core\matrix.h>
 
 namespace rt {
 
 class Instance : public Primitive {
 public:
 
+	Matrix transformation;
 	Primitive* content_;
     Instance(Primitive* content);
     Primitive* content();
