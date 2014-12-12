@@ -208,8 +208,18 @@ namespace rt {
 
 		Matrix Matrix::system(const Vector& e1, const Vector& e2, const Vector& e3)
 		{
-			Matrix result;
-			return result;
+			
+			Matrix result = Matrix::identity();
+			result[0][0] = e1.x;
+			result[1][0] = e1.y;
+			result[2][0] = e1.z;
+			result[0][1] = e2.x;
+			result[1][1] = e2.y;
+			result[2][1] = e2.z;
+			result[0][2] = e3.x;
+			result[1][2] = e3.y;
+			result[2][2] = e3.z;
+			return result.invert();
 		}
 
 		Matrix product(const Matrix& a, const Matrix& b)
