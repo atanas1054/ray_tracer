@@ -68,11 +68,7 @@ namespace rt{
 			Vector normal = (invTransformation.transpose() * intersect.normal()).normalize();
 			Point local = hitPoint - (getCenter() - Point::rep(0)) ;
 			//
-			//float distance = (transformed_intersection -inverse_ray.o).length();
 			float distance = (hitPoint - ray.o).length();
-			/*intersect._normal = transformed_normal.normalize();
-			intersect._local = transformed_intersection;*/
-			//return intersect;
 			return Intersection(distance, ray, (Solid*)content_, normal, local);
 		}
 		return Intersection::failure();
@@ -97,35 +93,13 @@ namespace rt{
 
     void Instance::translate(const Vector& t)
 	{
-		Matrix translate;
-		translate = translate.identity();
+		Matrix translate  = Matrix::identity();
 		translate[0][3] = t.x;
 		translate[1][3] = t.y;
 		translate[2][3] = t.z;
 
 		transformation = product(translate, transformation);
 		invTransformation = transformation.invert();
-
-		for(int i = 0; i < 4;i++){
-			for(int j = 0; j < 4;j++)
-				std::cout << transformation [i][j] << " ";
-			std::cout << std::endl;
-		}
-		std::cout << std::endl;
-		for(int i = 0; i < 4;i++){
-			for(int j = 0; j < 4;j++)
-				std::cout << invTransformation [i][j] << " ";
-			std::cout << std::endl;
-		}
-		std::cout << std::endl;
-		Matrix id = product(transformation, invTransformation);
-		for(int i = 0; i < 4;i++){
-			for(int j = 0; j < 4;j++)
-				std::cout << id [i][j] << " ";
-			std::cout << std::endl;
-		}
-		int ii = 0;
-		//std::cin >> ii; 
 	}
 
     void Instance::rotate(const Vector& axis, float angle)
