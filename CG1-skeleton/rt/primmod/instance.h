@@ -10,6 +10,7 @@ class Instance : public Primitive {
 public:
 
 	Matrix transformation;
+	Matrix invTransformation;
 	Primitive* content_;
     Instance(Primitive* content);
     Primitive* content();

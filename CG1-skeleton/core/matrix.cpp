@@ -66,7 +66,7 @@ namespace rt {
 				if (i==j)
 					m[i][j] = 1;
 				else
-				m[i][j] = 0;
+					m[i][j] = 0;
 			}
 
 		return m;
@@ -83,7 +83,7 @@ namespace rt {
 		 if (idx==3)
 			 return row3;
 		 if (idx>3)
-			 return Float4();
+			 return Float4::rep(0);
 
 	 }
 
@@ -98,7 +98,7 @@ namespace rt {
 		 if (idx==3)
 			 return row3;
 		 if (idx>3)
-			 return Float4();
+			 return Float4::rep(0);
 	 }
 		
 	  Matrix Matrix::operator+(const Matrix& b) const
@@ -164,8 +164,6 @@ namespace rt {
 		   const Matrix& m = *this;
 		   Float4 result = m*Float4(b.x,b.y,b.z,1);
 		   return Point(result.x,result.y,result.z);
-
-
 	   }
 
 	    bool Matrix::operator==(const Matrix& b) const
@@ -219,10 +217,10 @@ namespace rt {
 			Matrix result;
 
 			for(int i = 0; i < 4; i++){ 
-			for(int j = 0; j < 4; j++){ 
-			for(int x = 0; x < 4; x++) 
-			result[i][j] += a[i][x] * b[x][j]; 
-			} 
+				for(int j = 0; j < 4; j++){ 
+					for(int x = 0; x < 4; x++) 
+						result[i][j] += a[i][x] * b[x][j]; 
+				} 
 			} 
 
 			return result;

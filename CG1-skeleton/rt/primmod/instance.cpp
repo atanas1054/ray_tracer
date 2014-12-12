@@ -1,11 +1,12 @@
 #include <rt/primmod/instance.h>
 #include <iostream>
+
 namespace rt{
 
 	Instance::Instance(Primitive* content): content_(content)
 	{
 		transformation = Matrix::identity();
-
+		invTransformation = Matrix::identity();
 	}
 	
 	Primitive* Instance::content()
@@ -21,7 +22,6 @@ namespace rt{
 
 		min_p = transformation*min_p;
 		max_p = transformation*max_p;
-
 
 		return Point(
 			(min_p.x + max_p.x) / 2,
@@ -52,29 +52,28 @@ namespace rt{
 		//3.transform the intersection point with the transformation matrix
 		//4.transform the intersection normal with the transposed of the inverse transformation matrix
 
-		float previousBestDistance_;
-		Ray inverse_ray;
-		inverse_ray.o = transformation.invert() * ray.o;
-		inverse_ray.d = transformation.invert() * ray.d;
+		float previousBestDistance_ = FLT_MAX;
+		Ray inverse_ray(invTransformation * ray.o, (invTransformation * ray.d).normalize());
 		
+		if(previousBestDistance < FLT_MAX){
+			Point p = ray.getPoint(previousBestDistance);
+			p = invTransformation * p;
+			previousBestDistance_ = (p - inverse_ray.o).length();
+		}
 
-		Point p = ray.getPoint(previousBestDistance);
-		p = transformation.invert() * p;
-		previousBestDistance_ = (p-inverse_ray.o).length();
-
-		Intersection intersect;
-		intersect = content_->intersect(inverse_ray,previousBestDistance_);
+		Intersection intersect = content_->intersect(inverse_ray, previousBestDistance_);
 		if(intersect)
 		{
-			Point transformed_intersection;
-			Vector transformed_normal;
-			transformed_normal = transformation.invert().transpose()*intersect.normal();
-			transformed_intersection = transformation*intersect.local();
-			float distance = (transformed_intersection -inverse_ray.o).length();
+			Point hitPoint = transformation * intersect.hitPoint();
+			Vector normal = (invTransformation.transpose() * intersect.normal()).normalize();
+			Point local = hitPoint - (getCenter() - Point::rep(0)) ;
+			//
+			//float distance = (transformed_intersection -inverse_ray.o).length();
+			float distance = (hitPoint - ray.o).length();
 			/*intersect._normal = transformed_normal.normalize();
 			intersect._local = transformed_intersection;*/
 			//return intersect;
-			return Intersection(distance,inverse_ray,(Solid*)content_,transformed_normal.normalize(),transformed_intersection);
+			return Intersection(distance, ray, (Solid*)content_, normal, local);
 		}
 		return Intersection::failure();
 	}
@@ -93,6 +92,7 @@ namespace rt{
 	void Instance::reset()
 	{
 		transformation = transformation.identity();
+		invTransformation = transformation;
 	}
 
     void Instance::translate(const Vector& t)
@@ -103,7 +103,29 @@ namespace rt{
 		translate[1][3] = t.y;
 		translate[2][3] = t.z;
 
-		transformation = product(transformation,translate);
+		transformation = product(translate, transformation);
+		invTransformation = transformation.invert();
+
+		for(int i = 0; i < 4;i++){
+			for(int j = 0; j < 4;j++)
+				std::cout << transformation [i][j] << " ";
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
+		for(int i = 0; i < 4;i++){
+			for(int j = 0; j < 4;j++)
+				std::cout << invTransformation [i][j] << " ";
+			std::cout << std::endl;
+		}
+		std::cout << std::endl;
+		Matrix id = product(transformation, invTransformation);
+		for(int i = 0; i < 4;i++){
+			for(int j = 0; j < 4;j++)
+				std::cout << id [i][j] << " ";
+			std::cout << std::endl;
+		}
+		int ii = 0;
+		//std::cin >> ii; 
 	}
 
     void Instance::rotate(const Vector& axis, float angle)
@@ -123,7 +145,8 @@ namespace rt{
 		rotation_matrix[1][2] = axis_.y*axis_.z*(1-cos(angle)) - axis_.x*sin(angle);
 		rotation_matrix[2][2] = cos(angle) + axis_.z*axis_.z*(1-cos(angle));
 
-		transformation = product(transformation,rotation_matrix);
+		transformation = product(rotation_matrix, transformation);
+		invTransformation = transformation.invert();
 	}
 
     void Instance::scale(float scale)
@@ -134,7 +157,8 @@ namespace rt{
 		scale_matrix[1][1] = scale;
 		scale_matrix[2][2] = scale;
 
-		transformation = product(transformation,scale_matrix);
+		transformation = product(scale_matrix, transformation);
+		invTransformation = transformation.invert();
 	}
 
     void Instance::scale(const Vector& scale)
@@ -144,7 +168,8 @@ namespace rt{
 		scale_matrix[0][0] = scale.x;
 		scale_matrix[1][1] = scale.y;
 		scale_matrix[2][2] = scale.z;
-		transformation = product(transformation,scale_matrix);
+		transformation = product(scale_matrix, transformation);
+		invTransformation = transformation.invert();
 	}
 
 }
