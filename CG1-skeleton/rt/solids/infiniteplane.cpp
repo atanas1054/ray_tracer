@@ -42,7 +42,7 @@ namespace rt
 		Vector vec(normal.z,normal.z,-normal.x-normal.y);
 
 		//infinite bbox
-		return BBox(Point(vec.x,vec.y,vec.z)*(-FLT_MAX),Point(vec.x,vec.y,vec.z)*(FLT_MAX));
+		return BBox(Point(vec.x,vec.y,vec.z)*(FLT_MIN),Point(vec.x,vec.y,vec.z)*(FLT_MAX));
 	}
 
 	Point InfinitePlane::getCenter() const 

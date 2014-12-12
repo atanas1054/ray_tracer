@@ -62,7 +62,7 @@ namespace rt {
 					2 * (i + 0.5) / img.width() - 1,
 					2 * (j + 0.5) / img.height() - 1
 				);
-				if(i == 269 && j == 361){
+				if(i == 259 && j == 290){
 					i = i;
 				}
 				img(i, j) = (*(Renderer::integrator)).getRadiance(ray);

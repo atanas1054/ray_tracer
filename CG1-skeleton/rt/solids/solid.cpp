@@ -6,9 +6,9 @@ namespace rt
 {
 	Solid::Solid(CoordMapper* texMapper, Material* material) 
 		: texMapper(texMapper), material(material) {
-			if(texMapper == nullptr)
+			if(Solid::texMapper == nullptr)
 			{
-				texMapper = new WorldMapper();
+				Solid::texMapper = new WorldMapper();
 			}
 	}
 }

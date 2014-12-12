@@ -1,12 +1,15 @@
-﻿Build started 12/12/2014 10:43:23.
+﻿Build started 12/12/2014 21:18:42.
      1>Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main\a_instancing.cpp
-         a_instancing.cpp
-     1>main\a_instancing.cpp(55): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>main\a_instancing.cpp(114): warning C4305: 'argument' : truncation from 'double' to 'float'
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main\a_csg.cpp
+         a_csg.cpp
+     1>E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\rt/groups/csgsolids/csgsphere.h(17): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
+     1>E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\rt/groups/csgsolids/csgaabox.h(12): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
+     1>main\a_csg.cpp(107): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
+     1>main\a_csg.cpp(109): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
+     1>main\a_csg.cpp(111): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
          Release\float4.obj
@@ -17,6 +20,7 @@
          Release\point.obj
          Release\scalar.obj
          Release\vector.obj
+         Release\a_csg.obj
          Release\a_indexing.obj
          Release\a_instancing.obj
          Release\a_julia.obj
@@ -36,6 +40,9 @@
          Release\tmapper.obj
          Release\world.obj
          Release\bvh.obj
+         Release\csg.obj
+         Release\csgaabox.obj
+         Release\csgsphere.obj
          Release\simplegroup.obj
          Release\casting.obj
          Release\castingdist.obj
@@ -86,4 +93,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.03
+Time Elapsed 00:00:05.08

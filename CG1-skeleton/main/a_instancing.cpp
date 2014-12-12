@@ -11,7 +11,7 @@
 #include <rt/solids/infiniteplane.h>
 #include <rt/solids/quad.h>
 #include <rt/solids/sphere.h>
-
+#include <rt/groups/bvh.h>
 
 using namespace rt;
 
@@ -64,7 +64,8 @@ void a_instancing() {
     addTree(tree, 16, 3.0f, 0.5f, 5.0f, 2.0f, 8, 8);
     tree->rebuildIndex();
 
-    SimpleGroup* scene = new SimpleGroup();
+    //BVH* scene = new BVH();
+	SimpleGroup* scene = new SimpleGroup();
 
     Instance* normal = new Instance(tree);
     scene->add(normal);

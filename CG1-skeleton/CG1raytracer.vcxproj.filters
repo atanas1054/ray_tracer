@@ -40,6 +40,9 @@
     <Filter Include="rt\primmod">
       <UniqueIdentifier>{815bd2f1-e002-4de9-b385-5a20d0cc9a9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="rt\groups\csgsolids">
+      <UniqueIdentifier>{a6e9b7b1-f423-41dc-b831-d3cac4c193fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\macros.h">
@@ -228,6 +231,15 @@
     <ClInclude Include="rt\primmod\instance.h">
       <Filter>rt\primmod</Filter>
     </ClInclude>
+    <ClInclude Include="rt\groups\csg.h">
+      <Filter>rt\groups</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\groups\csgsolids\csgsphere.h">
+      <Filter>rt\groups\csgsolids</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\groups\csgsolids\csgaabox.h">
+      <Filter>rt\groups\csgsolids</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -412,6 +424,18 @@
     </ClCompile>
     <ClCompile Include="rt\primmod\instance.cpp">
       <Filter>rt\primmod</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\groups\csg.cpp">
+      <Filter>rt\groups</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\groups\csgsolids\csgsphere.cpp">
+      <Filter>rt\groups\csgsolids</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\groups\csgsolids\csgaabox.cpp">
+      <Filter>rt\groups\csgsolids</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_csg.cpp">
+      <Filter>main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
