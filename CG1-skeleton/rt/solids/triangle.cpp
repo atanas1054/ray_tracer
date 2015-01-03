@@ -1,5 +1,6 @@
 #include <rt/solids/triangle.h>
 #include <core/point.h>
+#include <core/random.h>
 
 namespace rt 
 {
@@ -46,7 +47,13 @@ namespace rt
 		return Intersection::failure();
 	}
 	Point Triangle::sample() const {
-		return Point();
+		Vector b = Vector(random(), random(), random());
+		b = b / (b.x + b.y + b.z);
+		return Point(
+			v1.x * b.x + v2.x * b.y + v3.x * b.z,
+			v1.y * b.x + v2.y * b.y + v3.y * b.z,
+			v1.z * b.x + v2.z * b.y + v3.z * b.z
+		);
 	}
 
 	float Triangle::getArea() const {

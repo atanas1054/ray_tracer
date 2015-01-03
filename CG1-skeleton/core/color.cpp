@@ -4,13 +4,10 @@
 namespace rt {
 
 RGBColor RGBColor::operator+(const RGBColor& c) const {
-	float tempR = r + c.r;
-	float tempG = g + c.g;
-	float tempB = b + c.b;
 	return RGBColor(
-		tempR > 1 ? 1 : tempR,
-		tempG > 1 ? 1 : tempG,
-		tempB > 1 ? 1 : tempB
+		r + c.r,
+		g + c.g,
+		b + c.b
 	);
 }
 RGBColor RGBColor::operator-(const RGBColor& c) const {
@@ -42,40 +39,24 @@ RGBColor RGBColor::clamp() const {
 }
 
 RGBColor operator*(float scalar, const RGBColor& b) {
-	float tempR = scalar * b.r;
-	float tempG = scalar * b.g;
-	float tempB = scalar * b.b;
 	return RGBColor(
-		tempR,
-		tempG,
-		tempB
-		//tempR > 1 ? 1 : tempR,
-		//tempG > 1 ? 1 : tempG,
-		//tempB > 1 ? 1 : tempB
+		scalar * b.r,
+		scalar * b.g,
+		scalar * b.b
 	);
 }
 RGBColor operator*(const RGBColor& a, float scalar) {
-	float tempR = scalar * a.r;
-	float tempG = scalar * a.g;
-	float tempB = scalar * a.b;
 	return RGBColor(
-		tempR,
-		tempG,
-		tempB
-		/*tempR > 1 ? 1 : tempR,
-		tempG > 1 ? 1 : tempG,
-		tempB > 1 ? 1 : tempB*/
+		scalar * a.r,
+		scalar * a.g,
+		scalar * a.b
 	);
 }
 RGBColor operator/(const RGBColor& a, float scalar) {
-	float tempR = a.r / scalar;
-	float tempG = a.g / scalar;
-	float tempB = a.b / scalar;
 	return RGBColor(
-		tempR,tempG,tempB
-		/*tempR > 1 ? 1 : tempR,
-		tempG > 1 ? 1 : tempG,
-		tempB > 1 ? 1 : tempB*/
+		a.r / scalar,
+		a.g / scalar,
+		a.b / scalar
 	);
 }
 

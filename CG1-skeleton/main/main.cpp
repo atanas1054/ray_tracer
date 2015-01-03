@@ -9,6 +9,7 @@ void a_mappers();
 void a_textures();
 void a_instancing();
 void a_csg();
+void a_distributed();
 
 int main(int argc, char* argv[])
 {
@@ -20,7 +21,8 @@ int main(int argc, char* argv[])
 	//a_mappers();
 	//a_textures();
 	//a_materials();
-	a_instancing();
-	a_csg();
+	//a_instancing();
+	//a_csg();
+	a_distributed();
     return 0;
 }

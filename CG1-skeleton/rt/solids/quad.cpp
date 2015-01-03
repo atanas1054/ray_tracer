@@ -1,4 +1,5 @@
 #include <rt/solids/quad.h>
+#include <core/random.h>
 
 namespace rt 
 {
@@ -36,7 +37,9 @@ namespace rt
 		return Intersection::failure();
 	}
 	Point Quad::sample() const
-	{ return Point(); }
+	{
+		return v1 + random() * span1 + random() * span2;
+	}
     float Quad::getArea() const 
 	{
 		return cross(span1, span2).length() * 2;

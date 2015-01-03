@@ -240,6 +240,21 @@
     <ClInclude Include="rt\groups\csgsolids\csgaabox.h">
       <Filter>rt\groups\csgsolids</Filter>
     </ClInclude>
+    <ClInclude Include="rt\materials\fuzzymirror.h">
+      <Filter>rt\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\materials\glass.h">
+      <Filter>rt\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\lights\arealight.h">
+      <Filter>rt\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\cameras\dofperspective.h">
+      <Filter>rt\cameras</Filter>
+    </ClInclude>
+    <ClInclude Include="core\random.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -436,6 +451,24 @@
     </ClCompile>
     <ClCompile Include="main\a_csg.cpp">
       <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_distributed.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="core\random.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\cameras\dofperspective.cpp">
+      <Filter>rt\cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\lights\arealight.cpp">
+      <Filter>rt\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\materials\glass.cpp">
+      <Filter>rt\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\materials\fuzzymirror.cpp">
+      <Filter>rt\materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

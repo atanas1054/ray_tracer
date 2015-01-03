@@ -16,6 +16,7 @@ class Renderer {
 	Integrator* integrator;
 
 public:
+	uint samples;
     Renderer(Camera* cam, Integrator* integrator);
     void setSamples(uint samples);
     void render(Image& img);
