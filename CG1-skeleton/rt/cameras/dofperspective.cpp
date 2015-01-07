@@ -1,23 +1,15 @@
 #include <rt/cameras/dofperspective.h>
 #include <rt/ray.h>
+#include <core/random.h>
 
 namespace rt 
 {
-	DOFPerspectiveCamera::DOFPerspectiveCamera(
-        const Point& center,
-        const Vector& forward,
-        const Vector& up,
-        float verticalOpeningAngle,
-        float horizonalOpeningAngle,
-        float focalDistance,
-        float apertureRadius
-		):
-			center(center), forward(forward), up(up), vAngle(verticalOpeningAngle),
-			hAngle(horizonalOpeningAngle), focal(focalDistance), radius(apertureRadius)
-	{ }
-
     Ray DOFPerspectiveCamera::getPrimaryRay(float x, float y) const
-	{
-		return Ray();
+	{	
+		Vector d = forward + x * spanHor + y * spanVer;
+		Ray focalRay(eyes,d.normalize());
+		Point focalPoint = focalRay.getPoint(focal);
+		Point newOrigin = eyes + random()*radius*spanHor/spanHor.length() + random()*radius*spanVer/spanVer.length();
+		return Ray(newOrigin,(focalPoint-newOrigin).normalize());
 	}
 }
