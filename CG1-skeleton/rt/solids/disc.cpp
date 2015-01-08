@@ -13,9 +13,9 @@ namespace rt
 	{
 		float temp = dot(ray.d , normal);
 		float distance = dot((origin - ray.o), normal) / temp;
-		if(distance > 0){
+		if(distance > epsilon){
 			Point p = ray.getPoint(distance);
-			if((p - origin).length() < radius && distance < previousBestDistance){
+			if((p - origin).length() < radius && distance + epsilon < previousBestDistance){
 				float dir = dot(ray.o - origin, normal);
 				if(dir < 0) {
 					return Intersection(distance, ray, this, -normal, p);

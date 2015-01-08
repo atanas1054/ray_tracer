@@ -64,9 +64,9 @@ namespace rt {
 			//#pragma omp parallel for private(ray) schedule (dynamic,1)
 			for(int i = 0; i < img.width();i++){
 				for(int j = 0; j < img.height();j++){
-					if(i == 284 && j == 129){
-						i = i;
-					}
+					//if(i == 284 && j == 129){
+						//i = i;
+					//}
 					//c = Vector(2 * (i + 0.5) / img.width() - 1, 2 * (j + 0.5) / img.height() - 1, 0);
 					pixel = RGBColor::rep(0);
 					for(int k = 0; k < samples; k++) {

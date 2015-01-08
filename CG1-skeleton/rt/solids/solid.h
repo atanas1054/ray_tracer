@@ -2,6 +2,7 @@
 #define CG1RAYTRACER_SOLIDS_SOLID_HEADER
 
 #include <rt/primitive.h>
+#include <rt/coordmappers/worldmapper.h>
 
 namespace rt {
 
@@ -24,6 +25,5 @@ public:
 
 }
 
-#include <rt/coordmappers/world.h>
 
 #endif

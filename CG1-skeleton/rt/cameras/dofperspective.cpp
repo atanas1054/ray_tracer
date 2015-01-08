@@ -9,7 +9,7 @@ namespace rt
 		Vector d = forward + x * spanHor + y * spanVer;
 		Ray focalRay(eyes,d.normalize());
 		Point focalPoint = focalRay.getPoint(focal);
-		Point newOrigin = eyes + random()*radius*spanHor/spanHor.length() + random()*radius*spanVer/spanVer.length();
+		Point newOrigin = eyes + (random() - 0.5)*radius*spanHor/spanHor.length() + (random() - 0.5)*radius*spanVer/spanVer.length();
 		return Ray(newOrigin,(focalPoint-newOrigin).normalize());
 	}
 }

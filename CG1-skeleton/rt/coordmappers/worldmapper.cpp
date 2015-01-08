@@ -1,4 +1,4 @@
-#include <rt/coordmappers/world.h>
+#include <rt/coordmappers/worldmapper.h>
 #include <core/float4.h>
 #include <core/point.h>
 

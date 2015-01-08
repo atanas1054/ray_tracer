@@ -17,7 +17,7 @@ namespace rt{
 		float rs = (eta2kappa2 - eta2cosIP + cosIPsqr) / (eta2kappa2 + eta2cosIP + cosIPsqr); 
 		float fr = (rp + rs) / 2;
 		Vector Ri = ((2 * dot(normal, inDir) * normal) - (inDir)).normalize();
-		if((outDir - Ri).length() < 0.000001)
+		if((outDir - Ri).length() < epsilon)
 			return RGBColor::rep(fr);
 		else 
 			return RGBColor::rep(0);

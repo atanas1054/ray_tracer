@@ -50,10 +50,10 @@ namespace rt
 			Point hitPoint = ray.getPoint(d1);
 			Vector normal = (hitPoint - center).normalize();
 			Point local = Point(hitPoint.x - center.x, hitPoint.y - center.y, hitPoint.z - center.z);
-			if( d1 > 0 && d1 < d2 && d1 < previousBestDistance){
+			if( d1 > epsilon && d1 < d2 && d1 + epsilon < previousBestDistance){
 				return Intersection(d1, ray, this, normal, local);
 			}
-			if(d2 > 0 && d2 < previousBestDistance){
+			if(d2 > epsilon && d2 + epsilon < previousBestDistance){
 				hitPoint = ray.getPoint(d2);
 				normal = (hitPoint - center).normalize();
 				local = Point(hitPoint.x - center.x, hitPoint.y - center.y, hitPoint.z - center.z);

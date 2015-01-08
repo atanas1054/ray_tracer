@@ -17,7 +17,7 @@ namespace rt
 	RGBColor AreaLight::getIntensity(const LightHit& irr) const
 	{
 		//currently set to dummy values
-		RGBColor c = solid->material->getEmission(Point::rep(0), Vector::rep(0), Vector::rep(0)) / (irr.distance * irr.distance);
+		RGBColor c = solid->material->getEmission(Point::rep(0), Vector::rep(0), Vector::rep(0)) / (irr.distance * irr.distance) * solid->getArea();
 		return c;
 	}
 }

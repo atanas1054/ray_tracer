@@ -35,7 +35,7 @@ namespace rt
 		fmin = fx < fy ? fx : fy;
 		fmin = fmin < fz ? fmin : fz;
 		//
-		if(nmax < fmin && nmax < previousBestDistance) {
+		if(nmax < fmin && nmax + epsilon < previousBestDistance && nmax > epsilon) {
 			Point p = ray.getPoint(nmax);
 			Vector normal;
 			if(sidenmax == sidex)

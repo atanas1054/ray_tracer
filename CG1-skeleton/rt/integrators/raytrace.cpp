@@ -16,7 +16,7 @@ namespace rt{
 			RGBColor color = intersect.solid->material->getEmission(
 				intersect.solid->texMapper->getCoords(intersect),
 				intersect.normal(), -ray.d);
-			Point p = ray.getPoint(intersect.distance-0.00001);
+			Point p = ray.getPoint(intersect.distance);
 			
 			for(int i = 0; i < world->light.size();i++)
 			{

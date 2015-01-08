@@ -25,7 +25,7 @@ namespace rt
 			Vector normal = cross(span1, span2).normalize();
 			float temp = dot(ray.d , normal);
 			float distance = dot((v1 - ray.o), normal) / temp;
-			if(distance > 0 && distance < previousBestDistance){
+			if(distance > epsilon && distance + epsilon < previousBestDistance){
 				float dir = dot(ray.o - v1, normal);
 				if(dir < 0) {
 					return Intersection(distance, ray, this, -normal, ray.getPoint(distance));
@@ -42,7 +42,7 @@ namespace rt
 	}
     float Quad::getArea() const 
 	{
-		return cross(span1, span2).length() * 2;
+		return cross(span1, span2).length();
 	}
 
 	BBox Quad::getBounds() const

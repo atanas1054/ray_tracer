@@ -34,7 +34,7 @@ namespace rt
 			float distance = (p - ray.o).length();
 
 			if(dot(ray.d, p - ray.o) > 0) {
-				if(distance > 0 && distance < previousBestDistance){
+				if(distance > epsilon && distance + epsilon < previousBestDistance){
 					Vector normal = cross(v2 - v1, v3 - v1).normalize();
 					if(dot(ray.o - v1, normal) < 0){
 						return Intersection(distance, ray, this, -normal, Point(x, y, z));
@@ -57,7 +57,7 @@ namespace rt
 	}
 
 	float Triangle::getArea() const {
-		return cross(v1 - v3, v1 - v2).length();
+		return cross(v1 - v3, v1 - v2).length() / 2;
 	}
 
 	BBox Triangle::getBounds() const

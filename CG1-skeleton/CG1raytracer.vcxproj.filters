@@ -204,9 +204,6 @@
     <ClInclude Include="rt\coordmappers\tmapper.h">
       <Filter>rt\coordmappers</Filter>
     </ClInclude>
-    <ClInclude Include="rt\coordmappers\world.h">
-      <Filter>rt\coordmappers</Filter>
-    </ClInclude>
     <ClInclude Include="rt\textures\checkerboard.h">
       <Filter>rt\textures</Filter>
     </ClInclude>
@@ -254,6 +251,9 @@
     </ClInclude>
     <ClInclude Include="core\random.h">
       <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\coordmappers\worldmapper.h">
+      <Filter>rt\coordmappers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -428,9 +428,6 @@
     <ClCompile Include="rt\textures\checkerboard.cpp">
       <Filter>rt\textures</Filter>
     </ClCompile>
-    <ClCompile Include="rt\coordmappers\world.cpp">
-      <Filter>rt\coordmappers</Filter>
-    </ClCompile>
     <ClCompile Include="core\matrix.cpp">
       <Filter>core</Filter>
     </ClCompile>
@@ -469,6 +466,9 @@
     </ClCompile>
     <ClCompile Include="rt\materials\fuzzymirror.cpp">
       <Filter>rt\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\coordmappers\worldmapper.cpp">
+      <Filter>rt\coordmappers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

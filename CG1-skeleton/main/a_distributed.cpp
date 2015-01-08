@@ -68,15 +68,15 @@ void a9renderCornellbox(float scale, const char* filename, Camera* cam, Material
     makeBox(scene, Point(265.f, 000.1f, 296.f)*scale, Vector(158.f, 000.f, -049.f)*scale, Vector(049.f, 000.f, 160.f)*scale, Vector(000.f, 330.f, 000.f)*scale, nullptr, grey);
 
     //Lights
-    //ConstantTexture* lightsrctex = new ConstantTexture(RGBColor::rep(25.0f));
+    ConstantTexture* lightsrctex = new ConstantTexture(RGBColor::rep(25.0f));
 	//getting close result when intensity = 0.4
-	ConstantTexture* lightsrctex = new ConstantTexture(RGBColor::rep(0.4f));
+	//ConstantTexture* lightsrctex = new ConstantTexture(RGBColor::rep(0.4f));
     Material* lightsource = new LambertianMaterial(lightsrctex, blacktex);
 
     Quad* light = new Quad(Point(213*scale,549.99f*scale,227*scale), Vector(130*scale,0,0), Vector(0,0,105*scale), nullptr, lightsource);
     AreaLight als(light);
     world.light.push_back(&als);
-    //scene->add(light);
+    scene->add(light);
 
     //point light
     world.light.push_back(new PointLight(Point(490*scale,159.99f*scale,279.5f*scale),RGBColor(40000.0f*scale*scale,0,0)));
@@ -105,8 +105,8 @@ void a_distributed() {
     Material* sphereMaterial1 = floorMaterial1;
     Material* sphereMaterial2 = new GlassMaterial(2.0f);
 
-    a9renderCornellbox(0.001f, "a9-1.png", cam, sphereMaterial1, floorMaterial1, 30);
-    //a9renderCornellbox(0.001f, "a9-2.png", cam, sphereMaterial2, floorMaterial2, 30);
+    //a9renderCornellbox(0.001f, "a9-1.png", cam, sphereMaterial1, floorMaterial1, 30);
+    a9renderCornellbox(0.001f, "a9-2.png", cam, sphereMaterial2, floorMaterial2, 30);
     //a9renderCornellbox(0.001f, "a9-3.png", dofcam, sphereMaterial2, floorMaterial2, 30);
     //a9renderCornellbox(0.001f, "a9-4.png", dofcam, sphereMaterial2, floorMaterial2, 1000);
 }
