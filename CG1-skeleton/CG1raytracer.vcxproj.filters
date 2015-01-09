@@ -255,6 +255,9 @@
     <ClInclude Include="rt\coordmappers\world.h">
       <Filter>rt\coordmappers</Filter>
     </ClInclude>
+    <ClInclude Include="rt\groups\MotionBlur.h">
+      <Filter>rt\groups</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -469,6 +472,12 @@
     </ClCompile>
     <ClCompile Include="rt\coordmappers\world.cpp">
       <Filter>rt\coordmappers</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\groups\MotionBlur.cpp">
+      <Filter>rt\groups</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_motionBlur.cpp">
+      <Filter>main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

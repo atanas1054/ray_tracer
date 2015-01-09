@@ -146,4 +146,10 @@ namespace rt{
 		invTransformation = transformation.invert();
 	}
 
+	void Instance::applyTransform(Matrix& transformation_)
+	{
+		transformation = product(transformation,transformation_);
+		invTransformation = transformation.invert();
+	}
+
 }

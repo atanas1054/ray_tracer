@@ -107,6 +107,7 @@
     <ClInclude Include="rt\groups\csgsolids\csgsphere.h" />
     <ClInclude Include="rt\groups\group.h" />
     <ClInclude Include="rt\groups\kdtree.h" />
+    <ClInclude Include="rt\groups\MotionBlur.h" />
     <ClInclude Include="rt\groups\simplegroup.h" />
     <ClInclude Include="rt\integrators\casting.h" />
     <ClInclude Include="rt\integrators\castingdist.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="main\a_lighting.cpp" />
     <ClCompile Include="main\a_mappers.cpp" />
     <ClCompile Include="main\a_materials.cpp" />
+    <ClCompile Include="main\a_motionBlur.cpp" />
     <ClCompile Include="main\a_solids.cpp" />
     <ClCompile Include="main\a_textures.cpp" />
     <ClCompile Include="main\main.cpp" />
@@ -184,6 +186,7 @@
     <ClCompile Include="rt\groups\csg.cpp" />
     <ClCompile Include="rt\groups\csgsolids\csgaabox.cpp" />
     <ClCompile Include="rt\groups\csgsolids\csgsphere.cpp" />
+    <ClCompile Include="rt\groups\MotionBlur.cpp" />
     <ClCompile Include="rt\groups\simplegroup.cpp" />
     <ClCompile Include="rt\integrators\casting.cpp" />
     <ClCompile Include="rt\integrators\castingdist.cpp" />
