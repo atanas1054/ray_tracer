@@ -252,7 +252,7 @@
     <ClInclude Include="core\random.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="rt\coordmappers\worldmapper.h">
+    <ClInclude Include="rt\coordmappers\world.h">
       <Filter>rt\coordmappers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -467,7 +467,7 @@
     <ClCompile Include="rt\materials\fuzzymirror.cpp">
       <Filter>rt\materials</Filter>
     </ClCompile>
-    <ClCompile Include="rt\coordmappers\worldmapper.cpp">
+    <ClCompile Include="rt\coordmappers\world.cpp">
       <Filter>rt\coordmappers</Filter>
     </ClCompile>
   </ItemGroup>

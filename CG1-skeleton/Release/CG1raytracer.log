@@ -1,75 +1,10 @@
-﻿Build started 1/8/2015 21:07:56.
+﻿Build started 1/9/2015 13:14:03.
      1>Project "E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Release\CG1raytracer.unsuccessfulbuild".
+         Creating "Release\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main\a_csg.cpp main\a_distributed.cpp main\a_indexing.cpp main\a_instancing.cpp main\a_mappers.cpp main\a_materials.cpp main\a_solids.cpp main\a_textures.cpp rt\coordmappers\cylindrical.cpp rt\groups\csg.cpp rt\groups\csgsolids\csgaabox.cpp rt\groups\csgsolids\csgsphere.cpp rt\integrators\raytrace.cpp rt\integrators\recraytrace.cpp rt\intersection.cpp rt\lights\arealight.cpp rt\loaders\obj.cpp rt\solids\aabox.cpp rt\solids\disc.cpp rt\solids\infiniteplane.cpp rt\solids\quad.cpp rt\solids\solid.cpp rt\solids\sphere.cpp rt\solids\triangle.cpp
-         a_csg.cpp
-     1>E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\rt/groups/csgsolids/csgsphere.h(17): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\rt/groups/csgsolids/csgaabox.h(12): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>main\a_csg.cpp(107): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>main\a_csg.cpp(109): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>main\a_csg.cpp(111): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-         a_distributed.cpp
-         a_indexing.cpp
-         a_instancing.cpp
-     1>main\a_instancing.cpp(55): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>main\a_instancing.cpp(115): warning C4305: 'argument' : truncation from 'double' to 'float'
-         a_mappers.cpp
-         a_materials.cpp
-     1>main\a_materials.cpp(85): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>main\a_materials.cpp(85): warning C4305: 'argument' : truncation from 'double' to 'float'
-         a_solids.cpp
-         a_textures.cpp
-         cylindrical.cpp
-         csg.cpp
-     1>rt\groups\csg.cpp(27): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(30): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(44): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>rt\groups\csg.cpp(45): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(58): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(58): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(108): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>rt\groups\csg.cpp(110): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(124): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(124): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(159): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(168): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(203): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\groups\csg.cpp(210): warning C4018: '<' : signed/unsigned mismatch
-         csgaabox.cpp
-     1>E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\rt/groups/csgsolids/csgaabox.h(12): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>rt\groups\csgsolids\csgaabox.cpp(7): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>rt\groups\csgsolids\csgaabox.cpp(132): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>rt\groups\csgsolids\csgaabox.cpp(133): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>rt\groups\csgsolids\csgaabox.cpp(134): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>rt\groups\csgsolids\csgaabox.cpp(135): warning C4244: 'return' : conversion from 'int' to 'float', possible loss of data
-         csgsphere.cpp
-     1>E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\rt/groups/csgsolids/CSGSphere.h(17): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-     1>rt\groups\csgsolids\csgsphere.cpp(6): warning C4482: nonstandard extension used: enum 'rt::CSG::CombineType' used in qualified name
-         raytrace.cpp
-     1>rt\integrators\raytrace.cpp(21): warning C4018: '<' : signed/unsigned mismatch
-         recraytrace.cpp
-     1>rt\integrators\recraytrace.cpp(29): warning C4482: nonstandard extension used: enum 'rt::Material::Sampling' used in qualified name
-     1>rt\integrators\recraytrace.cpp(31): warning C4018: '<' : signed/unsigned mismatch
-     1>rt\integrators\recraytrace.cpp(52): warning C4482: nonstandard extension used: enum 'rt::Material::Sampling' used in qualified name
-     1>rt\integrators\recraytrace.cpp(58): warning C4482: nonstandard extension used: enum 'rt::Material::Sampling' used in qualified name
-     1>rt\integrators\recraytrace.cpp(60): warning C4018: '<' : signed/unsigned mismatch
-         intersection.cpp
-         arealight.cpp
-         obj.cpp
-         aabox.cpp
-     1>rt\solids\aabox.cpp(67): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>rt\solids\aabox.cpp(68): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>rt\solids\aabox.cpp(69): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>rt\solids\aabox.cpp(70): warning C4244: 'return' : conversion from 'int' to 'float', possible loss of data
-         disc.cpp
-         infiniteplane.cpp
-         Compiling...
-         quad.cpp
-         solid.cpp
-         sphere.cpp
-         triangle.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt rt\materials\glass.cpp
+         glass.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
          Release\float4.obj
@@ -101,7 +36,7 @@
          Release\plane.obj
          Release\spherical.obj
          Release\tmapper.obj
-         Release\worldmapper.obj
+         Release\world.obj
          Release\bvh.obj
          Release\csg.obj
          Release\csgaabox.obj
@@ -142,11 +77,13 @@
          Release\imagetex.obj
          Release\perlin.obj
          Release\world.obj
+     1>Release\world.obj : warning LNK4042: object specified more than once; extras ignored
          Generating code
      1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\core\float4.cpp(43): warning C4715: 'rt::Float4::operator[]' : not all control paths return a value
      1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\core\matrix.cpp(102): warning C4715: 'rt::Matrix::operator[]' : not all control paths return a value
      1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\core\matrix.cpp(88): warning C4715: 'rt::Matrix::operator[]' : not all control paths return a value
      1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\textures\imagetex.cpp(166): warning C4715: 'rt::ImageTexture::getColor' : not all control paths return a value
+     1>e:\ws14-15\computer graphics\rt1\cg1-skeleton\rt\materials\glass.cpp(60): warning C4715: 'rt::GlassMaterial::getReflectance' : not all control paths return a value
          Finished generating code
          CG1raytracer.vcxproj -> E:\WS14-15\Computer Graphics\RT1\CG1-skeleton\Release\CG1raytracer.exe
        Manifest:
@@ -158,4 +95,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:13.71
+Time Elapsed 00:00:05.76

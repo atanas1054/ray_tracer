@@ -1,5 +1,5 @@
 #include <rt/solids/solid.h>
-#include <rt/coordmappers/worldmapper.h>
+#include <rt/coordmappers/world.h>
 #include <rt/coordmappers/coordmapper.h>
 
 namespace rt 

@@ -18,6 +18,7 @@
 #include <rt/integrators/casting.h>
 #include <rt/integrators/castingdist.h>
 #include <rt/integrators/recraytrace.h>
+#include <rt/coordmappers/world.h>
 
 using namespace rt;
 /*

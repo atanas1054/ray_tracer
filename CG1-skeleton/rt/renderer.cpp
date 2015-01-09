@@ -77,7 +77,7 @@ namespace rt {
 							2 * (j + random()) / img.height() - 1
 							//c.x, c.y
 						);
-						pixel = pixel + (*(Renderer::integrator)).getRadiance(ray).clamp();
+						pixel = pixel + (*(Renderer::integrator)).getRadiance(ray);
 					}
 					pixel = pixel / samples;
 					img(i, j) = pixel;
