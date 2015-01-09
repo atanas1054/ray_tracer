@@ -20,7 +20,7 @@ public:
     void rotate(const Vector& axis, float angle);
     void scale(float scale);
     void scale(const Vector& scale);
-	void applyTransform(Matrix& transformation_);
+	void applyTransform(const Matrix& transformation_);
 
 	virtual Point getCenter() const;
     virtual BBox getBounds() const;

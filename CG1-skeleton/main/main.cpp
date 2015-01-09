@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 	//a_materials();
 	//a_instancing();
 	//a_csg();
-	//a_distributed();
+	a_distributed();
 	a_motionBlur();
     return 0;
 }

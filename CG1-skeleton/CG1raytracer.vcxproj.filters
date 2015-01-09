@@ -252,11 +252,11 @@
     <ClInclude Include="core\random.h">
       <Filter>core</Filter>
     </ClInclude>
-    <ClInclude Include="rt\coordmappers\world.h">
-      <Filter>rt\coordmappers</Filter>
-    </ClInclude>
     <ClInclude Include="rt\groups\MotionBlur.h">
       <Filter>rt\groups</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\coordmappers\worldmapper.h">
+      <Filter>rt\coordmappers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -470,14 +470,14 @@
     <ClCompile Include="rt\materials\fuzzymirror.cpp">
       <Filter>rt\materials</Filter>
     </ClCompile>
-    <ClCompile Include="rt\coordmappers\world.cpp">
-      <Filter>rt\coordmappers</Filter>
-    </ClCompile>
     <ClCompile Include="rt\groups\MotionBlur.cpp">
       <Filter>rt\groups</Filter>
     </ClCompile>
     <ClCompile Include="main\a_motionBlur.cpp">
       <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\coordmappers\worldmapper.cpp">
+      <Filter>rt\coordmappers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

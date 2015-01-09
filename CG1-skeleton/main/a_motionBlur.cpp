@@ -17,8 +17,8 @@
 #include <rt/materials/mirror.h>
 #include <rt/materials/fuzzymirror.h>
 #include <rt/lights/arealight.h>
-
 #include <rt/lights/pointlight.h>
+#include <rt/solids/aabox.h>
 
 using namespace rt;
 
@@ -57,19 +57,21 @@ void a9renderCornellbox(float scale, const char* filename, Camera* cam, Material
     
 
     scene->add(new Quad(Point(000.f,000.f,000.f)*scale, Vector(550.f,000.f,000.f)*scale, Vector(000.f,000.f,560.f)*scale, nullptr, floorMaterial)); //floor
-    //scene->add(new Quad(Point(550.f,550.f,000.f)*scale, Vector(-550.f,000.f,000.f)*scale, Vector(000.f,000.f,560.f)*scale, nullptr, grey)); //ceiling
-    //scene->add(new Quad(Point(000.f,000.f,560.f)*scale, Vector(550.f,000.f,000.f)*scale, Vector(000.f,550.f,000.f)*scale, nullptr, grey)); //back wall
+    scene->add(new Quad(Point(550.f,550.f,000.f)*scale, Vector(-550.f,000.f,000.f)*scale, Vector(000.f,000.f,560.f)*scale, nullptr, grey)); //ceiling
+    scene->add(new Quad(Point(000.f,000.f,560.f)*scale, Vector(550.f,000.f,000.f)*scale, Vector(000.f,550.f,000.f)*scale, nullptr, grey)); //back wall
     scene->add(new Quad(Point(000.f,000.f,000.f)*scale, Vector(000.f,000.f,560.f)*scale, Vector(000.f,550.f,000.f)*scale, nullptr, rightWallMaterial)); //right wall
-    //scene->add(new Quad(Point(550.f,550.f,000.f)*scale, Vector(000.f,000.f,560.f)*scale, Vector(000.f,-550.f,000.f)*scale, nullptr, leftWallMaterial)); //left wall
+    scene->add(new Quad(Point(550.f,550.f,000.f)*scale, Vector(000.f,000.f,560.f)*scale, Vector(000.f,-550.f,000.f)*scale, nullptr, leftWallMaterial)); //left wall
 
-	MotionBlur* blur = new MotionBlur();
-    blur->add(new Sphere(Point(150.0f, 100.0f, 240.0f)*scale, 99.0f*scale, nullptr, sphereMaterial));
-	blur->translate(Vector(-75.0f, 0.0f, 0.0f)*scale);
-	scene->add(blur);
-    //scene->add(new Sphere(Point(450.0f, 50.0f, 50.0f)*scale, 49.0f*scale, nullptr, yellowmat));
-
-    //tall box
-   // makeBox(scene, Point(265.f, 000.1f, 296.f)*scale, Vector(158.f, 000.f, -049.f)*scale, Vector(049.f, 000.f, 160.f)*scale, Vector(000.f, 330.f, 000.f)*scale, nullptr, grey);
+	MotionBlur* sphere = new MotionBlur();
+    sphere->add(new Sphere(Point(225.0f, 100.0f, 240.0f)*scale, 99.0f*scale, nullptr, sphereMaterial));
+	sphere->translate(Vector(-75.0f, 0.0f, 0.0f)*scale);
+	scene->add(sphere);
+	MotionBlur* box = new MotionBlur();
+    box->add(new AABox(Point(400.0f, 200.0f, 250.0f)*scale, Point(300.0f, 100.0f, 350.0f)*scale, nullptr, yellowmat));
+	box->translate(Vector(400.0f, 200.0f, 250.0f)*scale * -1);
+	box->rotate(Point(400.0f, 200.0f, 250.0f)*scale - Point(300.0f, 100.0f, 350.0f)*scale, - pi / 2);
+	box->translate(Vector(400.0f, 200.0f, 250.0f)*scale);
+    scene->add(box);
 
     //Lights
     ConstantTexture* lightsrctex = new ConstantTexture(RGBColor::rep(25.0f));
@@ -109,8 +111,5 @@ void a_motionBlur() {
     Material* sphereMaterial1 = floorMaterial1;
     Material* sphereMaterial2 = new GlassMaterial(2.0f);
 
-    a9renderCornellbox(0.001f, "a9-6.png", cam, sphereMaterial1, floorMaterial1, 30);
-    //a9renderCornellbox(0.001f, "a9-2.png", cam, sphereMaterial2, floorMaterial2, 30);
-    //a9renderCornellbox(0.001f, "a9-3.png", dofcam, sphereMaterial2, floorMaterial2, 30);
-    //a9renderCornellbox(0.001f, "a9-4.png", dofcam, sphereMaterial2, floorMaterial2, 1000);
+    a9renderCornellbox(0.001f, "a9-5.png", cam, sphereMaterial1, floorMaterial1, 300);
 }

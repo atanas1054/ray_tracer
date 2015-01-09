@@ -21,13 +21,14 @@ namespace rt {
 	}
     Intersection MotionBlur::intersect(const Ray& ray, float previousBestDistance) const
 	{
-		Instance* normal = new Instance(prim);
+		Instance normal = Instance(prim);
 		float rand = random();
-		//rand = std::sqrt(rand);
+		//non uniform distribution
+		rand = std::sqrt(rand);
 		Matrix transformed_matrix = lerp(Matrix::identity(),transformation,rand);
-		normal->applyTransform(transformed_matrix);
+		normal.applyTransform(transformed_matrix);
 
-		return normal->intersect(ray,previousBestDistance);
+		return normal.intersect(ray,previousBestDistance);
 	}
     void MotionBlur::rebuildIndex()
 	{
