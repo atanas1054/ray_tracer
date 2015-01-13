@@ -30,7 +30,7 @@ namespace rt
 			float z = t12 / sum;
 			
 			Point p = x * v1 + (y * v2 - Point(0,0,0)) + (z * v3 - Point(0,0,0));
-
+			
 			float distance = (p - ray.o).length();
 
 			if(dot(ray.d, p - ray.o) > 0) {

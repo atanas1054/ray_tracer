@@ -11,6 +11,7 @@ void a_instancing();
 void a_csg();
 void a_distributed();
 void a_motionBlur();
+void a_smooth();
 
 int main(int argc, char* argv[])
 {
@@ -24,7 +25,8 @@ int main(int argc, char* argv[])
 	//a_materials();
 	//a_instancing();
 	//a_csg();
-	a_distributed();
-	a_motionBlur();
+	//a_distributed();
+	//a_motionBlur();
+	a_smooth();
     return 0;
 }

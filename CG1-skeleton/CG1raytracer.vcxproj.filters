@@ -258,6 +258,12 @@
     <ClInclude Include="rt\coordmappers\worldmapper.h">
       <Filter>rt\coordmappers</Filter>
     </ClInclude>
+    <ClInclude Include="rt\solids\striangle.h">
+      <Filter>rt\solids</Filter>
+    </ClInclude>
+    <ClInclude Include="rt\primmod\bmap.h">
+      <Filter>rt\primmod</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main\main.cpp">
@@ -478,6 +484,18 @@
     </ClCompile>
     <ClCompile Include="rt\coordmappers\worldmapper.cpp">
       <Filter>rt\coordmappers</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_bump.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="main\a_smooth.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\primmod\bmap.cpp">
+      <Filter>rt\primmod</Filter>
+    </ClCompile>
+    <ClCompile Include="rt\solids\striangle.cpp">
+      <Filter>rt\solids</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

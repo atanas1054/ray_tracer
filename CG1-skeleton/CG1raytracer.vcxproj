@@ -132,6 +132,7 @@
     <ClInclude Include="rt\materials\mirror.h" />
     <ClInclude Include="rt\materials\phong.h" />
     <ClInclude Include="rt\primitive.h" />
+    <ClInclude Include="rt\primmod\bmap.h" />
     <ClInclude Include="rt\primmod\instance.h" />
     <ClInclude Include="rt\ray.h" />
     <ClInclude Include="rt\renderer.h" />
@@ -141,6 +142,7 @@
     <ClInclude Include="rt\solids\quad.h" />
     <ClInclude Include="rt\solids\solid.h" />
     <ClInclude Include="rt\solids\sphere.h" />
+    <ClInclude Include="rt\solids\striangle.h" />
     <ClInclude Include="rt\solids\triangle.h" />
     <ClInclude Include="rt\textures\checkerboard.h" />
     <ClInclude Include="rt\textures\constant.h" />
@@ -160,6 +162,7 @@
     <ClCompile Include="core\random.cpp" />
     <ClCompile Include="core\scalar.cpp" />
     <ClCompile Include="core\vector.cpp" />
+    <ClCompile Include="main\a_bump.cpp" />
     <ClCompile Include="main\a_csg.cpp" />
     <ClCompile Include="main\a_distributed.cpp" />
     <ClCompile Include="main\a_indexing.cpp" />
@@ -170,6 +173,7 @@
     <ClCompile Include="main\a_mappers.cpp" />
     <ClCompile Include="main\a_materials.cpp" />
     <ClCompile Include="main\a_motionBlur.cpp" />
+    <ClCompile Include="main\a_smooth.cpp" />
     <ClCompile Include="main\a_solids.cpp" />
     <ClCompile Include="main\a_textures.cpp" />
     <ClCompile Include="main\main.cpp" />
@@ -208,6 +212,7 @@
     <ClCompile Include="rt\materials\lambertian.cpp" />
     <ClCompile Include="rt\materials\mirror.cpp" />
     <ClCompile Include="rt\materials\phong.cpp" />
+    <ClCompile Include="rt\primmod\bmap.cpp" />
     <ClCompile Include="rt\primmod\instance.cpp" />
     <ClCompile Include="rt\ray.cpp" />
     <ClCompile Include="rt\renderer.cpp" />
@@ -217,6 +222,7 @@
     <ClCompile Include="rt\solids\quad.cpp" />
     <ClCompile Include="rt\solids\solid.cpp" />
     <ClCompile Include="rt\solids\sphere.cpp" />
+    <ClCompile Include="rt\solids\striangle.cpp" />
     <ClCompile Include="rt\solids\triangle.cpp" />
     <ClCompile Include="rt\textures\checkerboard.cpp" />
     <ClCompile Include="rt\textures\constant.cpp" />
