@@ -12,6 +12,7 @@ void a_csg();
 void a_distributed();
 void a_motionBlur();
 void a_smooth();
+void a_bumpmappers();
 
 int main(int argc, char* argv[])
 {
@@ -27,6 +28,7 @@ int main(int argc, char* argv[])
 	//a_csg();
 	//a_distributed();
 	//a_motionBlur();
-	a_smooth();
+	//a_smooth();
+	a_bumpmappers();
     return 0;
 }

@@ -44,6 +44,7 @@ namespace rt{
 			if(dot(ray.d, p - ray.o) > 0) {
 				if(distance > epsilon && distance + epsilon < previousBestDistance){
 					  //find barrycentric coordinates v,w,u
+						/*
 					  Vector normal_ = cross(v2 - v1, v3 - v1).normalize();
 					  float areaABC = dot( normal_, cross( (v2 - v1), (v3 - v1) )  ) ;
 					  float areaPBC = dot( normal_, cross( (v2 - p), (v3 - p) )  ) ;
@@ -52,9 +53,9 @@ namespace rt{
 					  float v = areaPBC / areaABC ; 
 					  float w = areaPCA / areaABC ;
 					  float u  = 1.0f - v - w ; 
-			
+						*/
 					  //find the interpolated normal (using the barrycentric coordinates)
-					 Vector normal = v*n1 + w*n2 + u*n3;
+					 Vector normal = x*n1 + y*n2 + z*n3;
 					if(dot(ray.o - v1, normal) < 0){
 						return Intersection(distance, ray, this, -normal, Point(x, y, z));
 					} else {

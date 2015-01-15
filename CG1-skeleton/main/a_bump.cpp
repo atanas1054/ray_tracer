@@ -102,7 +102,7 @@ void a_bumpmappers() {
     ImageTexture* bumptexsmooth = new ImageTexture("models/stones_bump.png", ImageTexture::REPEAT, ImageTexture::BILINEAR);
     Camera* cam1 = new PerspectiveCamera(Point(0.048f, 0.043f, -0.050f), Vector(-0.3f, -0.3f, 0.7f), Vector(0, 1, 0), 0.686f, 0.686f);
     bump(cam1, bumptex, "bump-1.png");
-    bump(cam1, bumptexsmooth, "bump-2.png");
+    //bump(cam1, bumptexsmooth, "bump-2.png");
     Camera* cam2 = new PerspectiveCamera(Point(0.278f, 0.273f, -0.800f), Vector(0, 0, 1), Vector(0, 1, 0), 0.686f, 0.686f);
     bump(cam2, bumptexsmooth, "bump-3.png");
 

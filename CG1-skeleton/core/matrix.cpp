@@ -219,7 +219,7 @@ namespace rt {
 			result[0][2] = e3.x;
 			result[1][2] = e3.y;
 			result[2][2] = e3.z;
-			return result.invert();
+			return result;
 		}
 
 		Matrix product(const Matrix& a, const Matrix& b)
