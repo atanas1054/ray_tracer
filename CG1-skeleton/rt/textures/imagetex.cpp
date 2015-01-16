@@ -38,8 +38,10 @@ namespace rt{
 			px1 = px1 % (int)image.width();
 			py1 = py1 % (int)image.height();
 		} else {
-			if(px1 == image.width()) px1 = image.width() - 1;
-			if(py1 == image.height()) py1 = image.height() - 1;
+			if(px1 >= image.width()) px1 = image.width() - 1;
+			if(py1 >= image.height()) py1 = image.height() - 1;
+			if(px0 < 0) px0 = 0;
+			if(py0 < 0) py0 = 0;
 		}
 
 		return lerp2d(image(px0, py0), image(px1, py0), image(px0, py1), image(px1, py1), x1 - px0, y1 - py0);
@@ -170,62 +172,6 @@ namespace rt{
 	{
 		if (i==NEAREST)
 		{
-			/*switch(bh)
-			{
-				float x1,y1;
-				int xx, xx1, xx2;
-				case REPEAT:
-					x1 = coord.x;
-					y1 = coord.y;
-					if(coord.x>1)
-						x1 = coord.x - (int)coord.x;
-					if(coord.y>1)
-						y1 = coord.y - (int)coord.y;
-					if(coord.x<0)
-						x1 = coord.x - floor(coord.x);
-					if(coord.y<0)
-						y1 = coord.y - floor(coord.y);
-					x1 = x1*(image.width()-1);
-					y1 = y1*(image.height()-1);
-					xx = floor(x1+0.5);
-					xx2 = xx + 1 > image.width() - 1 ? 0: xx + 1;
-					xx1 = xx - 1 < 0 ? image.width() - 1: xx - 1;
-					return RGBColor(image(xx2,floor(y1+0.5))) - RGBColor(image(xx1,floor(y1+0.5)));
-
-				case MIRROR:
-					x1 = coord.x;
-					y1 = coord.y;
-					if((int)(floor(coord.x))%2==0)
-						x1 = coord.x - floor(coord.x);
-					else
-						x1 = 1 - (coord.x - floor(coord.x));
-
-					if((int)(floor(coord.y))%2==0)
-						y1 = coord.y - floor(coord.y);
-					else
-						y1 = 1 - (coord.y - floor(coord.y));
-					x1 = x1*(image.width()-1);
-					y1 = y1*(image.height()-1);
-					return RGBColor(image(floor(x1+0.5),floor(y1+0.5)));
-					
-
-				case CLAMP:
-					x1 = coord.x;
-					y1 = coord.y;
-					if(coord.x>1)
-						x1 = 1;
-					if(coord.y>1)
-						y1 = 1;
-					if(coord.x<0)
-						x1 = 0;
-					if(coord.y<0)
-						y1 = 0;
-					x1 = x1*(image.width()-1);
-					y1 = y1*(image.height()-1);
-					return RGBColor(image(floor(x1+0.5),floor(y1+0.5)));
-
-			}*/
-			
 			switch(bh)
 			{
 				float x1a, x1b ,y1;
@@ -328,7 +274,6 @@ namespace rt{
 
 					x1_f = floor(x1);
 					x1_c = ceil(x1);
-					//return BilinearInterpolation(x1,y1,image, bh);
 					return BilinearInterpolation(x1_c,y1,image, bh) - BilinearInterpolation(x1_f,y1,image, bh);
 
 					case MIRROR:
@@ -347,8 +292,9 @@ namespace rt{
 					x1 = x1*(image.width()-1);
 					y1 = y1*(image.height()-1);
 
-					//return BilinearInterpolation(x1,y1,image, bh);
-					return RGBColor::rep(0);
+					x1_f = floor(x1);
+					x1_c = ceil(x1);
+					return BilinearInterpolation(x1_c,y1,image, bh) - BilinearInterpolation(x1_f,y1,image, bh);
 
 				case CLAMP:
 					x1 = coord.x;
@@ -364,8 +310,9 @@ namespace rt{
 					x1 = x1*(image.width()-1);
 					y1 = y1*(image.height()-1);
 					
-					//return BilinearInterpolation(x1,y1,image, bh);
-					return RGBColor::rep(0);
+					x1_f = floor(x1);
+					x1_c = ceil(x1);
+					return BilinearInterpolation(x1_c,y1,image, bh) - BilinearInterpolation(x1_f,y1,image, bh);
 			}
 		}
 	}
@@ -460,7 +407,6 @@ namespace rt{
 			{
 				
 				case REPEAT:
-					
 					x1 = coord.x;
 					y1 = coord.y;
 					if(coord.x>1)
@@ -473,14 +419,11 @@ namespace rt{
 						y1 = coord.y - floor(coord.y);
 					x1 = x1*(image.width()-1);
 					y1 = y1*(image.height()-1);
-
-					//return BilinearInterpolation(x1,y1,image, bh);
 					y1_f = floor(y1);
 					y1_c = ceil(y1);
-					//return BilinearInterpolation(x1,y1,image, bh);
 					return BilinearInterpolation(x1,y1_c,image, bh) - BilinearInterpolation(x1,y1_f,image, bh);
 
-					case MIRROR:
+				case MIRROR:
 					x1 = coord.x;
 					y1 = coord.y;
 					if((int)(floor(coord.x))%2==0)
@@ -496,8 +439,9 @@ namespace rt{
 					x1 = x1*(image.width()-1);
 					y1 = y1*(image.height()-1);
 
-					//return BilinearInterpolation(x1,y1,image, bh);
-					return RGBColor::rep(0);
+					y1_f = floor(y1);
+					y1_c = ceil(y1);
+					return BilinearInterpolation(x1,y1_c,image, bh) - BilinearInterpolation(x1,y1_f,image, bh);
 
 				case CLAMP:
 					x1 = coord.x;
@@ -513,8 +457,9 @@ namespace rt{
 					x1 = x1*(image.width()-1);
 					y1 = y1*(image.height()-1);
 					
-					//return BilinearInterpolation(x1,y1,image, bh);
-					return RGBColor::rep(0);
+					y1_f = floor(y1);
+					y1_c = ceil(y1);
+					return BilinearInterpolation(x1,y1_c,image, bh) - BilinearInterpolation(x1,y1_f,image, bh);
 			}
 		}
 	}
