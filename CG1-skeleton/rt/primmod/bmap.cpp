@@ -28,7 +28,6 @@ namespace rt{
 			RGBColor dy = bumpmap->getColorDY(uvw);
 			float dx_ = (dx.r + dx.g + dx.b) / 3;
 			float dy_ = (dy.r + dy.g + dy.b) / 3;
-			Matrix m1 = 
 			Vector ex = Vector(1,0,0);
 			Vector ey = Vector(0,1,0);
 			Vector wx = cross(intsc.normal(), bv2 - bv1).normalize()  * dx_;

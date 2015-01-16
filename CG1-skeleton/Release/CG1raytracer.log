@@ -1,0 +1,106 @@
+﻿Build started 1/16/2015 4:16:23 PM.
+     1>Project "E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\CG1raytracer.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\CG1raytracer.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         e:\VisualStudio2010\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Ot /Oy /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /arch:SSE2 /fp:precise /fp:except- /Zc:wchar_t /Zc:forScope /GR- /openmp /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main\a_indexing.cpp
+         a_indexing.cpp
+       Link:
+         e:\VisualStudio2010\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.exe" /NOLOGO gdiplus.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\CG1raytracer.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.lib" /MACHINE:X86 Release\color.obj
+         Release\float4.obj
+         Release\image.obj
+         Release\interpolate.obj
+         Release\julia.obj
+         Release\matrix.obj
+         Release\point.obj
+         Release\random.obj
+         Release\scalar.obj
+         Release\vector.obj
+         Release\a_bump.obj
+         Release\a_csg.obj
+         Release\a_distributed.obj
+         Release\a_indexing.obj
+         Release\a_instancing.obj
+         Release\a_julia.obj
+         Release\a_cameras.obj
+         Release\a_lighting.obj
+         Release\a_mappers.obj
+         Release\a_materials.obj
+         Release\a_motionBlur.obj
+         Release\a_smooth.obj
+         Release\a_solids.obj
+         Release\a_textures.obj
+         Release\main.obj
+         Release\bbox.obj
+         Release\dofperspective.obj
+         Release\orthographic.obj
+         Release\perspective.obj
+         Release\cylindrical.obj
+         Release\plane.obj
+         Release\spherical.obj
+         Release\tmapper.obj
+         Release\worldmapper.obj
+         Release\bvh.obj
+         Release\csg.obj
+         Release\csgaabox.obj
+         Release\csgsphere.obj
+         Release\MotionBlur.obj
+         Release\simplegroup.obj
+         Release\casting.obj
+         Release\castingdist.obj
+         Release\raytrace.obj
+         Release\recraytrace.obj
+         Release\intersection.obj
+         Release\arealight.obj
+         Release\directional.obj
+         Release\light.obj
+         Release\pointlight.obj
+         Release\projectivelight.obj
+         Release\spotlight.obj
+         Release\obj.obj
+         Release\objmat.obj
+         Release\combine.obj
+         Release\dummy.obj
+         Release\flatmaterial.obj
+         Release\fuzzymirror.obj
+         Release\glass.obj
+         Release\lambertian.obj
+         Release\mirror.obj
+         Release\phong.obj
+         Release\bmap.obj
+         Release\instance.obj
+         Release\ray.obj
+         Release\renderer.obj
+         Release\aabox.obj
+         Release\disc.obj
+         Release\infiniteplane.obj
+         Release\quad.obj
+         Release\solid.obj
+         Release\sphere.obj
+         Release\striangle.obj
+         Release\triangle.obj
+         Release\checkerboard.obj
+         Release\constant.obj
+         Release\imagetex.obj
+         Release\perlin.obj
+         Release\world.obj
+         Generating code
+     1>e:\books\saarlandlectures\computergraphics\git_new\cg1-skeleton\core\float4.cpp(43): warning C4715: 'rt::Float4::operator[]' : not all control paths return a value
+     1>e:\books\saarlandlectures\computergraphics\git_new\cg1-skeleton\rt\textures\imagetex.cpp(459): warning C4715: 'rt::ImageTexture::getColorDY' : not all control paths return a value
+     1>e:\books\saarlandlectures\computergraphics\git_new\cg1-skeleton\rt\textures\imagetex.cpp(313): warning C4715: 'rt::ImageTexture::getColorDX' : not all control paths return a value
+     1>e:\books\saarlandlectures\computergraphics\git_new\cg1-skeleton\core\matrix.cpp(102): warning C4715: 'rt::Matrix::operator[]' : not all control paths return a value
+     1>e:\books\saarlandlectures\computergraphics\git_new\cg1-skeleton\core\matrix.cpp(88): warning C4715: 'rt::Matrix::operator[]' : not all control paths return a value
+     1>e:\books\saarlandlectures\computergraphics\git_new\cg1-skeleton\rt\textures\imagetex.cpp(166): warning C4715: 'rt::ImageTexture::getColor' : not all control paths return a value
+     1>e:\books\saarlandlectures\computergraphics\git_new\cg1-skeleton\rt\materials\glass.cpp(60): warning C4715: 'rt::GlassMaterial::getReflectance' : not all control paths return a value
+         Finished generating code
+         CG1raytracer.vcxproj -> E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\Release\CG1raytracer.exe;#1" /manifest Release\CG1raytracer.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\CG1raytracer.unsuccessfulbuild".
+         Touching "Release\CG1raytracer.lastbuildstate".
+     1>Done Building Project "E:\Books\SaarlandLectures\ComputerGraphics\Git_NEW\CG1-skeleton\CG1raytracer.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.83
