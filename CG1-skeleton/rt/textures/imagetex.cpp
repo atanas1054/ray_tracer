@@ -170,6 +170,62 @@ namespace rt{
 	{
 		if (i==NEAREST)
 		{
+			/*switch(bh)
+			{
+				float x1,y1;
+				int xx, xx1, xx2;
+				case REPEAT:
+					x1 = coord.x;
+					y1 = coord.y;
+					if(coord.x>1)
+						x1 = coord.x - (int)coord.x;
+					if(coord.y>1)
+						y1 = coord.y - (int)coord.y;
+					if(coord.x<0)
+						x1 = coord.x - floor(coord.x);
+					if(coord.y<0)
+						y1 = coord.y - floor(coord.y);
+					x1 = x1*(image.width()-1);
+					y1 = y1*(image.height()-1);
+					xx = floor(x1+0.5);
+					xx2 = xx + 1 > image.width() - 1 ? 0: xx + 1;
+					xx1 = xx - 1 < 0 ? image.width() - 1: xx - 1;
+					return RGBColor(image(xx2,floor(y1+0.5))) - RGBColor(image(xx1,floor(y1+0.5)));
+
+				case MIRROR:
+					x1 = coord.x;
+					y1 = coord.y;
+					if((int)(floor(coord.x))%2==0)
+						x1 = coord.x - floor(coord.x);
+					else
+						x1 = 1 - (coord.x - floor(coord.x));
+
+					if((int)(floor(coord.y))%2==0)
+						y1 = coord.y - floor(coord.y);
+					else
+						y1 = 1 - (coord.y - floor(coord.y));
+					x1 = x1*(image.width()-1);
+					y1 = y1*(image.height()-1);
+					return RGBColor(image(floor(x1+0.5),floor(y1+0.5)));
+					
+
+				case CLAMP:
+					x1 = coord.x;
+					y1 = coord.y;
+					if(coord.x>1)
+						x1 = 1;
+					if(coord.y>1)
+						y1 = 1;
+					if(coord.x<0)
+						x1 = 0;
+					if(coord.y<0)
+						y1 = 0;
+					x1 = x1*(image.width()-1);
+					y1 = y1*(image.height()-1);
+					return RGBColor(image(floor(x1+0.5),floor(y1+0.5)));
+
+			}*/
+			
 			switch(bh)
 			{
 				float x1a, x1b ,y1;

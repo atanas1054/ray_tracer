@@ -104,6 +104,6 @@ void a_bumpmappers() {
     bump(cam1, bumptex, "bump-1.png");
     //bump(cam1, bumptexsmooth, "bump-2.png");
     Camera* cam2 = new PerspectiveCamera(Point(0.278f, 0.273f, -0.800f), Vector(0, 0, 1), Vector(0, 1, 0), 0.686f, 0.686f);
-    bump(cam2, bumptexsmooth, "bump-3.png");
+    bump(cam2, bumptex, "bump-3.png");
 
 }
