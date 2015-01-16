@@ -204,6 +204,7 @@
     <ClCompile Include="rt\lights\projectivelight.cpp" />
     <ClCompile Include="rt\lights\spotlight.cpp" />
     <ClCompile Include="rt\loaders\obj.cpp" />
+    <ClCompile Include="rt\loaders\objmat.cpp" />
     <ClCompile Include="rt\materials\combine.cpp" />
     <ClCompile Include="rt\materials\dummy.cpp" />
     <ClCompile Include="rt\materials\flatmaterial.cpp" />

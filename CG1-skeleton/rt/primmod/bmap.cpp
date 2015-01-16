@@ -78,6 +78,12 @@ namespace rt{
 			RGBColor dy = bumpmap->getColorDY(uvw);
 			float dx_ = (dx.r + dx.g + dx.b) / 3;
 			float dy_ = (dy.r + dy.g + dy.b) / 3;
+      /*
+			Vector ex = Vector(1,0,0);
+			Vector ey = Vector(0,1,0);
+			Vector wx = cross(intsc.normal(), bv2 - bv1).normalize()  * dx_;
+			Vector wy = cross(bv2 - bv1, intsc.normal()).normalize() * dy_;
+      */
 			//std::cout << wx.x << " " << wx.y << " " << wx.z << std::endl;
 			return Intersection(intsc.distance, intsc.ray, intsc.solid, (intsc.normal() + wx * dx_ + wy * dy_ ).normalize(), intsc.local());
 		}

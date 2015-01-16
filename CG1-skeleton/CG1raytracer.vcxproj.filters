@@ -497,5 +497,8 @@
     <ClCompile Include="rt\solids\striangle.cpp">
       <Filter>rt\solids</Filter>
     </ClCompile>
+    <ClCompile Include="rt\loaders\objmat.cpp">
+      <Filter>rt\loaders</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
