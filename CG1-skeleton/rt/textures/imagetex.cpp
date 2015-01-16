@@ -307,7 +307,7 @@ namespace rt{
 		if (i==BILINEAR)
 		{
 			Point q1,q2,q3,q4;
-			float x1,y1,r_,g_,b_;
+			float x1,y1,r_,g_,b_,x1_c,x1_f;
 			switch(bh)
 			{
 				
@@ -326,8 +326,10 @@ namespace rt{
 					x1 = x1*(image.width()-1);
 					y1 = y1*(image.height()-1);
 
+					x1_f = floor(x1);
+					x1_c = ceil(x1);
 					//return BilinearInterpolation(x1,y1,image, bh);
-					return RGBColor::rep(0);
+					return BilinearInterpolation(x1_c,y1,image, bh) - BilinearInterpolation(x1_f,y1,image, bh);
 
 					case MIRROR:
 					x1 = coord.x;
@@ -453,7 +455,7 @@ namespace rt{
 		if (i==BILINEAR)
 		{
 			Point q1,q2,q3,q4;
-			float x1,y1,r_,g_,b_;
+			float x1,y1,r_,g_,b_,y1_f,y1_c;
 			switch(bh)
 			{
 				
@@ -473,7 +475,10 @@ namespace rt{
 					y1 = y1*(image.height()-1);
 
 					//return BilinearInterpolation(x1,y1,image, bh);
-					return RGBColor::rep(0);
+					y1_f = floor(y1);
+					y1_c = ceil(y1);
+					//return BilinearInterpolation(x1,y1,image, bh);
+					return BilinearInterpolation(x1,y1_c,image, bh) - BilinearInterpolation(x1,y1_f,image, bh);
 
 					case MIRROR:
 					x1 = coord.x;

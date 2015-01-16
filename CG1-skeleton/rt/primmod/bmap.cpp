@@ -22,7 +22,7 @@ namespace rt{
 		//Matrix w = Matrix(Float4(base->v1), Float4(base->v2), Float4(base->v3), Float4(0,0,0,0));
 		//BumpMapper::transform = product(w, e.invert());
 
-		/*Vector uv1 = bv2 - bv1;
+		Vector uv1 = bv2 - bv1;
 		Vector uv2 = bv3 - bv1;
 		float det = uv1.x * uv2.y - uv2.x * uv1.y;
 		if(det < epsilon && det > -epsilon){
@@ -37,16 +37,16 @@ namespace rt{
 			);
 			Matrix e = Matrix(
 				Float4(base->v2 - base->v1),
-				Float4(base->v2 - base->v1),
+				Float4(base->v3 - base->v1),
 				Float4::rep(0),
 				Float4::rep(0)
 			);
 			Matrix w = product(m, e) * (1/det);
-			wx = Vector(w[0][0], w[0][1], w[0][2]);
-			wy = Vector(w[1][0], w[1][1], w[1][2]);
-		}*/
+			wx = -Vector(w[0][0], w[0][1], w[0][2]);
+			wy = -Vector(w[1][0], w[1][1], w[1][2]);
+		}
 
-		Vector ab = (base->v2 - base->v1);
+		/*Vector ab = (base->v2 - base->v1);
 		Vector ac = (base->v3 - base->v1);
 
 		Vector a = (bv2 - bv1);
@@ -56,7 +56,7 @@ namespace rt{
 		wx = -(ab * factors.x + ac * factors.y).normalize();
 
 		factors = solve(a, b,Vector(0, 1, 0));
-		wy = -(ab * factors.x + ac * factors.y).normalize();
+		wy = -(ab * factors.x + ac * factors.y).normalize();*/
 	}
 
 	BBox BumpMapper::getBounds() const
@@ -76,8 +76,8 @@ namespace rt{
 			);
 			RGBColor dx = bumpmap->getColorDX(uvw);
 			RGBColor dy = bumpmap->getColorDY(uvw);
-			float dx_ = (dx.r + dx.g + dx.b) / 3;
-			float dy_ = (dy.r + dy.g + dy.b) / 3;
+			float dx_ = (dx.r + dx.g + dx.b)/3;
+			float dy_ = (dy.r + dy.g + dy.b)/3;
       /*
 			Vector ex = Vector(1,0,0);
 			Vector ey = Vector(0,1,0);

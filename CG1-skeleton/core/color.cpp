@@ -14,12 +14,8 @@ RGBColor RGBColor::operator-(const RGBColor& c) const {
 	float tempR = r - c.r;
 	float tempB = b - c.b;
 	float tempG = g - c.g;
-	return RGBColor(
-		tempR < 0 ? 0 : tempR,
-		tempG < 0 ? 0 : tempG,
-		tempB < 0 ? 0 : tempB
-	);
-	//return RGBColor(r - c.r, b - c.b, g - c.g);
+	
+	return RGBColor(r - c.r, b - c.b, g - c.g);
 }
 RGBColor RGBColor::operator*(const RGBColor& c) const {
 	return RGBColor(r * c.r, g * c.g, b * c.b);
