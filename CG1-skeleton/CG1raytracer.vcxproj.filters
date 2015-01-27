@@ -500,5 +500,8 @@
     <ClCompile Include="rt\loaders\objmat.cpp">
       <Filter>rt\loaders</Filter>
     </ClCompile>
+    <ClCompile Include="main\rendering_competition.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

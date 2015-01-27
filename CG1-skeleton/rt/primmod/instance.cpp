@@ -1,5 +1,6 @@
 #include <rt/primmod/instance.h>
 #include <iostream>
+#include <vector>
 
 namespace rt{
 
@@ -16,6 +17,7 @@ namespace rt{
 
 	Point Instance::getCenter() const
 	{
+		
 		BBox transformed_bbox = content_->getBounds();
 		Point min_p = transformed_bbox.min;
 		Point max_p = transformed_bbox.max;
@@ -32,17 +34,43 @@ namespace rt{
 
     BBox  Instance::getBounds() const
 	{
+		Point* vec = new Point[8];
 		BBox transformed_bbox = content_->getBounds();
-		Point min_p = transformed_bbox.min;
-		Point max_p = transformed_bbox.max;
+		Point p1 = transformed_bbox.min;
+		vec[0] = p1;
+		vec[1]= (Point(transformed_bbox.max.x,p1.y,p1.z));
+		vec[2]=(Point(p1.x,p1.y,transformed_bbox.max.z));
+		vec[3]=(Point(p1.x,transformed_bbox.max.y,p1.z));
+		vec[4]=(Point(transformed_bbox.max.x,transformed_bbox.max.y,p1.z));
+		vec[5]=(Point(transformed_bbox.max.x,p1.y,transformed_bbox.max.z));
+		vec[6]=(Point(p1.x,transformed_bbox.max.y,transformed_bbox.max.z));
+		vec[7]=(Point(transformed_bbox.max.x,transformed_bbox.max.y,transformed_bbox.max.z));
 
-		min_p = transformation*min_p;
-		max_p = transformation*max_p;
+		for(int i=0;i<8;i++)
+		{
+			vec[i] = transformation*vec[i];
+		}
 
-		transformed_bbox.min = min_p;
-		transformed_bbox.max = max_p;
+		Point min = vec[0];
+		Point max = vec[0];
+		for(int i=0;i<8;i++)
+		{
+			if(min.x > vec[i].x)
+				min.x = vec[i].x;
+			if(min.y > vec[i].y)
+				min.y= vec[i].y;
+			if(min.z > vec[i].z)
+				min.z = vec[i].z;
+			if(max.x < vec[i].x)
+				max.x = vec[i].x;
+			if(max.y < vec[i].y)
+				max.y= vec[i].y;
+			if(max.z < vec[i].z)
+				max.z = vec[i].z;
 
-		return transformed_bbox;
+		}
+
+		return BBox(min,max);
 	}
 
     Intersection  Instance::intersect(const Ray& ray, float previousBestDistance) const
@@ -69,7 +97,7 @@ namespace rt{
 			Point local = hitPoint - (getCenter() - Point::rep(0)) ;
 			//
 			float distance = (hitPoint - ray.o).length();
-			return Intersection(distance, ray, (Solid*)content_, normal, local);
+			return Intersection(distance, ray, intersect.solid, normal, local);
 		}
 		return Intersection::failure();
 	}

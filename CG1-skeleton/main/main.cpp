@@ -13,6 +13,7 @@ void a_distributed();
 void a_motionBlur();
 void a_smooth();
 void a_bumpmappers();
+void rendering_competition();
 
 int main(int argc, char* argv[])
 {
@@ -29,6 +30,7 @@ int main(int argc, char* argv[])
 	//a_distributed();
 	//a_motionBlur();
 	//a_smooth();
-	a_bumpmappers();
+	//a_bumpmappers();
+	rendering_competition();
     return 0;
 }

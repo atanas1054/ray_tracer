@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
+#include <iostream>
 
 #define AXIS_X 0
 #define AXIS_Y 1
@@ -13,6 +14,7 @@ namespace rt {
 	void BVH::add(Primitive* p)
 	{
 		primitives.push_back(p);
+		
 	}
 
 	void BVH::setMaterial(Material* m)
@@ -39,7 +41,7 @@ namespace rt {
 	Intersection BVH::IntersectNode(const Node& node, const Ray& ray, float bestDist) const
 	{
 		std::pair<float, float> boxIntersect = node.bbox.intersect(ray);
-		if(boxIntersect.first < boxIntersect.second && boxIntersect.first < bestDist && boxIntersect.first > 0)
+		if(boxIntersect.first < boxIntersect.second+epsilon && boxIntersect.first < bestDist)
 		{
 			Intersection nodeInt = Intersection::failure();
 			if(node.objectList.empty())
@@ -65,7 +67,7 @@ namespace rt {
 					itr = (*node.objectList[i]).intersect(ray, bestDist);
 					if(itr && itr.distance < bestDist)
 					{
-						if(!nodeInt || itr.distance < nodeInt.distance)
+						if(!nodeInt || itr.distance < nodeInt.distance+epsilon)
 						nodeInt = itr;
 					}
 				}
@@ -78,7 +80,7 @@ namespace rt {
 	BBox BVH::getBounds() const
 	{
 
-		return BBox::empty();
+		return root->bbox;
 	}
 
 	void BVH::rebuildIndex()
@@ -217,7 +219,7 @@ namespace rt {
 
 	 Point BVH::getCenter() const
 	 {
-		 return Point();
+		 return root->bbox.min+(root->bbox.max-root->bbox.min)/2;
 	 }
 
 	void BVH::BuildBVHwithSAH(Node* &node, std::vector<Primitive*> listOfObjects)
@@ -440,3 +442,4 @@ namespace rt {
 	}
 
 }
+

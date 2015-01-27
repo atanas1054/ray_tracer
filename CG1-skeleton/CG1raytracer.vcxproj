@@ -177,6 +177,7 @@
     <ClCompile Include="main\a_solids.cpp" />
     <ClCompile Include="main\a_textures.cpp" />
     <ClCompile Include="main\main.cpp" />
+    <ClCompile Include="main\rendering_competition.cpp" />
     <ClCompile Include="rt\bbox.cpp" />
     <ClCompile Include="rt\cameras\dofperspective.cpp" />
     <ClCompile Include="rt\cameras\orthographic.cpp" />
