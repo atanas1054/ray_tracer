@@ -19,6 +19,7 @@
 #include <rt/integrators/castingdist.h>
 #include <rt/integrators/recraytrace.h>
 #include <rt/lights/pointlight.h>
+#include <rt/lights/directional.h>
 #include <rt/materials/phong.h>
 #include <rt/materials/lambertian.h>
 #include <rt/materials/mirror.h>
@@ -31,7 +32,7 @@ using namespace rt;
 
 
 void rendering_competition() {
-    Image img(600,400);
+    Image img(800,600);
 	
     BVH* scene = new BVH();
 	BVH* sample = new BVH();
@@ -50,33 +51,33 @@ void rendering_competition() {
 
 	
 	loadOBJ(scene, "models/", "room.obj");
-	loadOBJ(sample, "models/", "chair.obj");
-	loadOBJ(floor, "models/", "floor.obj");
-	loadOBJ(sphere, "models/", "sphere.obj");
-	sphere->setMaterial(new MirrorMaterial(2.485, 3.433));
-	sphere->rebuildIndex();
+	//loadOBJ(sample, "models/", "chair.obj");
+	//loadOBJ(floor, "models/", "floor.obj");
+	//loadOBJ(sphere, "models/", "sphere.obj");
+	//sphere->setMaterial(new MirrorMaterial(2.485, 3.433));
+	//sphere->rebuildIndex();
 
-	floor->rebuildIndex();
-	floor->setMaterial(new MirrorMaterial(2.485, 3.433));
+	//floor->rebuildIndex();
+	//floor->setMaterial(new MirrorMaterial(2.485, 3.433));
 
-	sample->rebuildIndex();
+	//sample->rebuildIndex();
 
-	chair->add(sample);
-	chair->translate(-Vector(-0.53539f,-4.56710f,0.11486f));
-	chair->rotate(Point(-0.53539f,-4.56710f,0.11486f)-Point(0.22227f,-4.56402f,0.11901f),-pi/6);
-	chair->translate(Vector(-0.53539f,-4.56710f,0.11486f));
+	//chair->add(sample);
+	//chair->translate(-Vector(-0.53539f,-4.56710f,0.11486f));
+	//chair->rotate(Point(-0.53539f,-4.56710f,0.11486f)-Point(0.22227f,-4.56402f,0.11901f),-pi/6);
+	//chair->translate(Vector(-0.53539f,-4.56710f,0.11486f));
 
-	Instance* inst1 = new Instance(sample);
-	inst1->translate(-Vector(-0.53539f,-4.56710f,0.11486f));
-	inst1->rotate(Point(-0.53539f,-4.56710f,0.11486f)-Point(0.22227f,-4.56402f,0.11901f),-pi/6);
-	inst1->translate(Vector(-0.53539f,-4.56710f,0.11486f));
+	//Instance* inst1 = new Instance(sample);
+	//inst1->translate(-Vector(-0.53539f,-4.56710f,0.11486f));
+	//inst1->rotate(Point(-0.53539f,-4.56710f,0.11486f)-Point(0.22227f,-4.56402f,0.11901f),-pi/6);
+	//inst1->translate(Vector(-0.53539f,-4.56710f,0.11486f));
 
-	
+	//
 
-	scene->add(sphere);
-	scene->add(floor);
-	scene->add(chair);
-	scene->add(inst1);
+	//scene->add(sphere);
+	//scene->add(floor);
+	//scene->add(chair);
+	//scene->add(inst1);
 	
 
 	clock_t start = clock();
@@ -89,9 +90,10 @@ void rendering_competition() {
     world.scene = scene;
 	//scene->add(new Sphere(Point(0,  0,  0), 2 , nullptr, nullptr));
 
-	world.light.push_back(new PointLight(Point(5.20312f,-1.55587f, 2.11942f),RGBColor::rep(150000.0f*0.04f*0.04f)));
-	world.light.push_back(new PointLight(Point(0.83065f,-2.16278f, 6.16367f),RGBColor::rep(150000.0f*0.02f*0.02f)));
-	PerspectiveCamera cam1(Point(2.16113f, -9.22764f, 2.72367f), Vector(-0.31158f,0.876665f, -0.36724f), Vector(-0.0414f,0.3738f,0.9265f), pi/4, pi/4);
+	world.light.push_back(new PointLight(Point(-0.55445f, -6.95907f, 3.23149f),RGBColor::rep(150000.0f*0.03f*0.03f)));
+	
+	//world.light.push_back(new PointLight(Point(9.01729f,-2.5238f, 3.01534f),RGBColor::rep(150000.0f*0.03f*0.03f)));
+	PerspectiveCamera cam1(Point(1.13681f, -6.99481f, 1.63257f), Vector(0.44771f,0.872715f, -0.19464f), Vector(0.2330f,0.0962f,0.9675f), pi/4, pi/4);
     PerspectiveCamera cam2(Point(16.065f, -12.506f, 1.771f), Point(-0.286f, -0.107f, 1.35f)-Point(16.065f, -12.506f, 1.771f), Vector(0, 0, 1), pi/8, pi/6);
 	RecursiveRayTracingIntegrator integrator(&world);
 	//RayCastingIntegrator integrator(&world);
@@ -99,13 +101,13 @@ void rendering_competition() {
 	
 	clock_t start1 = clock();
     Renderer engine1(&cam1, &integrator);
-	engine1.setSamples(1);
+	engine1.setSamples(2);
 	engine1.render(img);
     img.writePNG("room1.png");
 
-    Renderer engine2(&cam2, &integrator);
-    engine2.render(img);
-    img.writePNG("room2.png");
+    //Renderer engine2(&cam2, &integrator);
+   // engine2.render(img);
+    //img.writePNG("room2.png");
 	
 	std::cout << ((double) (clock() - start1) / CLOCKS_PER_SEC) << "\n";
 	int kkk;

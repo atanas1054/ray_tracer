@@ -7,7 +7,10 @@
 #include <rt/ray.h>
 #include <rt/integrators/integrator.h>
 #include <core/random.h>
+#include <core/CImg.h>
+#include <iostream>
 
+using namespace cimg_library;
 namespace rt {
 
 	float a1computeWeight(float fx, float fy, const Point& c, float div) {
@@ -58,6 +61,8 @@ namespace rt {
 
 	void Renderer::render(Image& img) {
 		Ray ray;
+		CImg<float> img1(img.width(),img.height(),1,3), visu(img.width(),img.height(),1,3,0);
+		CImgDisplay main_disp(img1,"");
 		if (samples > 1) {
 			Vector c;
 			RGBColor pixel;
@@ -81,8 +86,21 @@ namespace rt {
 					}
 					pixel = pixel / samples;
 					img(i, j) = pixel;
+					
+
+					
+					img1(i,j,0) =pixel.r;
+					img1(i,j,1) = pixel.g;
+					img1(i,j,2) = pixel.b;
+
+					if(j == img.height()-1)
+					main_disp.display(img1);
+					
+					
+					
 				}
 			}
+		
 		} else {
 			#pragma omp parallel for private(ray) schedule (dynamic,1)
 			for(int i = 0; i < img.width();i++){
@@ -95,9 +113,16 @@ namespace rt {
 						//i = i;
 					//}
 					img(i, j) = (*(Renderer::integrator)).getRadiance(ray);
+					img1(i,j,0) = (*(Renderer::integrator)).getRadiance(ray).r;
+					img1(i,j,1) = (*(Renderer::integrator)).getRadiance(ray).g;
+					img1(i,j,2) = (*(Renderer::integrator)).getRadiance(ray).b;
+
+					if(j == img.height()-1)
+					main_disp.display(img1);
 				}
 			}
 		}
+		
 	}
 	void Renderer::test_render1(Image& img) {
 		for(int i = 0; i < img.width();i++){
