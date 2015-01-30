@@ -22,6 +22,7 @@ public:
 		isIntersect = false;
 		distance = FLT_MAX;
 	}
+
     static Intersection failure();
     Intersection(float distance, const Ray& ray, const Solid* solid, const Vector& normal, const Point& uv);
 

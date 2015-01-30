@@ -14,6 +14,7 @@ void a_motionBlur();
 void a_smooth();
 void a_bumpmappers();
 void rendering_competition();
+void a_rc();
 
 int main(int argc, char* argv[])
 {
@@ -32,5 +33,6 @@ int main(int argc, char* argv[])
 	//a_smooth();
 	//a_bumpmappers();
 	rendering_competition();
+	//a_rc();
     return 0;
 }

@@ -9,6 +9,9 @@
 #include <rt/groups/kdtree.h>
 #include <rt/groups/MotionBlur.h>
 #include <rt/solids/sphere.h>
+#include <rt/groups/csg.h>
+#include <rt/groups/csgsolids/csgaabox.h>
+#include <rt/groups/csgsolids/csgsphere.h>
 #include <rt/solids/quad.h>
 #include <rt/solids/aabox.h>
 #include <rt/solids/triangle.h>
@@ -46,7 +49,14 @@ using namespace rt;
 
 void rendering_competition() {
 	
-    Image img(800,600);
+	float horAngle = pi/2.5;
+	float d = 10;
+	float ratioWH = 1280.0f / 960.0f;
+	float halfWidth = std::tan(horAngle / 2) * d;
+	float halfHeight = halfWidth / ratioWH;
+	float verAngle = std::atan2(halfHeight, d) * 2;
+
+    Image img(1280,960);
 	
     BVH* scene = new BVH();
 	BVH* cup = new BVH();
@@ -155,6 +165,35 @@ void rendering_competition() {
 	scene->add(inst2);
 	scene->add(sphere_);
 	
+	//CSG
+	Material* glassmat = new GlassMaterial(2.0f);
+	Material* mirrormat = new MirrorMaterial(2.485, 3.433);
+	Material* fuzzymat = new FuzzyMirrorMaterial(2.485f, 3.433f, 0.05f);
+
+	CSG* csg = new CSG(
+			CSG::CombineType::INTERSECT, 
+			new CSGAABox(Point(1.5f,0.5f,0.5f), Point(2.5f,1.5f,1.5f), nullptr, fuzzymat),
+			new CSGSphere(Point(2,1,1), 0.6, nullptr, fuzzymat), nullptr, fuzzymat
+	);
+	csg = new CSG(
+		CSG::CombineType::DIFFERENCE, 
+		csg,
+		new CSGSphere(Point(2,1,1), 0.5, nullptr, fuzzymat), nullptr, fuzzymat
+	);
+	
+	csg->add(new CSGSphere(Point(2.5,1,1), 0.25, nullptr, fuzzymat));
+	csg->add(new CSGSphere(Point(2,1,1.5), 0.25, nullptr, fuzzymat));
+	csg->add(new CSGSphere(Point(2,0.5,1), 0.25, nullptr, fuzzymat));
+	csg->add(new CSGSphere(Point(2,1,0.5), 0.25, nullptr, fuzzymat));
+	csg->add(new CSGSphere(Point(1.5,1,1), 0.25, nullptr, fuzzymat));
+	csg->add(new CSGSphere(Point(2,1.5,1), 0.25, nullptr, fuzzymat));
+
+	Instance* instcsg = new Instance(csg);
+	instcsg->translate(Point(1.8,-3.92212,0.3795) - Point(2,1,1));
+	instcsg->scale(0.5);
+	scene->add(instcsg);
+	//
+
 
 	clock_t start = clock();
 
@@ -185,7 +224,7 @@ void rendering_competition() {
 
 	//world.light.push_back(new SpotLight(Point(3.27691f, -2.57511f, 2.58388f), Vector(0, 0, -2.58388f),  pi/6, 6.0f, RGBColor::rep(150000.0f*0.011f*0.01f)));
 
-	PerspectiveCamera cam1(Point(-0.44221f, -7.13732f, 3.16076f), Vector(0.612599f,0.80506f, -0.3550f), Vector(0.13844f,0.26561f,0.95408f), pi/3.5, pi/2.5);
+	PerspectiveCamera cam1(Point(-0.44221f, -7.13732f, 3.16076f), Vector(0.612599f,0.80506f, -0.3550f), Vector(0.13844f,0.26561f,0.95408f), verAngle, horAngle);
 	RecursiveRayTracingIntegrator integrator(&world);
 	//RayCastingIntegrator integrator(&world);
     //RayCastingDistIntegrator integrator(&world, RGBColor(1.0f,0.2f,0.0f), 4.0f, RGBColor(0.2f,1.0f,0.0f), 12.0f);

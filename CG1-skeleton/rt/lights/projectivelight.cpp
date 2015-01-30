@@ -40,6 +40,6 @@ namespace rt{
 
     RGBColor ProjectiveLight::getIntensity(const LightHit& irr) const
 	{
-		return /*a2computeColor_(Ray(position, irr.direction)) **/ intensity / irr.distance / irr.distance;
+		return a2computeColor_(Ray(position, irr.direction)) * intensity / irr.distance / irr.distance;
 	}
 }

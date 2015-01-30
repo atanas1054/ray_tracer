@@ -24,17 +24,27 @@ namespace rt
 		std::vector<Intersection*> intersections = CSG::intersections(ray);
 		if(intersections.size() > 0 && intersections[0]->distance < previousBestDistance){
 			int index = 0;
-			while(index < intersections.size() && intersections[index]->distance < 0){
+			while(index < intersections.size() && intersections[index]->distance < epsilon * 5){
 				index++;
 			}
-			if(index < intersections.size()){
+			if(index < intersections.size() && intersections[index]->distance < previousBestDistance){
 				Intersection i = Intersection(
 					intersections[index]->distance, ray,
 					intersections[index]->solid, 
 					intersections[index]->normal(), 
 					intersections[index]->local());
+				while(!intersections.empty()){
+					Intersection* k = intersections.back();
+					intersections.pop_back();
+					delete k;
+				}
 				return i;
 			}
+		}
+		while(!intersections.empty()){
+			Intersection* k = intersections.back();
+			intersections.pop_back();
+			delete k;
 		}
 		return Intersection::failure();
 	}
@@ -65,6 +75,8 @@ namespace rt
 							}else if(!insideB && insideR){
 								insideR = !insideR;
 								intrs.push_back(single[indexB]);
+							}else{
+								delete single[indexB];
 							}
 							indexB++;
 						}else if(indexB == single.size()){
@@ -75,6 +87,8 @@ namespace rt
 							}else if(!insideA && insideR){
 								insideR = !insideR;
 								intrs.push_back(result[indexA]);
+							}else{
+								delete result[indexA];
 							}
 							indexA++;
 						}
@@ -87,6 +101,8 @@ namespace rt
 							} else if(!insideA && !insideB && insideR) {
 								insideR = !insideR;
 								intrs.push_back(result[indexA]);
+							}else{
+								delete result[indexA];
 							}
 							indexA++;
 						} else {
@@ -97,6 +113,8 @@ namespace rt
 							} else if(!insideA && !insideB && insideR) {
 								insideR = !insideR;
 								intrs.push_back(single[indexB]);
+							}else{
+								delete single[indexB];
 							}
 							indexB++;
 						}
@@ -132,6 +150,8 @@ namespace rt
 							} else if(insideA && insideB && !insideR) {
 								insideR = !insideR;
 								intrs.push_back(result[indexA]);
+							}else{
+								delete result[indexA];
 							}
 							indexA++;
 						} else {
@@ -142,6 +162,8 @@ namespace rt
 							} else if(insideA && insideB && !insideR) {
 								insideR = !insideR;
 								intrs.push_back(single[indexB]);
+							}else{
+								delete single[indexB];
 							}
 							indexB++;
 						}
@@ -177,8 +199,10 @@ namespace rt
 								insideA = !insideA;
 								if(insideA && !insideB) {
 									intrs.push_back(result[indexA]);
-								} else if(!insideA) {
+								} else if(!insideA && !insideB) {
 									intrs.push_back(result[indexA]);
+								}else{
+									delete result[indexA];
 								}
 								indexA++;
 							} else {
@@ -187,6 +211,8 @@ namespace rt
 									intrs.push_back(single[indexB]);
 								} else if(insideB && insideA) {
 									intrs.push_back(single[indexB]);
+								}else{
+									delete single[indexB];
 								}
 								indexB++;
 							}
