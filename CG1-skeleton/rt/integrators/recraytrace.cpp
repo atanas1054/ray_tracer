@@ -5,6 +5,7 @@
 #include <rt/solids/solid.h>
 #include <rt/materials/material.h>
 #include <rt/intersection.h>
+#include <rt/coordmappers/tmapper.h>
 
 namespace rt{
 
@@ -22,8 +23,8 @@ namespace rt{
 		Intersection intersect  = world->scene->intersect(ray);
 		if(intersect)
 		{
-			RGBColor color = intersect.solid->material->getEmission(
-				intersect.local(),
+			RGBColor color = RGBColor::rep(0.1f) + intersect.solid->material->getEmission(
+				intersect.solid->texMapper->getCoords(intersect),
 				intersect.normal(), -ray.d);
 			Point p = intersect.hitPoint();
 			if(intersect.solid->material->useSampling() == Material::Sampling::SAMPLING_NOT_NEEDED)
@@ -41,7 +42,7 @@ namespace rt{
 						if(!shadowIntrsct)
 						{
 							RGBColor sourceColor = world->light[i]->getIntensity(lh);
-							RGBColor reflectInt = intersect.solid->material->getReflectance(intersect.local(), intersect.normal(), -ray.d, lh.direction);
+							RGBColor reflectInt = intersect.solid->material->getReflectance(intersect.solid->texMapper->getCoords(intersect), intersect.normal(), -ray.d, lh.direction);
 							RGBColor reflectColor = sourceColor * reflectInt;
 							color = color + reflectColor;
 							//color = color + reflectInt;
@@ -51,7 +52,7 @@ namespace rt{
 			}
 			else if(intersect.solid->material->useSampling() == Material::Sampling::SAMPLING_ALL)
 			{
-				Material::SampleReflectance sample = intersect.solid->material->getSampleReflectance(intersect.local(), intersect.normal(), -ray.d);
+				Material::SampleReflectance sample = intersect.solid->material->getSampleReflectance(intersect.solid->texMapper->getCoords(intersect), intersect.normal(), -ray.d);
 				RGBColor refColor = getRadianceRec(Ray(p, sample.direction), counter + 1);
 				color = color + (refColor * sample.reflectance);
 			}
@@ -70,13 +71,13 @@ namespace rt{
 						if(!shadowIntrsct)
 						{
 							RGBColor sourceColor = world->light[i]->getIntensity(lh);
-							RGBColor reflectInt = intersect.solid->material->getReflectance(intersect.local(), intersect.normal(), -ray.d, -lh.direction);
+							RGBColor reflectInt = intersect.solid->material->getReflectance(intersect.solid->texMapper->getCoords(intersect), intersect.normal(), -ray.d, -lh.direction);
 							RGBColor reflectColor = sourceColor * reflectInt;
 							color = color + reflectColor;
 						}
 					}
 				}
-				Material::SampleReflectance sample = intersect.solid->material->getSampleReflectance(intersect.local(), intersect.normal(), -ray.d);
+				Material::SampleReflectance sample = intersect.solid->material->getSampleReflectance(intersect.solid->texMapper->getCoords(intersect), intersect.normal(), -ray.d);
 				RGBColor refColor = getRadianceRec(Ray(intersect.hitPoint(), sample.direction), counter + 1);
 				color = color + (refColor * sample.reflectance);
 			}

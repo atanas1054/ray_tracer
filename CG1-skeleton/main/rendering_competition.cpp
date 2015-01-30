@@ -13,17 +13,30 @@
 #include <rt/solids/aabox.h>
 #include <rt/solids/triangle.h>
 #include <rt/solids/aabox.h>
+#include <rt/solids/disc.h>
+#include <rt/solids/infiniteplane.h>
 #include <rt/primmod/instance.h>
 #include <rt/cameras/perspective.h>
+#include <rt/cameras/dofperspective.h>
 #include <rt/integrators/casting.h>
 #include <rt/integrators/castingdist.h>
 #include <rt/integrators/recraytrace.h>
 #include <rt/lights/pointlight.h>
 #include <rt/lights/directional.h>
+#include <rt/lights/projectivelight.h>
+#include <rt/lights/arealight.h>
+#include <rt/lights/spotlight.h>
 #include <rt/materials/phong.h>
 #include <rt/materials/lambertian.h>
 #include <rt/materials/mirror.h>
+#include <rt/materials/glass.h>
+#include <rt/materials/fuzzymirror.h>
+#include <rt/materials/flatmaterial.h>
 #include <rt/textures/constant.h>
+#include <rt/textures/imagetex.h>
+#include <rt/textures/perlin.h>
+#include <rt/primmod/bmap.h>
+#include <rt/coordmappers/tmapper.h>
 #include <iostream>
 #include <time.h>
 
@@ -32,84 +45,158 @@ using namespace rt;
 
 
 void rendering_competition() {
+	
     Image img(800,600);
 	
     BVH* scene = new BVH();
-	BVH* sample = new BVH();
-	BVH* floor = new BVH();
+	BVH* cup = new BVH();
 	BVH* sphere = new BVH();
+	BVH* sphere1 = new BVH();
+	BVH* chair_obj = new BVH();
+
+	//BVH* sphere = new BVH();
 	MotionBlur* chair = new MotionBlur();
-	
-	//SimpleGroup* scene = new SimpleGroup();
-	//SimpleGroup* scene = new SimpleGroup();
-   // scene->add(new Sphere(Point(4,  0,  0.8), 0.5  , nullptr, phong));
-	//scene->add(new Sphere(Point(2,  0,  1.8), 0.5  , nullptr, phong));
-	//scene->add(new Quad(Point(-10,-10,-1), Vector(20,0,0), Vector(0,20,0), nullptr, lamb));
-	//scene->add(new Triangle(Point(-10,-10,-1),Point(-10,10,-1),Point(10,-10,-1),nullptr,lamb));
-   // scene->add(new Sphere(Point(2.5f,  -1.f,  -1), 0.5, nullptr, nullptr));
-    //scene->add(new Sphere(Point(4.5f,  .5f,  -1), 0.5 , nullptr, nullptr));
-
-	
+	MotionBlur* sphere_ = new MotionBlur();
+		
 	loadOBJ(scene, "models/", "room.obj");
-	//loadOBJ(sample, "models/", "chair.obj");
-	//loadOBJ(floor, "models/", "floor.obj");
-	//loadOBJ(sphere, "models/", "sphere.obj");
-	//sphere->setMaterial(new MirrorMaterial(2.485, 3.433));
-	//sphere->rebuildIndex();
+	loadOBJ(sphere, "models/", "sphere.obj");
+	loadOBJ(sphere1, "models/", "sphere1.obj");
+	loadOBJ(cup, "models/", "cup.obj");
+	loadOBJ(chair_obj, "models/", "chair.obj");
+	
+	
+	chair_obj->rebuildIndex();
 
-	//floor->rebuildIndex();
-	//floor->setMaterial(new MirrorMaterial(2.485, 3.433));
+	sphere->setMaterial(new MirrorMaterial(2.485, 3.433));
+	sphere->rebuildIndex();
 
-	//sample->rebuildIndex();
+	Texture* blacktex1 = new ConstantTexture(RGBColor::rep(0.0f));
+	Texture* whitetex1 = new ConstantTexture(RGBColor::rep(1.0f));
 
-	//chair->add(sample);
-	//chair->translate(-Vector(-0.53539f,-4.56710f,0.11486f));
-	//chair->rotate(Point(-0.53539f,-4.56710f,0.11486f)-Point(0.22227f,-4.56402f,0.11901f),-pi/6);
-	//chair->translate(Vector(-0.53539f,-4.56710f,0.11486f));
+	sphere1->setMaterial(new LambertianMaterial(blacktex1, whitetex1));
+	sphere1->rebuildIndex();
 
-	//Instance* inst1 = new Instance(sample);
-	//inst1->translate(-Vector(-0.53539f,-4.56710f,0.11486f));
-	//inst1->rotate(Point(-0.53539f,-4.56710f,0.11486f)-Point(0.22227f,-4.56402f,0.11901f),-pi/6);
-	//inst1->translate(Vector(-0.53539f,-4.56710f,0.11486f));
+	cup->setMaterial(new LambertianMaterial(blacktex1, whitetex1));
+	cup->rebuildIndex();
 
-	//
 
-	//scene->add(sphere);
-	//scene->add(floor);
-	//scene->add(chair);
-	//scene->add(inst1);
+	chair->add(chair_obj);
+	chair->translate(-Vector(1.33416f,-2.71494f,-0.12571f));
+	chair->rotate(Point(1.33468f,-2.71482f,-0.12573f)-Point(1.04338f,-3.29067f,-0.12278f),-pi/9);
+	chair->translate(Vector(1.33416f,-2.71494f,-0.12571f));
+
+	Instance* inst1 = new Instance(chair_obj);
+	inst1->translate(-Vector(1.33416f,-2.71494f,-0.12571f));
+	inst1->rotate(Point(1.33468f,-2.71482f,-0.12573f)-Point(1.04338f,-3.29067f,-0.12278f),-pi/9);
+	inst1->translate(Vector(1.33416f,-2.71494f,-0.12571f));
+
+
+	sphere_->add(sphere1);
+	sphere_->translate(Point(1.55016f,-2.11429f,1.13691f)-Point(1.99071f,-2.0549f,1.07969f));
+	
+	Instance* inst2 = new Instance(sphere1);
+	inst2->translate(Point(1.55016f,-2.11429f,1.13691f)-Point(1.99071f,-2.0549f,1.07969f));
+	
+
+	//Bump map
+	Texture* wt = new ConstantTexture(RGBColor::rep(1));
+	Texture* bt = new ConstantTexture(RGBColor::rep(0));
+	Texture* gt = new ImageTexture("models/wall1.png");
+	Material* lambbrick = new LambertianMaterial(bt, gt);
+	//multiply the points here to get smaller pattern
+	Point* tri1 = new Point[3];
+	tri1[0] = 2*Point(1,1,0);
+	tri1[1] = 2*Point(1, 0, 0);
+	tri1[2] = 2*Point(0, 0, 0);
+	Point* tri2 = new Point[3];
+	tri2[0] = 2*Point(1,1,0);
+	tri2[1] = 2*Point(0, 0, 0);
+	tri2[2] = 2*Point(0, 1, 0);
+	//front wall
+	CoordMapper* trimap1 = new TriangleMapper(tri1[0], tri1[1], tri1[2]);
+	CoordMapper* trimap2 = new TriangleMapper(tri2[0], tri2[1], tri2[2]);
+	Texture* bumpbrick = new ImageTexture("models/wall1.png");
+	scene->add(new BumpMapper(
+            new Triangle(Point(6.34551, 0.59627, -0.14699), Point(6.34551, 0.59627, 3.71617), Point(-0.83251, 0.59627, 3.71617), trimap1, lambbrick),
+            bumpbrick, tri1[0], tri1[1], tri1[2], 0.05)
+            );
+	scene->add(new BumpMapper(
+            new Triangle(Point(6.34551, 0.59627, -0.14699), Point(-0.83251, 0.59627, 3.71617), Point(-0.83251, 0.59627, -0.14699), trimap2, lambbrick),
+            bumpbrick, tri2[0], tri2[1], tri2[2], 0.05)
+            );
+	//right wall
+	scene->add(new BumpMapper(
+            new Triangle(Point(6.04508, -7.59944, -0.15968), Point(6.04508, -7.59944, 3.70348), Point(6.04508, 0.94939, 3.70348), trimap1, lambbrick),
+            bumpbrick, tri1[0], tri1[1], tri1[2], 0.05)
+            );
+	scene->add(new BumpMapper(
+            new Triangle(Point(6.04508, -7.59944, -0.15968), Point(6.04508, 0.94939, 3.70348), Point(6.04508, 0.9494, -0.15968), trimap2, lambbrick),
+            bumpbrick, tri2[0], tri2[1], tri2[2], 0.05)
+            );
+
+	//Perlin noise texture
+
+	 PerlinTexture* perlinTex = new PerlinTexture(RGBColor(1.0f,1.0f,0.9f), RGBColor(0.5f,0.5f,1.0f));
+     perlinTex->addOctave(0.5f, 5.0f);
+     perlinTex->addOctave(0.25f, 10.0f);
+     perlinTex->addOctave(0.125f, 20.0f);
+     perlinTex->addOctave(0.125f, 40.0f);
+     FlatMaterial* perlin = new FlatMaterial(perlinTex);
+	
+	 LambertianMaterial* lamb = new LambertianMaterial(new ConstantTexture(RGBColor::rep(0.0f)), perlinTex);
+
+	//floor
+	scene->add(new Quad(Point(-0.84819f,-7.32295f,-0.1205),Point(-0.84819f,1.19039f,-0.1205f)-Point(-0.84819f,-7.32295f,-0.1205f),Point(6.34768f,-7.32295f,-0.1205f)-Point(-0.84819f,-7.32295f,-0.1205f),nullptr,lamb));
+
+	scene->add(sphere);
+	scene->add(cup);
+	scene->add(chair);
+	scene->add(inst1);
+	scene->add(inst2);
+	scene->add(sphere_);
 	
 
 	clock_t start = clock();
 
 	scene->rebuildIndex();
 
-	std::cout << ((double) (clock() - start) / CLOCKS_PER_SEC) << "\n";
+	std::cout << ((double) (clock() - start) / CLOCKS_PER_SEC) << " seconds to build the BVH" "\n";
 
     World world;
     world.scene = scene;
-	//scene->add(new Sphere(Point(0,  0,  0), 2 , nullptr, nullptr));
 
-	world.light.push_back(new PointLight(Point(-0.55445f, -6.95907f, 3.23149f),RGBColor::rep(150000.0f*0.03f*0.03f)));
+	ConstantTexture* lightsrctex = new ConstantTexture(RGBColor::rep(150000.0f*0.015f*0.01f));
+	Texture* blacktex = new ConstantTexture(RGBColor::rep(0.0f));
+	Material* lightsource = new LambertianMaterial(lightsrctex, lightsrctex);
+	Disc* light = new Disc(Point(3.27691f, -2.57511f, 2.41388f),Vector(0,0,1) ,0.23, nullptr, lightsource);
+	AreaLight als(light);
+	scene->add(light);
+	world.light.push_back(&als);
+	//world.light.push_back(new ProjectiveLight(Point(3.18619f,-2.72447f,2.99402f),RGBColor::rep(150000.0f*0.007f*0.007f)));
+
 	
-	//world.light.push_back(new PointLight(Point(9.01729f,-2.5238f, 3.01534f),RGBColor::rep(150000.0f*0.03f*0.03f)));
-	PerspectiveCamera cam1(Point(1.13681f, -6.99481f, 1.63257f), Vector(0.44771f,0.872715f, -0.19464f), Vector(0.2330f,0.0962f,0.9675f), pi/4, pi/4);
-    PerspectiveCamera cam2(Point(16.065f, -12.506f, 1.771f), Point(-0.286f, -0.107f, 1.35f)-Point(16.065f, -12.506f, 1.771f), Vector(0, 0, 1), pi/8, pi/6);
+	//world.light.push_back(new PointLight(Point(3.27691f, -2.57511f, 2.58388f),RGBColor::rep(150000.0f*0.007f*0.007f)));
+	
+	world.light.push_back(new PointLight(Point(5.40733f,-6.94448f,3.32905f),RGBColor::rep(150000.0f*0.013f*0.01f)));
+	world.light.push_back(new PointLight(Point(0.03841f,-6.3863f, 3.15896f),RGBColor::rep(150000.0f*0.013f*0.01f)));
+
+	world.light.push_back(new PointLight(Point(-0.21887f,-5.00706f, 2.22723f),RGBColor::rep(150000.0f*0.008f*0.01f)));
+
+
+	//world.light.push_back(new SpotLight(Point(3.27691f, -2.57511f, 2.58388f), Vector(0, 0, -2.58388f),  pi/6, 6.0f, RGBColor::rep(150000.0f*0.011f*0.01f)));
+
+	PerspectiveCamera cam1(Point(-0.44221f, -7.13732f, 3.16076f), Vector(0.612599f,0.80506f, -0.3550f), Vector(0.13844f,0.26561f,0.95408f), pi/3.5, pi/2.5);
 	RecursiveRayTracingIntegrator integrator(&world);
 	//RayCastingIntegrator integrator(&world);
     //RayCastingDistIntegrator integrator(&world, RGBColor(1.0f,0.2f,0.0f), 4.0f, RGBColor(0.2f,1.0f,0.0f), 12.0f);
 	
 	clock_t start1 = clock();
     Renderer engine1(&cam1, &integrator);
-	engine1.setSamples(2);
+	engine1.setSamples(1);
 	engine1.render(img);
-    img.writePNG("room1.png");
+    img.writePNG("1-sample.png");
 
-    //Renderer engine2(&cam2, &integrator);
-   // engine2.render(img);
-    //img.writePNG("room2.png");
-	
-	std::cout << ((double) (clock() - start1) / CLOCKS_PER_SEC) << "\n";
+	std::cout << ((double) (clock() - start1) / CLOCKS_PER_SEC) << " seconds to render" "\n";
 	int kkk;
 	std::cin >> kkk;
 

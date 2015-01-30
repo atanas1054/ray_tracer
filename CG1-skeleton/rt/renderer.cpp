@@ -61,8 +61,8 @@ namespace rt {
 
 	void Renderer::render(Image& img) {
 		Ray ray;
-		CImg<float> img1(img.width(),img.height(),1,3), visu(img.width(),img.height(),1,3,0);
-		CImgDisplay main_disp(img1,"");
+		//CImg<float> img1(img.width(),img.height(),1,3), visu(img.width(),img.height(),1,3,0);
+		//CImgDisplay main_disp(img1,"");
 		if (samples > 1) {
 			Vector c;
 			RGBColor pixel;
@@ -89,12 +89,12 @@ namespace rt {
 					
 
 					
-					img1(i,j,0) =pixel.r;
+				/*	img1(i,j,0) =pixel.r;
 					img1(i,j,1) = pixel.g;
 					img1(i,j,2) = pixel.b;
 
 					if(j == img.height()-1)
-					main_disp.display(img1);
+					main_disp.display(img1);*/
 					
 					
 					
@@ -113,12 +113,12 @@ namespace rt {
 						//i = i;
 					//}
 					img(i, j) = (*(Renderer::integrator)).getRadiance(ray);
-					img1(i,j,0) = (*(Renderer::integrator)).getRadiance(ray).r;
+				/*	img1(i,j,0) = (*(Renderer::integrator)).getRadiance(ray).r;
 					img1(i,j,1) = (*(Renderer::integrator)).getRadiance(ray).g;
-					img1(i,j,2) = (*(Renderer::integrator)).getRadiance(ray).b;
+					img1(i,j,2) = (*(Renderer::integrator)).getRadiance(ray).b;*/
 
-					if(j == img.height()-1)
-					main_disp.display(img1);
+					//if(j == img.height()-1)
+					//main_disp.display(img1);
 				}
 			}
 		}

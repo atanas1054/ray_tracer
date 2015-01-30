@@ -1,4 +1,5 @@
 #include <rt/solids/disc.h>
+#include <core/random.h>
 
 namespace rt 
 {
@@ -27,7 +28,15 @@ namespace rt
 		return Intersection::failure();
 	}
 	Point Disc::sample() const {
-		return Point();
+		float u = random();
+		float v = std::sqrt(random());
+		float theta = u * 2 * pi;
+		float dx = std::cos(theta) * v;
+		float dy = std::sin(theta) * v;
+		Vector spanHor = cross(Vector(random(),random(),random()),normal); 
+		Vector spanVer = cross(spanHor,normal);
+		Point new_ = origin + dx*radius*spanHor / spanHor.length() + dy*radius*spanVer / spanVer.length();
+		return new_;
 	}
 	float Disc::getArea() const{
 		return 2 * pi * radius * radius;
