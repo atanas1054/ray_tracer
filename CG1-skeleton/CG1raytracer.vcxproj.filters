@@ -503,8 +503,5 @@
     <ClCompile Include="main\rendering_competition.cpp">
       <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="main\a_rc.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

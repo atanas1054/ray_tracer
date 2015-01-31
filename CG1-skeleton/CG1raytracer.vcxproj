@@ -173,7 +173,6 @@
     <ClCompile Include="main\a_mappers.cpp" />
     <ClCompile Include="main\a_materials.cpp" />
     <ClCompile Include="main\a_motionBlur.cpp" />
-    <ClCompile Include="main\a_rc.cpp" />
     <ClCompile Include="main\a_smooth.cpp" />
     <ClCompile Include="main\a_solids.cpp" />
     <ClCompile Include="main\a_textures.cpp" />

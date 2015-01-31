@@ -14,7 +14,7 @@ void a_motionBlur();
 void a_smooth();
 void a_bumpmappers();
 void rendering_competition();
-void a_rc();
+
 
 int main(int argc, char* argv[])
 {

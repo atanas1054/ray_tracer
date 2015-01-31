@@ -51,18 +51,21 @@ void rendering_competition() {
 	
 	float horAngle = pi/2.5;
 	float d = 10;
-	float ratioWH = 1280.0f / 960.0f;
+	float ratioWH = 800.0f / 600.0f;
 	float halfWidth = std::tan(horAngle / 2) * d;
 	float halfHeight = halfWidth / ratioWH;
 	float verAngle = std::atan2(halfHeight, d) * 2;
 
-    Image img(1280,960);
+    Image img(800,600);
 	
     BVH* scene = new BVH();
 	BVH* cup = new BVH();
+	BVH* cup2 = new BVH();
+	BVH* fractured_cup = new BVH();
 	BVH* sphere = new BVH();
 	BVH* sphere1 = new BVH();
 	BVH* chair_obj = new BVH();
+
 
 	//BVH* sphere = new BVH();
 	MotionBlur* chair = new MotionBlur();
@@ -73,6 +76,8 @@ void rendering_competition() {
 	loadOBJ(sphere1, "models/", "sphere1.obj");
 	loadOBJ(cup, "models/", "cup.obj");
 	loadOBJ(chair_obj, "models/", "chair.obj");
+	loadOBJ(cup2, "models/", "cup2.obj");
+	loadOBJ(fractured_cup, "models/", "fractured_cup.obj");
 	
 	
 	chair_obj->rebuildIndex();
@@ -89,6 +94,18 @@ void rendering_competition() {
 	cup->setMaterial(new LambertianMaterial(blacktex1, whitetex1));
 	cup->rebuildIndex();
 
+	cup2->setMaterial(new LambertianMaterial(blacktex1, whitetex1));
+	cup2->rebuildIndex();
+
+	MotionBlur* fallingCup = new MotionBlur();
+	fallingCup->add(cup);
+	fallingCup->translate(Vector(0,0,-0.2));
+
+	Instance* inst3 = new Instance(cup);
+	inst3->translate(Vector(0,0,-0.35));
+
+	fractured_cup->setMaterial(new LambertianMaterial(blacktex1, whitetex1));
+	fractured_cup->rebuildIndex();
 
 	chair->add(chair_obj);
 	chair->translate(-Vector(1.33416f,-2.71494f,-0.12571f));
@@ -159,39 +176,58 @@ void rendering_competition() {
 	scene->add(new Quad(Point(-0.84819f,-7.32295f,-0.1205),Point(-0.84819f,1.19039f,-0.1205f)-Point(-0.84819f,-7.32295f,-0.1205f),Point(6.34768f,-7.32295f,-0.1205f)-Point(-0.84819f,-7.32295f,-0.1205f),nullptr,lamb));
 
 	scene->add(sphere);
-	scene->add(cup);
+	//scene->add(cup);
+	scene->add(fallingCup);
+	scene->add(fractured_cup);
 	scene->add(chair);
 	scene->add(inst1);
 	scene->add(inst2);
+	scene->add(inst3);
 	scene->add(sphere_);
 	
 	//CSG
 	Material* glassmat = new GlassMaterial(2.0f);
 	Material* mirrormat = new MirrorMaterial(2.485, 3.433);
-	Material* fuzzymat = new FuzzyMirrorMaterial(2.485f, 3.433f, 0.05f);
+	//Material* fuzzymat = new FuzzyMirrorMaterial(2.485f, 3.433f, 0.05f);
+	Texture* gt1 = new ImageTexture("models/csg-texture.png");
+	Material* fuzzymat = new LambertianMaterial(new ConstantTexture(RGBColor::rep(0.0f)), gt1);
+	
+	
+	float radius1 = 0.2;
+	float radius2 = radius1 - 0.05;
+	float radius3 = 0.083;
+	float boxRadius = 0.167;
+	Point center(1.57759f,-4.17556f,-0.01358f+boxRadius);
+	Point aaboxMin = center - Vector::rep(radius1);
+	Point aaboxMax = center + Vector::rep(radius1);
+	Point centerTop = center + Vector(0,0,boxRadius);
+	Point centerBottom = center + Vector(0,0,-boxRadius);
+	Point centerLeft = center + Vector(boxRadius,0,0);
+	Point centerRight = center + Vector(-boxRadius,0,0);
+	Point centerFront = center + Vector(0,boxRadius,0);
+	Point centerBack = center + Vector(0,-boxRadius,0);
+
 
 	CSG* csg = new CSG(
 			CSG::CombineType::INTERSECT, 
-			new CSGAABox(Point(1.5f,0.5f,0.5f), Point(2.5f,1.5f,1.5f), nullptr, fuzzymat),
-			new CSGSphere(Point(2,1,1), 0.6, nullptr, fuzzymat), nullptr, fuzzymat
+			new CSGAABox(aaboxMin, aaboxMax, nullptr, fuzzymat),
+			new CSGSphere(center, radius1, nullptr, fuzzymat), nullptr, fuzzymat
 	);
 	csg = new CSG(
 		CSG::CombineType::DIFFERENCE, 
 		csg,
-		new CSGSphere(Point(2,1,1), 0.5, nullptr, fuzzymat), nullptr, fuzzymat
+		new CSGSphere(center, radius2, nullptr, fuzzymat), nullptr, fuzzymat
 	);
 	
-	csg->add(new CSGSphere(Point(2.5,1,1), 0.25, nullptr, fuzzymat));
-	csg->add(new CSGSphere(Point(2,1,1.5), 0.25, nullptr, fuzzymat));
-	csg->add(new CSGSphere(Point(2,0.5,1), 0.25, nullptr, fuzzymat));
-	csg->add(new CSGSphere(Point(2,1,0.5), 0.25, nullptr, fuzzymat));
-	csg->add(new CSGSphere(Point(1.5,1,1), 0.25, nullptr, fuzzymat));
-	csg->add(new CSGSphere(Point(2,1.5,1), 0.25, nullptr, fuzzymat));
+	csg->add(new CSGSphere(centerBack, radius3, nullptr, fuzzymat));
+	csg->add(new CSGSphere(centerBottom, radius3, nullptr, fuzzymat));
+	csg->add(new CSGSphere(centerFront, radius3, nullptr, fuzzymat));
+	csg->add(new CSGSphere(centerLeft, radius3, nullptr, fuzzymat));
+	csg->add(new CSGSphere(centerRight, radius3, nullptr, fuzzymat));
+	csg->add(new CSGSphere(centerTop, radius3, nullptr, fuzzymat));
 
 	Instance* instcsg = new Instance(csg);
-	instcsg->translate(Point(1.8,-3.92212,0.3795) - Point(2,1,1));
-	instcsg->scale(0.5);
-	scene->add(instcsg);
+	scene->add(csg);
 	//
 
 
@@ -237,7 +273,7 @@ void rendering_competition() {
 
 	std::cout << ((double) (clock() - start1) / CLOCKS_PER_SEC) << " seconds to render" "\n";
 	int kkk;
-	std::cin >> kkk;
+	//std::cin >> kkk;
 
 
 }

@@ -241,6 +241,12 @@ namespace rt
 
 	void CSG::add(CSG* csg) { 
 		csgs.push_back(csg);
+		if(csgs.size() == 1) {
+			bbox = csg->getBounds();
+		}else{
+			bbox.extend(csg->getBounds());
+		}
+		center = bbox.min + (bbox.max - bbox.min) / 2;
 	}
 
 	Point CSG::sample() const 
